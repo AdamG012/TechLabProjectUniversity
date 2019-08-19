@@ -1,0 +1,251 @@
+{% extends "trendreport/base.html" %}
+{% load static %}
+
+{% block title %} Trends {% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+<div class="blur-field">
+    <div class="row">
+        <div id="audience-filter" class="col-xs-12 mx-auto text-center">
+
+            {% for audience in audience_members %}
+            <button class="btn btn-light trend-filter" data-audience-id="{{ audience.id }}">{{ audience.name }}</button>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <br>
+
+    <div id="card-container" class="d-flex">
+
+        {% for trend in trends %}
+
+        <div class="card-wrapper" id="trend-{{ trend.id }}">
+            <div class="card card-inverse bg-dark trend-card hover">
+                <a href="{% url 'trend_page' trend.id %}">
+
+                    {% with trend.background as static_image %}
+                        <img class="card-img" src="{% static static_image %}" alt="Card image">
+                    {% endwith %}
+
+                    <div class="card-img-overlay">
+
+                        <div class="animated-title">
+                            <h2 class="card-title text-center">
+                                {{ trend.name }}
+                            </h2>
+                        </div>
+
+                        <div class="hidden-overlay text-center align-items-center">
+                            <div class="card-text hidden-text">
+                                {% with trend.short_description|add:"..." as description %}
+                                    <em> {{ description }} </em>
+                                {% endwith %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+    <!-- Audience Filter modal -->
+    <div class="modal fade modal-center" id="audience-filter-modal" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title">Who are you?</h5>
+                </div>
+
+                <div class="modal-body">
+                    {% for a in audience_members %}
+                    <a href="#">
+                        <div class="modal-audience-filter" data-audience-id="{{ a.id }}">
+                            <i class="fa fa-{{ a.icon }} fa-4x"></i>
+                            <br/>
+                            {{ a.name }}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                        I've selected my options
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+    // When the user chooses an audience via the modal, update icon
+    $('#audience-filter-modal div.modal-audience-filter').on('click', function() {
+        this.classList.contains('active') ? this.classList.remove('active') : this.classList.add('active');
+    });
+
+    // Close the modal and pass all audience selection data to the main page at once
+    $('#audience-filter-modal button.btn').on('click', function() {
+        var selected_audiences = [];
+        $('div.modal-audience-filter.active').each(function() {
+            selected_audiences.push(this.dataset.audienceId);
+        })
+        if (selected_audiences.length > 0) {
+            update_audience_buttons(selected_audiences);
+            filter_cards();
+        }
+        $('#audience-filter-modal').modal('hide');
+    });
+
+
+    // Toggle the audience filters on and off
+    $('button.trend-filter').on('click', function() {
+        $(this).toggleClass('btn-theme');
+        $(this).attr('data-selected', $(this).attr('data-selected') == 'true' ? 'false' : 'true');
+        filter_cards();
+    });
+
+    // Loop through the buttons and select the one corresponding to the chosen audience
+    function update_audience_buttons(audiences) {
+
+        for (var i = 0; i < audiences.length; i++) {
+            var button = $("button.trend-filter[data-audience-id="+audiences[i]+"]");
+            if (button) {
+                // Change from white to selected
+                button.addClass('btn-theme');
+                button.attr('data-selected', 'true');
+            }
+        }
+    }
+
+    // Filters the cards based on the current audience selection.
+    function filter_cards() {
+
+        // Get the scores from the backend, indexed by trend ID
+        var scores = {{ audience_scores | safe }}
+
+        // Get the currently selected audience members
+        var selected_audiences = []
+        $('button.trend-filter').each(function() {
+            if (this.dataset.selected == 'true') {
+                selected_audiences.push(this.dataset.audienceId)
+            }
+        })
+
+        // Set the selected audiences as a cookie
+        // TODO: add expiry
+        document.cookie = 'audience=' + selected_audiences.join('|');
+
+        // Loop through each card and add up the scores for the selected audiences
+        var final_scores = {};
+        $('.card-wrapper').each(function() {
+
+            // Get the trend ID from the card ID
+            var trend_id = this.id.split('-')[1];
+
+            // Get the audience scores for this trend
+            var trend_scores = scores[trend_id];
+
+            // If there are any scores for this trend, let's add them up
+            final_scores[trend_id] = 0;
+            if (trend_scores) {
+                // Add up the scores for the selected audiences
+                for (var i = 0; i < selected_audiences.length; i++) {
+                    var audience_id = selected_audiences[i];
+                    if (trend_scores[audience_id]) {
+                        final_scores[trend_id] += trend_scores[audience_id];
+                    }
+                }
+            }
+
+        });
+
+        // Sort the trend IDs descending by score
+        var final_scores_sorted = Object.keys(final_scores).sort(function(a,b){return final_scores[b]-final_scores[a]});
+
+        // Loop over each trend ID and re-order the cards
+        for (var i = 0; i < final_scores_sorted.length; i++) {
+            var trend_id = final_scores_sorted[i];
+            $('#card-container').append($('#trend-'+trend_id));
+        }
+    }
+
+
+    $(document).ready(function() {
+
+        // If the template has been passed a selected audience, start with that
+        var audiences = [{{ selected_audience }}];
+
+        // If there isn't one, we need to see if the user has set it in the cookies
+        if (audiences.length == 0) {
+
+            // Get all the current cookies, split into an array
+            var cookie = document.cookie.split(";");
+
+            // Search the cookies for the audience cookie, to see if the user has set one yet
+            for (var i = 0; i < cookie.length; i++) {
+
+                // The current cookie, split into key-value
+                var c = cookie[i];
+                var c = c.split('=');
+
+                // If the cookie key is audience, they must have set it in the past
+                if (c[0].trim() == 'audience') {
+
+                    // If it's not just the empty string, use it
+                    if (c[1] && c[1] != "") {
+                        audiences = c[1].split('|');
+                    }
+                }
+            }
+
+        }
+
+        // If we STILL don't have an audience, show the audience selection modal
+        // TODO: We should probably remember that they said no for a certain period of time?
+        if (audiences.length == 0) {
+            $('#audience-filter-modal').modal({});
+        }
+        else {
+            update_audience_buttons(audiences);
+            filter_cards();
+        }
+    });
+
+    $(document).ready(function() {
+        var touchMoved;
+        $('.hover').on('touchend', function(e){
+            if(touchMoved != true){
+                if (this.classList.contains('hover_effect')) {
+                    e;
+                } else {
+                    e.preventDefault();
+                    $(this).addClass('hover_effect');
+                }
+            }
+        }).on('touchmove', function(e){
+            touchMoved = true;
+        }).on('touchstart', function(){
+            touchMoved = false;
+        });
+    });
+
+</script>
+
+{% endblock %}

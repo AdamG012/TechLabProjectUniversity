@@ -1,0 +1,52 @@
+name|description|short_description|background
+The Digital Strategy|What is the most effective way to share the Digital Experience to the greater community and amongst our peers.
+SFIA|An app to help staff measure and improve their Skills for the Information Age. Based on the Framework of the same name.
+Isilon Virtual Appliance|Does the Isilon VA address research use cases better than what we currently have in the space?
+University Hype Cycle|An easily updateable web app showing the trends that may impact the university and our current preparedness.
+Podio Dashboard|Can we make a dashboard for Podio that would allow users to download a stream and duplicate an environment?
+Staff PD in Blackboard|Is it possible to replace Cornerstone with Blackboard? are there barriers to using blackboard as a staff LMS?
+Room Usage Monitor|Can we use cheap PIR sensors to identify when booked meetings are unattended? Can we have Exchange respond?
+"Braveheart Pilot Environment|A demonstration of a Braveheart standing Desk, including USB extension, 2 screens and relevant equipment."
+Mapping Our Impact|University capital projects are heavily supported by ICT activities. This is a visual representation of our contribution.
+Visualising Wireless|Is the data in Prime able to be rendered visualy without external tools? is the data reliable?
+"People Tracking|Is it possible to track people with the existing Cisco infrastructure, could we use what we have to make a ""find me"" app?"
+Asimov|An App developed for design and Manufacturing to conrol complex robots with simple drag and drop components.
+"Vizkit|An App developed to allow rapid delivery of Javcript visualisations for the web, reducing time to science."
+Jupyter Hub|An Integrated Deployment of the Jupyter Hub Live code notebook System for use in geosciences.
+Reply.Education|An app developed for impromptu or prepared audience response. Developed on AAF for use by all AU universities.
+Storylines|An app developed for the DVC ISS and NCCC to facuilitate learning about Australia.
+Pivot|An analysis and reporting tool for the Research Data Store to support the research data management plan.
+Disability Awareness Week|3 demonstrations for the future of technology and how it can support the disability action plan.
+"Many Hands Make Light Work|The 2016 installment in the 7mm Pitch. A collaboration between the Techlab, Conservatorium, CPC and SCA."
+Musician Position Tracking|A motion tracking framework to assist musicians with identifying poor form and posture in real time.
+Musician Position Tracking 2|A second phase for Musician posture tracking. can we visualise muscle usage in the same way we do the skeleton?
+Scientific Cloud Desktop|Can we deploy Scientific visualisation desktops into the cloud with our infrastructure?
+Atom by Atom|Development of a prototype virtual reality environment to explore atom probe models.
+Geoscience Photogrammetry|Design and implementation of tools and processes to allow the faculty to use Drones for surveying and capture.
+The Writing Hub|Development of an Online reseource portal for the Writing Hub group. Delivered as an EIG.
+XL Excel Toolkit|An App for Health Science students to develop best practices in Excel. Delivered as an EIG.
+NCCC Resource Portal|Development of an Online reseource portal for National Centre for Cultural Competence.
+How Fast Is Artemis|A Visual representation of the speed of the University HPC. Designed to show the extreme benefit of HPC.
+Study Spaces|An app to demonstrate real time availability of our lab spaces. buit and embeded in the Sydney app.
+Video Captioning|Can we create complex interactive and multi-lingual transcripts for lecture and other videos?
+CPC Node Visuals|Can we create an interactive representation of the CPC Research nodes that demonstrates their complexity?
+360 Laboratory Filming|Can we cheaply produce full spherical panorama footage of our laboratories while that are in use?
+Everything Else|The Innovation portfolio has delivered over 50 additional experiments and apps since 2013.
+Laparoscopic Surgery|VR - Using fine surgical instruments https://www.youtube.com/watch?v=Vixt9at7pYQ
+Assisted Living|VR - Interactive house design for mobility chair users https://www.youtube.com/watch?v=irqWSxE8G1M
+Paris Tricycle|VR - Tricycle ride around Paris for navigation and spatial awareness https://www.youtube.com/watch?v=UFRiwlZgqrk
+Military Checkpoint Inspection|VR - Military checkpoint with an undercarriage inspection mirror for IEDs https://www.youtube.com/watch?v=VCZNcStw6lI
+Desert Mine Clearance|VR - Desert mine clearance task using a virtual metal detector https://www.youtube.com/watch?v=z7nWrBukjyI
+"Cliff Winch|VR - Cable winch up cliff with vertical treadmill (vertigo, rescue and high wire access training) https://www.youtube.com/watch?v=5WQwkdvVeBA"
+Casino Lounge|VR - Casino ?VIP Lounge? with environmental sights and sounds (problem gambling) https://www.youtube.com/watch?v=dvu5r17YwVU
+"Supermarket Aisle|VR - Supermarket aisle with products and shipping trolley (marketing, consumerism) https://www.youtube.com/watch?v=ylQhJ0qWNp4"
+"Temporal Bone Walkthrough|VR - Walk through reconstruction of the inner ear temporal bone (data visualisation, surgery) https://www.youtube.com/watch?v=jCECoZDby_8"
+"Harbour Bridge Climb|VR - Crossing a beam between arches of the Sydney Harbour Bridge (vertigo, phobias) https://www.youtube.com/watch?v=1lk5uN_aeOo"
+"Hospital|VR - Hospital ward, ICU, surgical theatre, MRI suite, pharmacy, meeting room, offices (training, architecture) https://www.youtube.com/watch?v=ORV8cYT7KT4"
+"Optokinetic Perturbing Stimulus|VR - Optokinetic perturbing stimulus (rotating dot cloud) (posturography, rehabilitation) https://www.youtube.com/watch?v=R2_6hZE33Bc"
+Visual Perturbation|VR - Realistic perturbing stimulus ? world moves with unpredictable 3-axis sum of sines https://www.youtube.com/watch?v=r7IlWsN_ZaY
+VOR Gain Modification: Balloon Target Task|VR - VOR gain modification ? balloon target task (vestibular rehabilitation) https://www.youtube.com/watch?v=AtlZjlGvjcs
+VOR Gain Modification: Saccade Biofeedback|VR - VOR gain modification ? saccade biofeedback during head movement (vestibular rehabilitation) https://www.youtube.com/watch?v=Ow4qpZngohU
+"Subjective Visual Vertical: Curator|VR - Curator 'straighten the painting' task (diagnosis of otolith dysfunction, spatial orientation) https://www.youtube.com/watch?v=Zc2-NpYmMzg"
+Bicycle Ride|VR - Bicycle ride with additional cues like wind (fan) etc. (VR 'presence') https://www.youtube.com/watch?v=8x1AdyFEhgQ
+"Patient's Virtual Reality 'A10D'|Medical patients are often hospital/hospice/home bound due to immobility (hip fractures, ataxia,?); contagion (quarantine and isolation); treatment regimen (chemotherapy, rehabilitation, ?); or old age (frailty, muscle weakness, imbalance,?). The suffering, depression, isolation and poor quality of life associated with these circumstances are exacerbated by being forced to miss important family and life events such as: births, christenings, birthdays, graduations, performances, weddings, funerals, etc. "
