@@ -9,7 +9,8 @@ class LikeButton extends React.Component {
 
 	render() {
 		if (this.state.liked) {
-			return 'You liked this.';
+			// Add some call to backed so user can store this article
+			return 'You liked this. The article will be added to your selection.';
 		}
 		
 		return e(
