@@ -17,7 +17,7 @@ const SocialMedia = props => {
 
 SocialMedia.propTypes = {
   url: PropTypes.string.isRequired,
-  svgSource: PropTypes.string.isRequired,
+  svgSource: PropTypes.object.isRequired,
   alt: PropTypes.string
 };
 

@@ -25,13 +25,8 @@ class ArticlesContainer extends React.Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.setState({ images: res.data.results });
       });
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
   }
 
   renderContent = () => {
@@ -50,12 +45,6 @@ class ArticlesContainer extends React.Component {
   mollit anim id est laborum."
         />
       );
-      // return (
-      //   <div>
-      //     <h1>Hello</h1>
-      //     <img height="100%" width="100%" src={image.urls.full} />
-      //   </div>
-      // );
     });
   };
 

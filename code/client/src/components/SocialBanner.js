@@ -5,48 +5,18 @@ import React from "react";
 
 import SocialMedia from "./SocialMedia";
 
-import { ReactComponent as FacebookLogo } from "../svg/SVG/facebook.svg";
-import { ReactComponent as InstagramLogo } from "../svg/SVG/instagram.svg";
-import { ReactComponent as TumblerLogo } from "../svg/SVG/tumblr.svg";
-import { ReactComponent as TwitterLogo } from "../svg/SVG/twitter.svg";
-import { ReactComponent as YoutubeLogo } from "../svg/SVG/youtube.svg";
-
-const socialMediaAPIMock = {
-  success: true,
-  sites: [
-    {
-      name: "Facebook",
-      url: "https://www.facebook.com/usydtechlab/",
-      svg: <FacebookLogo />
-    },
-    {
-      name: "Instagram",
-      url: "www.instagram.com",
-      svg: <InstagramLogo />
-    },
-    {
-      name: "Tumblr",
-      url: "www.tumblr.com",
-      svg: <TumblerLogo />
-    },
-    {
-      name: "Twitter",
-      url: "https://twitter.com/usydtechlab?lang=en",
-      svg: <TwitterLogo />
-    },
-    {
-      name: "Youtube",
-      url: "www.youtube.com",
-      svg: <YoutubeLogo />
-    }
-  ]
-};
-
 class SocialBanner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      siteData: props.data ? props.data : null
+    };
+  }
+
   renderContent = () => {
-    const socialMediaSites = socialMediaAPIMock.sites;
+    const { siteData } = this.state;
     // either use fetch here or read from raw data
-    return socialMediaSites.map((item, index) => {
+    return siteData.map((item, index) => {
       return (
         <li className="social-banner__list-item" key={index}>
           <SocialMedia url={item.url} svgSource={item.svg} alt={item.name} />
