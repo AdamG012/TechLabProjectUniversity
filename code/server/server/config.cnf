@@ -1,0 +1,5 @@
+[client]
+database = trends_database
+user = admin
+password = pass
+default-character-set = utf8
