@@ -14,6 +14,8 @@ class ContactForm extends React.Component {
   handleFormSubmit = e => {
     e.preventDefault();
     console.log("form submitted");
+
+    this.setState({ name: "", email: "", subject: "", content: "" });
   };
 
   handleNameChange = e => {
