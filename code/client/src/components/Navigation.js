@@ -24,7 +24,7 @@ const Navigation = () => {
             </Link>
           </li>
           <li className="navigation__list-item">
-            <Link className="navigation__link" to="/contact">
+            <Link className="navigation__link" to="/createArticle">
               Create Article
             </Link>
           </li>

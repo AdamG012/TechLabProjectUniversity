@@ -10,7 +10,7 @@ class FourOhFour extends React.Component {
     return (
       <div>
         <h4>Page not found</h4>
-        <button class="btn">
+        <button className="btn">
           <Link to="/">Home</Link>
         </button>
         <button onClick={this.goBack}>

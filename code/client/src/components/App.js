@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import ArticlePage from "./Pages/ArticlePage";
+import CreateArticle from "./CreateArticle";
 import FourOhFour from "./Pages/FourOhFour";
 
 import "../styling/compiledStyles.css";
@@ -24,6 +25,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/createArticle" component={CreateArticle} />
           <Route path="/about" component={AboutPage} />
           <Route path="/articles" component={ArticlePage} />
           <Route component={FourOhFour} />
