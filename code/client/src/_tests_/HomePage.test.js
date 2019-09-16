@@ -30,4 +30,8 @@ describe("HomePage Component", () => {
   it("Renders an ArticlesContainer", () => {
     expect(component.find(ArticlesContainer).length).toEqual(1);
   });
+
+  it("dummy", () => {
+    expect(1).toBe(1);
+  });
 });

@@ -3,8 +3,7 @@
 */
 
 .article-snapshot {
-  border: 3px solid black;
-  border-radius: 1rem;
+  border: 1px solid darkgray;
   display: flex;
   margin: 2rem;
   max-height: 20rem;
@@ -31,7 +30,7 @@
   }
 
   &__text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 1rem;
     line-height: 1.3;
   }

@@ -8,6 +8,10 @@ describe("AboutPage Component", () => {
     component = shallow(<AboutPage />);
   });
 
+  afterEach(() => {
+    setTimeout(() => {}, 100);
+  });
+
   it("Dummy Test", () => {
     expect(true).toEqual(true);
   });

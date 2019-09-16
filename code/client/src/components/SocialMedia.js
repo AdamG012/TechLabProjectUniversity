@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 const SocialMedia = props => {
   return (
-    <div>
+    <div className="social-media">
       <a title={props.alt} href={props.url}>
         {props.svgSource}
       </a>

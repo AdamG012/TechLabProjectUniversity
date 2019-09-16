@@ -8,6 +8,7 @@ describe("ArticlePage Component", () => {
   let component;
   beforeEach(() => {
     component = shallow(<ArticlePage />);
+    setTimeout(() => {}, 500);
   });
 
   afterEach(() => {

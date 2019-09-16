@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// TODO: is navigation-container required??
+
 const Navigation = () => {
   return (
     <div className="navigation-container">
@@ -13,17 +15,17 @@ const Navigation = () => {
           </li>
           <li className="navigation__list-item">
             <Link className="navigation__link" to="/about">
-              About
-            </Link>
-          </li>
-          <li className="navigation__list-item">
-            <Link className="navigation__link" to="/articles">
-              Articles
+              Blog
             </Link>
           </li>
           <li className="navigation__list-item">
             <Link className="navigation__link" to="/contact">
               Contact
+            </Link>
+          </li>
+          <li className="navigation__list-item">
+            <Link className="navigation__link" to="/contact">
+              Create Article
             </Link>
           </li>
         </ul>

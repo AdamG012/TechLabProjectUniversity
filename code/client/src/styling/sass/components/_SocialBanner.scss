@@ -4,6 +4,9 @@
 
 .social-banner {
   padding: 1rem;
+  background-color: black;
+  display: flex;
+  align-items: center;
 
   &__list {
     display: flex;

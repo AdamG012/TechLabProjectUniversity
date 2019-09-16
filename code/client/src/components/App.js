@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import ArticlePage from "./Pages/ArticlePage";
+import FourOhFour from "./Pages/FourOhFour";
 
 import "../styling/compiledStyles.css";
 
@@ -21,9 +22,12 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/articles" component={ArticlePage} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/articles" component={ArticlePage} />
+          <Route component={FourOhFour} />
+        </Switch>
       </Router>
     );
   }

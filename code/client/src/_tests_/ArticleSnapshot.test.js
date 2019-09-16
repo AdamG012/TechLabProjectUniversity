@@ -30,25 +30,28 @@ describe("ArticleSnapshot Component", () => {
   });
 
   it("Correctly Receives Props", () => {
-    // const wrapper = shallow(
-    //   <ArticleSnapshot
-    //     title="Test Title"
-    //     content="Sample Content"
-    //     image="src/img/dummyplaceholder.jpg"
-    //   />
-    // );
-    // expect(wrapper.contains(<div className="article-snapshot"></div>));
-
     expect(fullRender.props().title).toBe("Test Title");
     expect(fullRender.props().content).toBe("Sample Content");
     expect(fullRender.props().image).toBe("src/img/dummyplaceholder.jpg");
   });
 
-  it("Renders the outer div", () => {
+  it("Contains the correct elements", () => {
+    expect(shallowRender.find("div").length).toEqual(3);
+    expect(shallowRender.find("h6").length).toEqual(1);
+    expect(shallowRender.find("p").length).toEqual(1);
+    expect(shallowRender.find("img").length).toEqual(1);
+  });
+
+  it("Elements have correct classNames", () => {
+    expect(shallowRender.find(".article-snapshot").length).toEqual(1);
     expect(
-      shallowRender.containsMatchingElement(
-        <div className="article-snapshot"></div>
-      ) // this doesn't work correctly
-    );
+      shallowRender.find(".article-snapshot__img-container").length
+    ).toEqual(1);
+    expect(shallowRender.find(".article-snapshot__img").length).toEqual(1);
+    expect(
+      shallowRender.find(".article-snapshot__content-container").length
+    ).toEqual(1);
+    expect(shallowRender.find(".article-snapshot__heading").length).toEqual(1);
+    expect(shallowRender.find(".article-snapshot__text").length).toEqual(1);
   });
 });

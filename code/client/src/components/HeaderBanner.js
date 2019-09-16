@@ -1,12 +1,12 @@
 /**
- * Header component, contains logo, h1, nav, search, and social media links
+ * Sticky header component, contains navigation and social media
  */
 import React from "react";
 
 import Navigation from "./Navigation";
 
-import logo from "../img/logo.webp";
 import SocialBanner from "./SocialBanner";
+import GetInTouch from "./GetInTouch";
 
 import { ReactComponent as FacebookLogo } from "../svg/SVG/facebook.svg";
 import { ReactComponent as TwitterLogo } from "../svg/SVG/twitter.svg";
@@ -30,17 +30,15 @@ const socialMediaAPIMock = [
   }
 ];
 
-const HeaderBanner = () => {
+const HeaderBanner = props => {
   return (
     <div className="header-banner">
-      <div className="header-banner__logo">
-        <img src={logo} alt="Techlab Logo" />
-      </div>
       <div className="header-banner__title">
-        <h1>The Site Name</h1>
+        <h1>TechLab</h1>
       </div>
       <Navigation />
       <SocialBanner data={socialMediaAPIMock} />
+      <GetInTouch contactRef={props.contactRef} />
     </div>
   );
 };

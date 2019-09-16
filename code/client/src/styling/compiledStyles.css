@@ -4,14 +4,34 @@
   padding: 0;
   margin: 0; }
 
+html {
+  scroll-behavior: smooth; }
+
 body {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  font-family: 'Raleway', sans-serif; }
+
+.h1 {
+  font-size: 4rem; }
+
+.h4 {
+  font-size: 1.5rem; }
+
+.h6 {
+  font-size: 6rem; }
+
+input, textarea {
+  font-family: inherit;
+  font-style: inherit; }
 
 /**
 * SocialBanner Styles
 */
 .social-banner {
-  padding: 1rem; }
+  padding: 1rem;
+  background-color: black;
+  display: flex;
+  align-items: center; }
   .social-banner__list {
     display: flex; }
     .social-banner__list-item {
@@ -22,8 +42,7 @@ body {
 * Article Snapshot Styles
 */
 .article-snapshot {
-  border: 3px solid black;
-  border-radius: 1rem;
+  border: 1px solid darkgray;
   display: flex;
   margin: 2rem;
   max-height: 20rem;
@@ -41,7 +60,7 @@ body {
     text-transform: uppercase;
     padding: 1rem; }
   .article-snapshot__text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 1rem;
     line-height: 1.3; }
 
@@ -49,29 +68,30 @@ body {
 * Navigation Component Styles
 */
 .navigation-container {
-  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  flex: 0 1 60%; }
 
 .navigation {
   padding: 2rem;
-  width: 50%; }
+  width: 100%; }
   .navigation__list {
     display: flex;
     justify-content: space-around;
-    font-size: 1.5rem; }
+    align-items: center;
+    font-size: 1rem; }
     .navigation__list-item {
-      border: 1px solid black;
       padding: 1rem;
       border-radius: 15px;
       width: 6rem;
       list-style: none;
       text-align: center; }
-      .navigation__list-item:hover {
-        color: white;
-        background-color: black; }
   .navigation__link {
-    text-decoration: none; }
+    text-decoration: none;
+    color: white; }
   .navigation__link:visited, .navigation__link:link {
     text-decoration: none; }
 
@@ -88,7 +108,19 @@ body {
 * HeaderBanner Styles
 */
 .header-banner {
-  display: flex; }
+  height: 7rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  background-color: black; }
+  .header-banner__title {
+    margin-left: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex: 1 1 60%; }
 
 .search {
   padding: 2rem; }
@@ -98,4 +130,97 @@ body {
     border-style: none;
     border: 1px solid black; }
 
+.get-in-touch {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem; }
+  .get-in-touch__text {
+    padding: 0.5rem 2rem;
+    border: 1px solid white;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.5s; }
+    .get-in-touch__text:hover {
+      color: black;
+      background-color: white; }
 
+.hero-banner {
+  margin-top: 7rem;
+  background-color: black;
+  height: 15rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .hero-banner__primary-text {
+    padding: 1rem; }
+  .hero-banner__secondary-text {
+    padding-bottom: 2rem; }
+
+.contact-form {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  justify-content: space-evenly;
+  height: 30rem; }
+  .contact-form::before {
+    content: "";
+    display: block;
+    margin-top: 7rem; }
+  .contact-form__input {
+    display: inline-block;
+    margin: 0 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    padding: 1rem;
+    width: 100%; }
+    .contact-form__input--large {
+      height: 10rem; }
+
+::placeholder {
+  color: white;
+  opacity: 1; }
+
+.side-banner {
+  width: 14rem; }
+
+.contact-form {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  justify-content: space-evenly;
+  height: 30rem; }
+  .contact-form::before {
+    content: "";
+    display: block;
+    margin-top: 7rem; }
+  .contact-form__input {
+    display: inline-block;
+    margin: 0 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    padding: 1rem;
+    width: 100%; }
+    .contact-form__input--large {
+      height: 10rem; }
+
+::placeholder {
+  color: white;
+  opacity: 1; }
+
+.main-content {
+  display: flex;
+  margin-top: 7rem; }
