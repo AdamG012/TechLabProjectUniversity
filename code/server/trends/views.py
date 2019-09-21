@@ -3,17 +3,32 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbid
 from trends.db import article
 
 
-def index(request):
-    return HttpResponse("index")
-    # TODO: Implement index page
-
-
-def articleSnapshots(request):
+def latest_articles(request):
     if request.method == 'GET':
         return HttpResponseBadRequest("500 Bad Request")
     else:
-        article.get_abstract_page(request.POST['PageNumber'])
-    # TODO: Return values for articleSnapshots
+        latest = article.get_latest_page(request.POST['PageNumber'])
+        if latest:
+            return JsonResponse({'success': 'true', 'latest': latest})
+
+
+def article_abstract(request):
+    if request.method == 'GET':
+        return JsonResponse({'success': 'false'})
+    else:
+        article_obj = article.get_article(request.POST["id"])
+        if article_obj is None:
+            return JsonResponse({'success': 'false'})
+        tags = article.get_tags_by_article(request.POST["id"])
+
+        return JsonResponse({'success': 'true',
+                             'article': {
+                                 'title': str(article_obj.values('title')),
+                                 'abstract': str(article_obj.values('abstract')),
+                                 'author': str(article_obj.values('author')),
+                                 'image': str(article_obj.values('image')),
+                                 'tags': tags
+                             }})
 
 
 def article(request, article_id):
@@ -29,12 +44,15 @@ def article(request, article_id):
                                  'content': str(article_obj.values('body')),
                                  'image': str(article_obj.values('image')),
                                  'author': str(article_obj.values('author')),
-                                 'tags': str(','.join(tags))
+                                 'tags': tags
                              }})
     else:
         return JsonResponse({'success': 'false'})
 
 
 def search(request):
-    return HttpResponse("search")
-    # TODO: Implement search function
+    if request.method == 'POST':
+        results = article.search_by_title(request.POST['query'], request.POST['page'])
+        return JsonResponse({'success': 'true', 'results': results})
+    else:
+        return JsonResponse({'success': 'false'})
