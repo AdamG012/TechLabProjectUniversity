@@ -1,5 +1,4 @@
 from trends.db.obj.articleModel import Article, Tag
-from django.db.models import QuerySet
 
 
 def get_article(article_id):

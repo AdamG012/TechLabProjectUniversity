@@ -1,5 +1,4 @@
-from trends.db.obj.articleModel import Article, Tag
-from django.db.models import QuerySet
+from trends.db.obj.articleModel import Article
 from trends.db import article
 
 

@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse
 from trends.db import article
 
 
@@ -7,9 +6,11 @@ def latest_articles(request):
     if request.method == 'GET':
         return HttpResponseBadRequest("500 Bad Request")
     else:
-        latest = article.get_latest_page(request.POST['PageNumber'])
+        latest = article.get_latest_page(int(request.POST['PageNumber']))
         if latest:
             return JsonResponse({'success': 'true', 'latest': latest})
+        else:
+            return JsonResponse({'success': 'false'})
 
 
 def article_abstract(request):
@@ -31,7 +32,7 @@ def article_abstract(request):
                              }})
 
 
-def article(request, article_id):
+def article_data(request, article_id):
     if request.method == 'GET':
         article_obj = article.get_article(article_id)
         if article_obj is None:
