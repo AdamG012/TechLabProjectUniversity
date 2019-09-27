@@ -1,0 +1,46 @@
+.contact-form {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  justify-content: space-evenly;
+  height: 30rem;
+
+  &::before {
+    content: "";
+    display: block;
+    margin-top: $headerBannerHeight
+  }
+
+  &__form {
+    // display: flex;
+    // flex-direction: column;
+  }
+
+
+  &__input {
+    display: inline-block;
+    margin: 0 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    padding: 1rem;
+    width: 100%;
+
+    &--small {
+
+    }
+
+    &--large {
+      height: 10rem;
+    }
+  }
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}

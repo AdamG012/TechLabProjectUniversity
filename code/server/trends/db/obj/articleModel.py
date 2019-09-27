@@ -5,7 +5,7 @@ class Article(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     abstract = models.CharField(max_length=255)
-    body = models.CharField(max_length=65535)
+    body = models.CharField(max_length=1024)
     date = models.DateField()
     time_to_read = models.IntegerField()
     image = models.URLField()

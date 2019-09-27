@@ -1,11 +1,11 @@
 from django.urls import path
-
-
-from . import views
+from trends import views, admin_views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index', views.index, name='index'),
     path('search', views.search, name='search'),
-    path(r'^articles/(?P<article_id>[0-9]+)/$', views.article, name='article')
+    path('articles/<int:id>', views.article_data, name='article'),
+    path('latest-articles', views.latest_articles, name='latest-articles'),
+    path('abstract', views.article_abstract, name='abstract'),
+    path('admin/article-new', admin_views.article_new, name='article-new'),
+    path('admin/article-edit', admin_views.article_edit, name='article-edit'),
 ]

@@ -1,0 +1,22 @@
+/**
+* SocialBanner Styles
+*/
+
+.social-banner {
+  padding: 1rem;
+  background-color: black;
+  display: flex;
+  align-items: center;
+
+  &__list {
+    display: flex;
+  
+    &-item {
+      padding: 0 15px;
+      list-style: none;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,19 @@
+.hero-banner {
+  margin-top: $headerBannerHeight;
+  background-color: black;
+  height: 15rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__primary-text {
+    padding: 1rem;
+  }
+
+  &__secondary-text {
+    padding-bottom: 2rem;
+  }
+
+}
