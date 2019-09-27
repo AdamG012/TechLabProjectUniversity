@@ -2,11 +2,6 @@ from trends.db.obj.articleModel import Article
 from trends.db import article
 
 
-def store_image(image):
-    pass
-    # TODO: implement image storing
-
-
 def create_article(title, author, abstract, body, date, time_to_read, image):
     a = Article(title=title, author=author, abstract=abstract, body=body,
                       date=date, time_to_read=time_to_read, image=image)

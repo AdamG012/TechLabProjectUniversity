@@ -38,11 +38,14 @@ def article_data(request, article_id):
         if article_obj is None:
             return JsonResponse({'success': 'false'})
         tags = article.get_tags_by_article(article_id)
+        with open(str(article_obj.values('body')), "r") as file:
+            content = file.read()
+            file.close()
 
         return JsonResponse({'success': 'true',
                              'article': {
                                  'title': str(article_obj.values('title')),
-                                 'content': str(article_obj.values('body')),
+                                 'content': content,
                                  'image': str(article_obj.values('image')),
                                  'author': str(article_obj.values('author')),
                                  'tags': tags
@@ -53,7 +56,8 @@ def article_data(request, article_id):
 
 def search(request):
     if request.method == 'POST':
-        results = article.search_by_title(request.POST['query'], request.POST['page'])
+        tags = request.POST.getlist('tags')
+        results = article.search_by_title(request.POST['query'], request.POST['page'], tags=tags)
         return JsonResponse({'success': 'true', 'results': results})
     else:
         return JsonResponse({'success': 'false'})
