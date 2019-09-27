@@ -11,6 +11,8 @@ def create_article(title, author, abstract, body, date, time_to_read, image):
 
 def edit_article(id, title=None, author=None, abstract=None, body=None, date=None, time_to_read=None, image=None):
     a = article.get_article(id)
+    if a is None:
+        return False
     if title:
         a.title = title
     if author:
@@ -27,4 +29,4 @@ def edit_article(id, title=None, author=None, abstract=None, body=None, date=Non
         a.image = image
 
     a.save()
-
+    return True
