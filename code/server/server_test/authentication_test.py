@@ -17,13 +17,11 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(auth.login("Hello", None, "password"))
 
     def test_invalid_login_wrong_password(self):
-        self.assertFalse()
+        self.assertFalse(auth.login("clintbot", None, "fakePassword"))
 
     def test_invalid_login_unknown_username(self):
-        self.assertFalse()
+        self.assertFalse(auth.login("fakeUser", None, "password"))
 
-    def test_valid_login(self):
-        self.assertTrue()
 
 if __name__ == '__main__':
     unittest.main()
