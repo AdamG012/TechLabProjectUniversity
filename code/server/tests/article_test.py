@@ -14,8 +14,10 @@ from code.server.trends.db.article import *
 
 class ArticleTest(TestCase):
 
+    @tag('unit', 'article')
     def test_get_article_none(self):
         self.assertIsNone(get_article(None))
 
+    @tag('unit', 'article')
     def test_get_article_not_found(self):
         self.assertIsNone(get_article(21481241294718718))
