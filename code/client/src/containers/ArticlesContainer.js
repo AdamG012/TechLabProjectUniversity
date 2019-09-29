@@ -3,6 +3,7 @@ import axios from "axios";
 import { UNSPLASH_ACCESS_KEY } from "../utils/keys";
 
 import ArticleSnapshot from "../components/ArticleSnapshot";
+import Button from "../components/Button";
 
 class ArticlesContainer extends React.Component {
   constructor(props) {
@@ -32,7 +33,6 @@ class ArticlesContainer extends React.Component {
   }
 
   getNextPage = () => {
-    console.log("getNextPage called");
     axios
       .get("https://api.unsplash.com/search/photos", {
         headers: {
@@ -45,12 +45,10 @@ class ArticlesContainer extends React.Component {
         }
       })
       .then(res => {
-        console.log("ARRAYS: ", [...this.state.images, ...res.data.results]);
         this.setState({
           images: [...this.state.images, ...res.data.results], // check this
           currentPage: this.state.currentPage + 1
         });
-        console.log("STATE: ", this.state);
       })
       .catch(err => console.log(err));
   };
@@ -58,7 +56,6 @@ class ArticlesContainer extends React.Component {
   renderContent = () => {
     const { images } = this.state;
     return images.map(image => {
-      console.log(image);
       return (
         <ArticleSnapshot
           key={image.urls.full}
@@ -75,7 +72,11 @@ class ArticlesContainer extends React.Component {
       <div className="articles-container">
         <div>{this.renderContent()}</div>
         <div>
-          <button onClick={this.getNextPage}>Load More</button>
+          <Button
+            handleClick={this.getNextPage}
+            color="white"
+            text="Load More Articles"
+          ></Button>
         </div>
       </div>
     );
