@@ -1,5 +1,5 @@
 import unittest
-import code.server.trends.db.admin.authentication as auth;
+import trends.db.admin.authentication as auth;
 
 
 class MyTestCase(unittest.TestCase):
