@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'trends_database',
         'USER': 'root',
         'PASSWORD': 'pass',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
