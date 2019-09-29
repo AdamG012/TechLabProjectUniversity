@@ -1,4 +1,15 @@
-.main-content {
+.homepage {
+  
+  &__content {
   display: flex;
   margin-top: 7rem;
+  }
+
+  &__contact {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
 }

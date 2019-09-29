@@ -6,6 +6,7 @@ import HeroBanner from "../HeroBanner";
 import ContactForm from "../ContactForm";
 import SideBannerContainer from "../../containers/SideBannerContainer";
 import Map from "../Map";
+import Footer from "../Footer";
 
 const HomePage = () => {
   const contactFormRef = React.createRef();
@@ -13,12 +14,19 @@ const HomePage = () => {
     <div className="page-container">
       <HeaderBanner contactRef={contactFormRef} />
       <HeroBanner />
-      <div className="main-content">
+      <div className="homepage__content">
         <ArticlesContainer />
         <SideBannerContainer />
       </div>
-      <ContactForm ref={contactFormRef} />
-      <Map />
+      <div className="homepage__contact">
+        <ContactForm ref={contactFormRef} />
+        <div>
+          <Map />
+        </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

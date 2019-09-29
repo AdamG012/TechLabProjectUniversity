@@ -39,7 +39,11 @@ class ContactForm extends React.Component {
     return (
       <div ref={this.contactFormRef} className="contact-form" id="contact-form">
         <h4 className="h4">Contact</h4>
-        <form className="contact-form__form" onSubmit={this.handleFormSubmit}>
+        <form
+          id="contact-form"
+          className="contact-form__form"
+          onSubmit={this.handleFormSubmit}
+        >
           <input
             onChange={this.handleNameChange}
             className="contact-form__input contact-form__input--small"
@@ -65,6 +69,7 @@ class ContactForm extends React.Component {
             value={subject}
           />
           <textarea
+            form="contact-form"
             onChange={this.handleContentChange}
             className="contact-form__input contact-form__input--large"
             name="content"
@@ -72,7 +77,9 @@ class ContactForm extends React.Component {
             placeholder="Type your message here..."
             value={content}
           />
-          <button type="submit">Submit</button>
+          <button className="btn btn--black contact-form__submit" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );
