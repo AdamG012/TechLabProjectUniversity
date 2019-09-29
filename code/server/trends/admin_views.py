@@ -25,7 +25,7 @@ def article_new(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
-        date = datetime.date.strftime(request.POST['date'], "%Y-%m-%d")
+        date = datetime.datetime.strptime(request.POST['date'], "%Y-%m-%d").date()
 
         # Call admin methods on Article database
         new_article = article_admin.create_article(
