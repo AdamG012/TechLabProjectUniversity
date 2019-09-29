@@ -1,5 +1,5 @@
 from django.test import TestCase, tag
-from unittest import TestCase
+from unittest import TestCase,main
 from code.server.trends.db.admin.authentication import login, logout
 
 #           Authentication
