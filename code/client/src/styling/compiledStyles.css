@@ -301,7 +301,7 @@ input, textarea {
     width: 20%; }
   .footer__list {
     flex: 0 1 30%;
-    columns: 2;
+    columns: 3;
     list-style: none; }
     .footer__list-element {
       font-size: 1rem;
