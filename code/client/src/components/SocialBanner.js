@@ -5,21 +5,40 @@ import React from "react";
 
 import SocialMedia from "./SocialMedia";
 
-class SocialBanner extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      siteData: props.data ? props.data : null
-    };
+const socialMediaSites = [
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/usydtechlab/",
+    svg: "#facebook-letter-logo"
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/usydtechlab?lang=en",
+    svg: "#twitter-logo"
+  },
+  {
+    name: "Youtube",
+    url: "https://www.youtube.com/channel/UCitvyHTDa2bRaS1oM2XV1vQ",
+    svg: "#youtube-play-button"
+  },
+  {
+    name: "Github",
+    url: "https://github.com/usydtechlab",
+    svg: "#github-logo"
+  },
+  {
+    name: "Github Enterprise",
+    url: "https://github.sydney.edu.au/TechLab",
+    svg: "#github-logo"
   }
+];
 
+class SocialBanner extends React.Component {
   renderContent = () => {
-    const { siteData } = this.state;
-    // either use fetch here or read from raw data
-    return siteData.map((item, index) => {
+    return socialMediaSites.map((item, index) => {
       return (
         <li className="social-banner__list-item" key={index}>
-          <SocialMedia url={item.url} svgSource={item.svg} alt={item.name} />
+          <SocialMedia url={item.url} svgId={item.svg} alt={item.name} />
         </li>
       );
     });

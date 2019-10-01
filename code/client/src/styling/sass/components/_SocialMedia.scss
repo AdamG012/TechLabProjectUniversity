@@ -1,0 +1,21 @@
+.social-media {
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  & a {
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  &__svg {
+    z-index: 2;
+    height: 50%;
+    width: 100%;
+
+  }
+}
