@@ -16,7 +16,7 @@ services:
     build: .
     command: >
       sh -c "python3 manage.py migrate --fake trends zero &&
-             python manage.py migrate &&
+             python manage.py shell < ./tests/test_database_setup.py &&
              python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
