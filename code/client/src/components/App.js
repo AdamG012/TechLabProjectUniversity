@@ -8,6 +8,8 @@ import CreateArticle from "./CreateArticle";
 import FourOhFour from "./Pages/FourOhFour";
 
 import "../styling/compiledStyles.css";
+import Article from "./Article";
+import ArticlesContainer from "../containers/ArticlesContainer";
 
 //background video
 // https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/1080p/mp4/file.mp4
@@ -28,6 +30,7 @@ class App extends React.Component {
           <Route exact path="/createArticle" component={CreateArticle} />
           <Route path="/about" component={AboutPage} />
           <Route path="/articles" component={ArticlePage} />
+          <Route path="/article/:id" component={ArticlePage} />
           <Route component={FourOhFour} />
         </Switch>
       </Router>

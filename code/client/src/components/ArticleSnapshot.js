@@ -10,7 +10,10 @@ import PropTypes from "prop-types";
  */
 const ArticleSnapshot = props => {
   return (
-    <div className="article-snapshot">
+    <div
+      className="article-snapshot"
+      onClick={() => console.log("article clicked")}
+    >
       <div
         className="article-snapshot__img-container"
         style={{ backgroundImage: `url(${props.imageURL})` }}

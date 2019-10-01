@@ -15,11 +15,17 @@ body {
 .h1 {
   font-size: 4rem; }
 
+.h2 {
+  font-size: 3.5rem; }
+
 .h3 {
   font-size: 3rem; }
 
 .h4 {
-  font-size: 1.5rem; }
+  font-size: 2.5rem; }
+
+.h5 {
+  font-size: 2rem; }
 
 .h6 {
   font-size: 1rem;
@@ -49,9 +55,12 @@ input, textarea {
 .article-snapshot {
   border: 1px solid darkgray;
   display: flex;
-  margin: 2rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
   width: 75%;
-  min-height: 15rem; }
+  min-height: 20rem; }
+  .article-snapshot:hover {
+    cursor: pointer; }
   .article-snapshot__img-container {
     flex: 1 1 30%;
     overflow: hidden;
@@ -108,7 +117,8 @@ input, textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; }
+  width: 75%;
+  margin-bottom: 2rem; }
 
 /**
 * HeaderBanner Styles
@@ -143,7 +153,8 @@ input, textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 2rem; }
+  margin-right: 2rem;
+  cursor: pointer; }
   .get-in-touch__text {
     padding: 0.5rem 2rem;
     border: 1px solid white;
@@ -202,7 +213,11 @@ input, textarea {
   opacity: 1; }
 
 .side-banner {
-  width: 14rem; }
+  width: 20%;
+  height: auto;
+  margin-right: 2rem;
+  background-color: #444;
+  align-self: flex-start; }
 
 .contact-form {
   background-color: black;
@@ -364,6 +379,18 @@ input, textarea {
       width: 100%; }
   .person-card__svg {
     height: 3rem; }
+
+.mini-article {
+  display: flex;
+  background-color: #444;
+  color: white;
+  padding: 1.5rem;
+  align-items: center;
+  width: 100%; }
+  .mini-article__image {
+    padding: 0.75rem; }
+    .mini-article__image > img {
+      width: 100%; }
 
 .homepage__content {
   display: flex;

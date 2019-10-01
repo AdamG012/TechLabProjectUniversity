@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 class Article extends React.Component {
   render() {
+    const html = { __html: this.props.content };
     return (
       <div className="article">
+        <p></p>
         <div
           className="article__content-container"
-          dangerouslySetInnerHTML={this.props.content}
+          dangerouslySetInnerHTML={html}
         ></div>
       </div>
     );
@@ -15,7 +17,7 @@ class Article extends React.Component {
 }
 
 Article.defaultProps = {
-  content: "No Content To Display"
+  content: { __html: "<h1>Hello World</h1>" }
 };
 
 Article.propTypes = {
