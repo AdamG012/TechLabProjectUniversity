@@ -1,6 +1,7 @@
 import datetime
 
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.contrib import auth
+from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
 from django.core.files import File
 from trends.db.admin import article_admin
 
@@ -21,10 +22,10 @@ from trends.db.admin import article_admin
 #
 def article_new(request):
     if not request.user.is_authenticated:
-        return HttpResponseBadRequest("Authentication error")
+        return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
-        date = datetime.date.strftime(request.POST['date'], "%Y-%m-%d")
+        date = datetime.datetime.strptime(request.POST['date'], "%Y-%m-%d").date()
 
         # Call admin methods on Article database
         new_article = article_admin.create_article(
@@ -65,7 +66,7 @@ def article_new(request):
 #
 def article_edit(request):
     if not request.user.is_authenticated:
-        return HttpResponseBadRequest("Authentication error")
+        return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
         article_id = int(request.POST['id'])
@@ -89,3 +90,49 @@ def article_edit(request):
         return JsonResponse({'success': 'false'})
     else:
         return HttpResponseBadRequest("Bad Request")
+
+
+# Request handler for article removal (Admin only)
+#
+# Required parameters:
+# - "id": Integer - ID of article to be deleted
+#
+# Output: JSONResponse
+# {'success': boolean}, true if successful, false if otherwise
+#
+def article_remove(request):
+    if not request.user.is_authenticated:
+        return HttpResponseBadRequest("Authentication error")
+
+    if request.method == 'POST':
+        article_id = int(request.POST["id"])
+        if article_admin.delete_article(article_id):
+            return JsonResponse({'success': 'true'})
+        return JsonResponse({'success': 'false'})
+    else:
+        return HttpResponseBadRequest("Bad Request")
+
+
+# Log into admin account (Admin only)
+#
+# Required parameters:
+# - "username": String
+# - "password": String (plaintext)
+#
+# Output: Nothing (changes user session cookies)
+#
+def login(request):
+    user = auth.authenticate(username=request.POST["username"],
+                             password=request.POST["password"])
+    if user is not None and user.is_active:
+        auth.login(request, user)
+
+
+# Log out of account (Admin only)
+#
+# Required parameters: None
+#
+# Output: Nothing (changes user session cookies)
+#
+def logout(request):
+    auth.logout(request)

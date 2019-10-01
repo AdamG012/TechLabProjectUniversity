@@ -16,7 +16,7 @@ def latest_articles(request):
     else:
         latest = article.get_latest_page(int(request.POST['PageNumber']))
         if latest:
-            return JsonResponse({'success': 'true', 'latest': latest})
+            return JsonResponse({'success': 'true', 'latest': latest}, safe=False)
         else:
             return JsonResponse({'success': 'false'})
 
@@ -51,7 +51,7 @@ def article_abstract(request):
                                  'time_to_read': str(article_obj.values('time_to_read')),
                                  'image': str(article_obj.values('image')),
                                  'tags': tags
-                             }})
+                             }}, safe=False)
 
 
 # Get preview data of article
@@ -104,6 +104,6 @@ def search(request):
     if request.method == 'POST':
         tags = request.POST.getlist('tags')
         results = article.search_by_title(request.POST['query'], request.POST['page'], tags=tags)
-        return JsonResponse({'success': 'true', 'results': results})
+        return JsonResponse({'success': 'true', 'results': results}, safe=False)
     else:
         return JsonResponse({'success': 'false'})
