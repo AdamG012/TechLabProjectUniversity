@@ -7,11 +7,15 @@ const PersonCard = props => {
   return (
     <div className="person-card">
       <div className="person-card__img">
-        <img />
+        <img src={require(`../img/${props.img}`)} />
       </div>
-      <h6>{props.name}</h6>
-      <SocialMedia url={props.link} svgId="#github-logo" alt="GitHub" />
-      <p>{props.text}</p>
+      <div className="person-card__content">
+        <h6 className="h6">{props.name}</h6>
+        <svg className="person-card__svg" style={{ fill: "#AAA" }}>
+          <use xlinkHref="#linked-in-logo-of-two-letters" />
+        </svg>
+        <p>{props.text}</p>
+      </div>
     </div>
   );
 };
@@ -21,5 +25,6 @@ export default PersonCard;
 PersonCard.propTypes = {
   name: PropTypes.string,
   link: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  img: PropTypes.string
 };

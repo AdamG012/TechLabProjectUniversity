@@ -15,11 +15,15 @@ body {
 .h1 {
   font-size: 4rem; }
 
+.h3 {
+  font-size: 3rem; }
+
 .h4 {
   font-size: 1.5rem; }
 
 .h6 {
-  font-size: 6rem; }
+  font-size: 1rem;
+  font-style: italic; }
 
 input, textarea {
   font-family: inherit;
@@ -123,6 +127,8 @@ input, textarea {
     display: flex;
     align-items: center;
     flex: 1 1 60%; }
+  .header-banner__filler {
+    height: 7rem; }
 
 .search {
   padding: 2rem; }
@@ -149,7 +155,6 @@ input, textarea {
       background-color: white; }
 
 .hero-banner {
-  margin-top: 7rem;
   background-color: black;
   height: 15rem;
   color: white;
@@ -311,6 +316,54 @@ input, textarea {
     flex-direction: column;
     justify-content: center;
     align-items: center; }
+
+.meet {
+  padding: 4rem; }
+  .meet__row {
+    width: 80%;
+    margin: 0 auto; }
+  .meet__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem; }
+    .meet__heading > h3 {
+      font-style: normal;
+      margin-bottom: 1rem; }
+  .meet__cards {
+    display: flex;
+    justify-content: space-around; }
+
+.hr {
+  height: 3px;
+  width: 10%;
+  background-color: black; }
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+  height: auto;
+  width: 20%; }
+  .person-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 10rem;
+    width: 100%; }
+    .person-card__content > p {
+      font-size: 1rem;
+      text-align: center; }
+  .person-card__img {
+    margin-bottom: 1.5rem;
+    width: 100%; }
+    .person-card__img > img {
+      border-radius: 50%;
+      width: 100%; }
+  .person-card__svg {
+    height: 3rem; }
 
 .homepage__content {
   display: flex;
