@@ -38,11 +38,11 @@ def article_new(request):
             request.POST['image'],
         )
 
-        with open('/article_html/' + new_article.pk + ".html", "w") as f:
+        with open('./article_html/' + new_article.pk + ".html", "w") as f:
             file = File(f)
             file.write(request.POST['body'])
 
-        article_admin.edit_article(new_article.pk, body='/article_html/' + new_article.pk + ".html")
+        article_admin.edit_article(new_article.pk, body='./article_html/' + new_article.pk + ".html")
 
         return JsonResponse({'success': 'true'})
     else:
@@ -72,7 +72,7 @@ def article_edit(request):
         article_id = int(request.POST['id'])
         date = datetime.date.strftime(request.POST['date'], "%Y-%m-%d")
         time_to_read = int(request.POST['time_to_read'])
-        with open('/article_html/' + request.POST['id'] + ".html", "w") as f:
+        with open('./article_html/' + request.POST['id'] + ".html", "w") as f:
             file = File(f)
             file.write(request.POST['body'])
 
@@ -81,7 +81,7 @@ def article_edit(request):
             title=request.POST['title'],
             author=request.POST['author'],
             abstract=request.POST['abstract'],
-            body='/article_html/' + request.POST['id'] + ".html",
+            body='./article_html/' + request.POST['id'] + ".html",
             date=date,
             time_to_read=time_to_read,
             image=request.POST['image']
