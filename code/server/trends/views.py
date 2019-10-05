@@ -1,4 +1,6 @@
 from django.http import HttpResponseBadRequest, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from trends.db import article
 
 
@@ -10,6 +12,7 @@ from trends.db import article
 # Output: JSONResponse
 # {'success': boolean, 'latest': list(Integer)}
 #
+@csrf_exempt
 def latest_articles(request):
     if request.method == 'GET':
         return HttpResponseBadRequest("500 Bad Request")
@@ -33,6 +36,7 @@ def latest_articles(request):
 #                           'time_to_read': Integer, 'image': String/URL
 #                           'tags': list(String)}
 #
+@csrf_exempt
 def article_abstract(request):
     if request.method == 'GET':
         return JsonResponse({'success': 'false'})
@@ -66,6 +70,7 @@ def article_abstract(request):
 #                           'time_to_read': Integer, 'image': String/URL
 #                           'tags': list(String)}
 #
+@csrf_exempt
 def article_data(request, article_id):
     if request.method == 'GET':
         article_obj = article.get_article(article_id)
@@ -100,6 +105,7 @@ def article_data(request, article_id):
 # Output: JSONResponse
 # {'success': boolean, 'results': list(Integer)}
 #
+@csrf_exempt
 def search(request):
     if request.method == 'POST':
         tags = request.POST.getlist('tags')
