@@ -6,10 +6,10 @@ from trends.db.admin import article_admin
 from trends.db.article import Article
 
 
-confirmation = input("This will delete all database entries and reset it to the default test database. Are you sure? "
-                     "(Y/N)")
-if confirmation.lower() != "y":
-    exit(0)
+# confirmation = input("This will delete all database entries and reset it to the default test database. Are you sure? "
+#                      "(Y/N)")
+# if confirmation.lower() != "y":
+#     exit(0)
 
 Article.objects.all().delete()
 

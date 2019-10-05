@@ -9,7 +9,9 @@ const SocialMedia = props => {
   return (
     <div className="social-media">
       <a title={props.alt} href={props.url}>
-        {props.svgSource}
+        <svg className="social-media__svg" style={{ fill: "FFF" }}>
+          <use xlinkHref={props.svgId} />
+        </svg>
       </a>
     </div>
   );
@@ -17,7 +19,7 @@ const SocialMedia = props => {
 
 SocialMedia.propTypes = {
   url: PropTypes.string.isRequired,
-  svgSource: PropTypes.object.isRequired,
+  svgId: PropTypes.string.isRequired,
   alt: PropTypes.string
 };
 

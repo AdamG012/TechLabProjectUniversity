@@ -11,13 +11,10 @@ import PropTypes from "prop-types";
 const ArticleSnapshot = props => {
   return (
     <div className="article-snapshot">
-      <div className="article-snapshot__img-container">
-        <img
-          className="article-snapshot__img"
-          src={props.imageURL}
-          alt="temp"
-        />
-      </div>
+      <div
+        className="article-snapshot__img-container"
+        style={{ backgroundImage: `url(${props.imageURL})` }}
+      ></div>
       <div className="article-snapshot__content-container">
         <h6 className="article-snapshot__heading">{props.title}</h6>
         <p className="article-snapshot__text">{props.content}</p>
@@ -29,7 +26,7 @@ const ArticleSnapshot = props => {
 ArticleSnapshot.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired
+  imageURL: PropTypes.string.isRequired
 };
 
 export default ArticleSnapshot;

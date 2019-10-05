@@ -6,16 +6,17 @@
   border: 1px solid darkgray;
   display: flex;
   margin: 2rem;
-  max-height: 20rem;
   width: 75%;
+  min-height: 15rem;
 
   &__img-container {
     flex: 1 1 30%;
     overflow: hidden;
+    background-size: cover;
   }
 
   &__img {
-    width: 100%;
+    width: 150%;
   }
 
   &__content-container {
