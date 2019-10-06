@@ -434,6 +434,32 @@ input, textarea {
   min-width: 20rem;
   height: 3rem; }
 
+.login {
+  min-height: 20rem;
+  width: 25%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #AAA;
+  padding: 2rem; }
+  .login__heading {
+    height: 2rem;
+    text-align: center;
+    font-size: 1.5rem; }
+  .login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%; }
+  .login__input {
+    height: 2rem; }
+  .login label {
+    font-size: 1rem; }
+  .login__button {
+    margin-top: 2rem;
+    padding: 1.25rem; }
+
 .homepage__content {
   display: flex;
   justify-content: center;
