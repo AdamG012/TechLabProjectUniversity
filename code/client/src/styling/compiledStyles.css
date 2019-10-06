@@ -140,6 +140,10 @@ input, textarea {
 
 .search {
   display: flex; }
+  .search__svg {
+    height: 3rem;
+    width: 1.5rem;
+    margin-right: 0.5rem; }
   .search__input {
     height: 3rem;
     border: none;

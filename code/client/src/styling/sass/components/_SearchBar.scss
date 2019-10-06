@@ -3,6 +3,13 @@ $searchbar-height: 3rem;
 .search {
   display: flex;
 
+  &__svg {
+    height: $searchbar-height;
+    width: 1.5rem;
+    margin-right: 0.5rem;
+    
+  }
+
   &__input {
     height: $searchbar-height;
     border: none;
