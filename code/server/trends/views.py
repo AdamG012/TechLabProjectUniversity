@@ -17,7 +17,7 @@ def latest_articles(request):
     if request.method == 'GET':
         return HttpResponseBadRequest("500 Bad Request")
     else:
-        latest = article.get_latest_page(int(request.POST['PageNumber']))
+        latest = article.get_latest_page(int(request.POST.get('PageNumber')))
         if latest:
             return JsonResponse({'success': 'true', 'latest': latest}, safe=False)
         else:
@@ -41,19 +41,19 @@ def article_abstract(request):
     if request.method == 'GET':
         return JsonResponse({'success': 'false'})
     else:
-        article_obj = article.get_article(request.POST["id"])
+        article_obj = article.get_article(request.POST.get("id"))
         if article_obj is None:
             return JsonResponse({'success': 'false'})
-        tags = article.get_tags_by_article(request.POST["id"])
+        tags = article.get_tags_by_article(request.POST.get("id"))
 
         return JsonResponse({'success': 'true',
                              'article': {
-                                 'title': str(article_obj.values('title')),
-                                 'abstract': str(article_obj.values('abstract')),
-                                 'author': str(article_obj.values('author')),
-                                 'date': str(article_obj.values('date')),
-                                 'time_to_read': str(article_obj.values('time_to_read')),
-                                 'image': str(article_obj.values('image')),
+                                 'title': str(article_obj.title),
+                                 'abstract': str(article_obj.abstract),
+                                 'author': str(article_obj.author),
+                                 'date': str(article_obj.date),
+                                 'time_to_read': str(article_obj.time_to_read),
+                                 'image': str(article_obj.image),
                                  'tags': tags
                              }}, safe=False)
 
@@ -77,18 +77,18 @@ def article_data(request, article_id):
         if article_obj is None:
             return JsonResponse({'success': 'false'})
         tags = article.get_tags_by_article(article_id)
-        with open(str(article_obj.values('body')), "r") as file:
+        with open(str(article_obj.body), "r") as file:
             content = file.read()
             file.close()
 
         return JsonResponse({'success': 'true',
                              'article': {
-                                 'title': str(article_obj.values('title')),
+                                 'title': str(article_obj.title),
                                  'content': content,
-                                 'author': str(article_obj.values('author')),
-                                 'date': str(article_obj.values('date')),
-                                 'time_to_read': str(article_obj.values('time_to_read')),
-                                 'image': str(article_obj.values('image')),
+                                 'author': str(article_obj.author),
+                                 'date': str(article_obj.date),
+                                 'time_to_read': str(article_obj.time_to_read),
+                                 'image': str(article_obj.image),
                                  'tags': tags
                              }}, safe=False)
     else:
@@ -109,7 +109,7 @@ def article_data(request, article_id):
 def search(request):
     if request.method == 'POST':
         tags = request.POST.getlist('tags')
-        results = article.search_by_title(request.POST['query'], request.POST['page'], tags=tags)
+        results = article.search_by_title(request.POST.get("query"), request.POST.get("page"), tags=tags)
         return JsonResponse({'success': 'true', 'results': results}, safe=False)
     else:
         return JsonResponse({'success': 'false'})
