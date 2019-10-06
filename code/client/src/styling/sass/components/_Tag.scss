@@ -4,6 +4,10 @@
   min-width: 3rem;
   text-align: center;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &__content {
 
   }

@@ -23,16 +23,24 @@ class SearchResultsPage extends React.Component {
     this.setState({ loadingResults: false });
   }
 
+  selectTag = tagNumber => {
+    this.setState({ selectedTag: tags[tagNumber] });
+  };
+
   renderTags = tags => {
     const { selectedTag } = this.state;
     if (!tags) {
       return null;
     } else {
-      return tags.map(tag => {
-        console.log("TAG", tag);
-        console.log("SELEcted: ", selectedTag);
+      return tags.map((tag, index) => {
         const selected = tag === selectedTag ? true : false;
-        return <Tag isSelected={selected} content={tag} />;
+        return (
+          <Tag
+            onClick={() => this.selectTag(index)}
+            isSelected={selected}
+            content={tag}
+          />
+        );
       });
     }
   };
@@ -58,7 +66,7 @@ class SearchResultsPage extends React.Component {
         <HeaderBanner />
         <div className="searchresults">
           <div className="searchresults__heading">
-            <h4 className="h4">Search Results</h4>
+            <h4 className="h4">Search</h4>
           </div>
           <div className="searchresults__search">
             <svg className="searchresults__search-icon">

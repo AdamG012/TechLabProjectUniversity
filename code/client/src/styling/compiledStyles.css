@@ -506,6 +506,8 @@ input, textarea {
   padding: 0.5rem;
   min-width: 3rem;
   text-align: center; }
+  .tag:hover {
+    cursor: pointer; }
 
 .homepage__content {
   display: flex;
