@@ -7,7 +7,7 @@ const HeroBanner = () => {
         <h1 className="h1">The Trend Report</h1>
       </div>
       <div className="hero-banner__secondary-text">
-        <h4 className="h4">All the Latest</h4>
+        <h5 className="h5">All the Latest</h5>
       </div>
     </div>
   );

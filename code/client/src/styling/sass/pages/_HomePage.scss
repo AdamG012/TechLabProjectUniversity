@@ -1,8 +1,18 @@
 .homepage {
   
   &__content {
-  display: flex;
-  margin-top: 7rem;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+
+
+    &-leftColumn {
+    flex: 0 1 60%;
+    }
+
+    &-rightColumn {
+      flex: 0 1 25%;
+    }
   }
 
   &__contact {
@@ -12,4 +22,16 @@
     align-items: center;
   }
 
+}
+
+.search-and-content-container {
+  margin: 2rem;
+}
+
+.post-filter-and-search {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }

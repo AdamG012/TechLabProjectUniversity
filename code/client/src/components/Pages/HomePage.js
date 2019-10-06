@@ -7,6 +7,8 @@ import ContactForm from "../ContactForm";
 import SideBannerContainer from "../../containers/SideBannerContainer";
 import Map from "../Map";
 import Footer from "../Footer";
+import Search from "../Search";
+import ArticleFilter from "../ArticleFilter";
 
 const HomePage = () => {
   const contactFormRef = React.createRef();
@@ -15,8 +17,16 @@ const HomePage = () => {
       <HeaderBanner contactRef={contactFormRef} />
       <HeroBanner />
       <div className="homepage__content">
-        <ArticlesContainer />
-        <SideBannerContainer />
+        <div className="homepage__content-leftColumn">
+          <div className="post-filter-and-search">
+            <ArticleFilter />
+            <Search />
+          </div>
+          <ArticlesContainer />
+        </div>
+        <div className="homepage__content-rightColumn">
+          <SideBannerContainer />
+        </div>
       </div>
       <div className="homepage__contact">
         <ContactForm ref={contactFormRef} />

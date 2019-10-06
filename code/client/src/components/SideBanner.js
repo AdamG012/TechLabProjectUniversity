@@ -31,7 +31,14 @@ const renderContent = data => {
 };
 
 const SideBanner = props => {
-  return <div className="side-banner">{renderContent(events)}</div>;
+  return (
+    <div className="side-banner">
+      <div className="side-banner__heading-container">
+        <h6 className="side-banner__heading-text">UPCOMING EVENTS</h6>
+      </div>
+      <div className="side-banner__content">{renderContent(events)}</div>
+    </div>
+  );
 };
 
 export default SideBanner;
