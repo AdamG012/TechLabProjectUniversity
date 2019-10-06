@@ -1,3 +1,27 @@
+$content-max-width: 20rem;
+
 .side-banner {
-  width: 14rem;
+  width: 100%;
+  height: auto;
+  align-self: flex-start;
+  margin-top: 5rem;
+  margin-left: 2rem;
+
+
+  &__heading-container {
+    text-align: center;
+    margin-bottom: 1rem;
+    max-width: $content-max-width;
+  }
+
+  &__heading-text {
+    font-size: 1.5rem;
+  }
+
+  &__content {
+    background-color: $sidebar-background;
+    max-width: $content-max-width;
+
+  }
+
 }

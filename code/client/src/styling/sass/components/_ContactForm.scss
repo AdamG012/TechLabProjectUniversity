@@ -7,22 +7,20 @@
   padding: 2rem;
   justify-content: space-evenly;
   height: 30rem;
-
-  &::before {
-    content: "";
-    display: block;
-    margin-top: $headerBannerHeight
-  }
+  width: 40%;
 
   &__form {
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 0 1 100%;
   }
 
 
   &__input {
     display: inline-block;
-    margin: 0 1rem;
     margin-bottom: 0.5rem;
     border: 1px solid white;
     color: white;
@@ -37,6 +35,10 @@
     &--large {
       height: 10rem;
     }
+  }
+
+  &__submit {
+    align-self: flex-start;
   }
 }
 

@@ -10,14 +10,17 @@ import GetInTouch from "./GetInTouch";
 
 const HeaderBanner = props => {
   return (
-    <div className="header-banner">
-      <div className="header-banner__title">
-        <h1>TechLab</h1>
+    <>
+      <div className="header-banner">
+        <div className="header-banner__title">
+          <h1>TechLab</h1>
+        </div>
+        <Navigation />
+        <SocialBanner />
+        <GetInTouch contactRef={props.contactRef} />
       </div>
-      <Navigation />
-      <SocialBanner />
-      <GetInTouch contactRef={props.contactRef} />
-    </div>
+      <div className="header-banner__filler"></div>
+    </>
   );
 };
 

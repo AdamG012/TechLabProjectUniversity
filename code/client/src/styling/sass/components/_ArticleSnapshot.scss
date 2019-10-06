@@ -5,9 +5,13 @@
 .article-snapshot {
   border: 1px solid darkgray;
   display: flex;
-  margin: 2rem;
-  width: 75%;
-  min-height: 15rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  min-height: 20rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &__img-container {
     flex: 1 1 30%;
