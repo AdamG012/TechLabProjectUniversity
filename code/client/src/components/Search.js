@@ -7,21 +7,24 @@ import { Redirect } from "react-router-dom";
 
 class Search extends React.Component {
   state = {
-    redirect: false
+    redirect: false,
+    searchTerm: ""
   };
   enterPressed = e => {
-    console.log("key pressed with keycode", e.key);
     let code = e.key || e.which;
     if (code === "Enter") {
-      console.log("redirecting");
       this.setState({ redirect: true });
       return;
     }
   };
 
+  handleInputChange = e => {
+    this.setState({ searchTerm: e.target.value });
+  };
+
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/search" />;
+      return <Redirect to={`/search/${this.state.searchTerm}`} />;
     } else {
       return (
         <div className="search">
@@ -33,6 +36,8 @@ class Search extends React.Component {
             name="search"
             placeholder="Search..."
             onKeyPress={this.enterPressed}
+            onChange={this.handleInputChange}
+            value={this.state.searchTerm}
           />
           <button className="search__button">Adv Search</button>
         </div>

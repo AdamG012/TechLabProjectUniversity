@@ -12,6 +12,9 @@ import "../styling/compiledStyles.css";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 
 class App extends React.Component {
+  state = {
+    isAuthed: false
+  };
   render() {
     return (
       <Router>
@@ -22,7 +25,10 @@ class App extends React.Component {
           <Route path="/articles" component={ArticlePage} />
           <Route path="/article/:id" component={ArticlePage} />
           <Route path="/login" component={LoginPage}></Route>
-          <Route path="/search" component={SearchResultsPage}></Route>
+          <Route
+            path="/search/:searchTerm?"
+            component={SearchResultsPage}
+          ></Route>
           <Route component={FourOhFour} />
         </Switch>
       </Router>

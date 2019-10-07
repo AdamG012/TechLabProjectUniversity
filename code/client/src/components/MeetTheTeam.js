@@ -1,26 +1,6 @@
 import React from "react";
 import PersonCard from "./PersonCard";
-
-const teamMembers = [
-  {
-    name: "Jon Doe",
-    linkedInURL: "www.linkedin.com",
-    text: "I’m a paragraph. Double click me or click Edit Text, it's easy.",
-    img: "person1.webp"
-  },
-  {
-    name: "Jane Doe",
-    linkedInURL: "www.linkedin.com",
-    text: "I’m a paragraph. Double click me or click Edit Text, it's easy.",
-    img: "person2.webp"
-  },
-  {
-    name: "James Doe",
-    linkedInURL: "www.linkedin.com",
-    text: "I’m a paragraph. Double click me or click Edit Text, it's easy.",
-    img: "person3.webp"
-  }
-];
+import { teamMembers } from "../master.json";
 
 let renderContent = () => {
   return teamMembers.map(member => {

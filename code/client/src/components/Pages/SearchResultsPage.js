@@ -3,7 +3,7 @@ import HeaderBanner from "../HeaderBanner";
 import Footer from "../Footer";
 import ArticleSnapshot from "../ArticleSnapshot";
 import Tag from "../Tag";
-import { tags } from "../..//master.json";
+import { tags } from "../../master.json";
 
 class SearchResultsPage extends React.Component {
   state = {
@@ -16,12 +16,20 @@ class SearchResultsPage extends React.Component {
 
   componentDidMount() {
     console.log(tags);
+    console.log(this.props.match.params.searchTerm);
     // make api call to get results for query
     // set queryMade to true
     // add results to state.results
     // set loadingResults to false
     this.setState({ loadingResults: false });
   }
+
+  search = searchTerm => {
+    this.setState({ loadingResults: true });
+    // query the api
+    // load the results
+    // set state of results and loadingResults
+  };
 
   selectTag = tagNumber => {
     this.setState({ selectedTag: tags[tagNumber] });
