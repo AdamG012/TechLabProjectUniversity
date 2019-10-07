@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import SocialMedia from "./SocialMedia";
-
 const PersonCard = props => {
   return (
     <div className="person-card">
       <div className="person-card__img">
-        <img src={require(`../img/${props.img}`)} />
+        <img src={require(`../img/${props.img}`)} alt={props.name} />
       </div>
       <div className="person-card__content">
         <h6 className="h6">{props.name}</h6>
-        <svg className="person-card__svg" style={{ fill: "#AAA" }}>
-          <use xlinkHref="#linked-in-logo-of-two-letters" />
-        </svg>
+        <a href={props.link}>
+          <svg className="person-card__svg" style={{ fill: "#AAA" }}>
+            <use xlinkHref="#linked-in-logo-of-two-letters" />
+          </svg>
+        </a>
+
         <p>{props.text}</p>
       </div>
     </div>

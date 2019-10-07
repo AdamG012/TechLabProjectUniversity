@@ -1,0 +1,67 @@
+$svg-dim: 1rem;
+@import '../abstracts/variables';
+
+
+.searchresults {
+  width: 75%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 4rem - #{$headerBannerHeight} - #{$footer-height}); //margin is 2 rem top and bottom
+
+  &__heading {
+    margin-bottom: 2rem;
+
+    & > * {
+      font-weight: 100;
+    }
+    
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid darkgray;
+    padding: 0.5rem;
+
+    &-icon {
+      width: $svg-dim;
+      height: $svg-dim;
+      margin-right: 0.25rem;
+    }
+  }
+
+  &__tags {
+    // leave styling for inside tags component,
+    // only style custom margins here
+    display: flex;
+    border-bottom: 1px solid darkgray;
+    margin: 2rem 0;
+    align-self: flex-start;
+
+
+    & > * {
+      margin: 0.5rem;
+      border-right: none !important; // need these to override the default tag styles
+      border-left: none !important; // while still allowing bottom highlight on selection
+      border-top: none !important;
+
+    }
+  }
+
+  &__results {
+    align-self: flex-start;
+  }
+
+  &__input {
+    border: none;
+    display: inline-block;
+    width: 100%;
+
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}

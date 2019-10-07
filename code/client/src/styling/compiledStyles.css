@@ -100,7 +100,7 @@ input, textarea {
     .navigation__list-item {
       padding: 1rem;
       border-radius: 15px;
-      width: 6rem;
+      width: 4rem;
       list-style: none;
       text-align: center; }
   .navigation__link {
@@ -336,9 +336,10 @@ input, textarea {
   display: flex;
   flex-direction: column;
   align-content: center;
+  justify-content: center;
   background-color: black;
   width: 100%;
-  height: auto;
+  height: 20rem;
   color: white;
   padding-top: 8rem;
   padding-bottom: 5rem; }
@@ -459,6 +460,54 @@ input, textarea {
   .login__button {
     margin-top: 2rem;
     padding: 1.25rem; }
+
+.searchresults {
+  width: 75%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 4rem - 7rem - 20rem); }
+  .searchresults__heading {
+    margin-bottom: 2rem; }
+    .searchresults__heading > * {
+      font-weight: 100; }
+  .searchresults__search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid darkgray;
+    padding: 0.5rem; }
+    .searchresults__search-icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.25rem; }
+  .searchresults__tags {
+    display: flex;
+    border-bottom: 1px solid darkgray;
+    margin: 2rem 0;
+    align-self: flex-start; }
+    .searchresults__tags > * {
+      margin: 0.5rem;
+      border-right: none !important;
+      border-left: none !important;
+      border-top: none !important; }
+  .searchresults__results {
+    align-self: flex-start; }
+  .searchresults__input {
+    border: none;
+    display: inline-block;
+    width: 100%; }
+    .searchresults__input:focus {
+      outline-width: 0; }
+
+.tag {
+  border: 1px solid black;
+  padding: 0.5rem;
+  min-width: 3rem;
+  text-align: center; }
+  .tag:hover {
+    cursor: pointer; }
 
 .homepage__content {
   display: flex;
