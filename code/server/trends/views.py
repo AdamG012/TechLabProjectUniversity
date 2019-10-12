@@ -113,3 +113,37 @@ def search(request):
         return JsonResponse({'success': 'true', 'results': results}, safe=False)
     else:
         return JsonResponse({'success': 'false'})
+
+
+# Gets entire page of abstract data
+#
+# Required parameters:
+# - "pagenumber": Integer - Page of results
+#
+# Output: JSONResponse
+# {'success': boolean, 'data': list(/abstract JSON responses)}
+#
+@csrf_exempt
+def abstract_page(request):
+    if request.method == 'POST':
+        data = []
+        latest = article.get_latest_page(int(request.POST.get('PageNumber')))
+        for i in latest:
+            article_obj = article.get_article(i)
+            tags = article.get_tags_by_article(i)
+
+            data.append({'success': 'true',
+                         'article': {
+                             'title': str(article_obj.title),
+                             'abstract': str(article_obj.abstract),
+                             'author': str(article_obj.author),
+                             'date': str(article_obj.date),
+                             'time_to_read': str(article_obj.time_to_read),
+                             'image': str(article_obj.image),
+                             'tags': tags
+                         }})
+
+        return JsonResponse({'success': 'true', 'data': data}, safe=False)
+    else:
+        return JsonResponse({'success': 'false'})
+

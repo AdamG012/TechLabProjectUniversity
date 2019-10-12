@@ -119,20 +119,24 @@ def article_remove(request):
 # - "username": String
 # - "password": String (plaintext)
 #
-# Output: Nothing (changes user session cookies)
+# Output: JSONResponse
+# {'success': boolean}
 #
 def login(request):
     user = auth.authenticate(username=request.POST["username"],
                              password=request.POST["password"])
     if user is not None and user.is_active:
         auth.login(request, user)
+        return JsonResponse({'success': 'true'})
+    else:
+        return JsonResponse({'success': 'false'})
 
 
 # Log out of account (Admin only)
 #
 # Required parameters: None
 #
-# Output: Nothing (changes user session cookies)
+# Output: None
 #
 def logout(request):
     auth.logout(request)
