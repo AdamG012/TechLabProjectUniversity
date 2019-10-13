@@ -6,8 +6,10 @@ class Map extends React.Component {
     render() {
         return (
             <LeafletMap
-                center={[50, 10]}
-                zoom={6}
+
+                center={[-33.891710, 151.191510]}
+                zoom={9}
+                markerPosition={[-33.891710, 151.191510]}
                 maxZoom={10}
                 attributionControl={true}
                 zoomControl={true}
@@ -20,9 +22,9 @@ class Map extends React.Component {
                     // Black and white leaflet wmflabs
                     url='http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
                 />
-                <Marker position={[50, 10]}>
+                <Marker position={[-33.891710, 151.191510]}>
                     <Popup>
-                        Popup for any custom information.
+                        TechLab Sydney
                     </Popup>
                 </Marker>
             </LeafletMap>
