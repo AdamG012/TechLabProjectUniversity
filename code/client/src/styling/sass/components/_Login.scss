@@ -1,0 +1,37 @@
+.login {
+  min-height: 20rem; // set to window height - header - footer
+  width: 25%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #AAA;
+  padding: 2rem;
+
+  &__heading {
+    height: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;
+  }
+
+  &__input {
+    height: 2rem;
+  }
+
+  & label {
+    font-size: 1rem;
+  }
+
+  &__button {
+    margin-top: 2rem;
+    padding: 1.25rem;
+  }
+
+}

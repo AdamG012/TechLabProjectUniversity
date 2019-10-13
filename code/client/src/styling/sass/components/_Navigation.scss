@@ -1,0 +1,41 @@
+/**
+* Navigation Component Styles
+*/
+
+.navigation-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  flex: 0 1 60%;
+}
+
+.navigation {
+  padding: 2rem;
+  width: 100%;
+
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+
+    &-item {
+      padding: 1rem;
+      border-radius: 15px;
+      width: 4rem;
+      list-style: none;
+      text-align: center;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    color: white;
+  }
+
+  &__link:visited,
+  &__link:link {
+    text-decoration: none;
+  }
+}
