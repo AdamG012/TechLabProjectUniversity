@@ -22,11 +22,6 @@ const navLinks = [
     toPath: "/about",
     requiresAuth: false
   },
-  {
-    text: "Create Article",
-    toPath: "/createArticle",
-    requiresAuth: true
-  }
 ];
 
 const renderLinks = linkData => {
