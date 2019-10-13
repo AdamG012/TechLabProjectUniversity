@@ -8,11 +8,6 @@ const navLinks = [
     requiresAuth: false
   },
   {
-    text: "Blog",
-    toPath: "/articles",
-    requiresAuth: false
-  },
-  {
     text: "Events",
     toPath: "/events",
     requiresAuth: false
