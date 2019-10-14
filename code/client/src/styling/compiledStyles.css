@@ -122,7 +122,7 @@ input, textarea {
 * HeaderBanner Styles
 */
 .header-banner {
-  height: 5rem;
+  height: 7rem;
   position: fixed;
   width: 100%;
   top: 0;
@@ -136,7 +136,7 @@ input, textarea {
     align-items: center;
     flex: 1 1 60%; }
   .header-banner__filler {
-    height: 5rem; }
+    height: 7rem; }
 
 .search {
   display: flex; }
