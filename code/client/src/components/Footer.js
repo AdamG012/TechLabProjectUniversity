@@ -1,7 +1,7 @@
+import {Link} from "react-router-dom";
 import React from "react";
 import SocialBanner from "./SocialBanner";
 import Button from "./Button";
-import {Link} from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,17 +13,17 @@ const Footer = () => {
         <ul className="footer__list">
           <li className="footer__list-element"><b>About</b></li>
           <li className="footer__list-element">
-            <Link className="navigation__link" to={"/"}>Contact Us</Link>
+            <Link className="navigation__link" to="/">Contact Us</Link>
           </li>
           <li className="footer__list-element">
-            <Link className="navigation__link" to={"/about"}>Meet us</Link>
+            <Link className="navigation__link" to="/about">Meet us</Link>
           </li>
           <li className="footer__list-element">
             <a className="navigation__link" target="_blank"  href={"https://sydney.edu.au/privacy-statement.html"}>Privacy Policy</a>
           </li>
         </ul>
         <div className="footer__list-element">
-          <Link className="navigation__link" to={"/admin"}>Admin</Link>
+          <Link className="navigation__link" to="/admin">Admin</Link>
         </div>
       </div>
       <div className="footer__bottom">
