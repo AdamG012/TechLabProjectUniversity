@@ -8,9 +8,9 @@ class Map extends React.Component {
             <LeafletMap
 
                 center={[-33.891710, 151.191510]}
-                zoom={9}
+                zoom={13}
                 markerPosition={[-33.891710, 151.191510]}
-                maxZoom={10}
+                maxZoom={15}
                 attributionControl={true}
                 zoomControl={true}
                 doubleClickZoom={true}
