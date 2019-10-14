@@ -14,12 +14,7 @@ const footerLinks = [
     },
     {
         text: "Privacy Policy",
-        toPath: "/privacy_policy",
-        requiresAuth: false
-    },
-    {
-        text: "Terms of Use",
-        toPath: "/terms",
+        toPath: "https://sydney.edu.au/privacy-statement.html",
         requiresAuth: false
     },
     {

@@ -16,13 +16,10 @@ const Footer = () => {
             <Link className="navigation__link" to={"/"}>Contact Us</Link>
           </li>
           <li className="footer__list-element">
-            <Link className="navigation__link" to={"/terms"}>Terms of Use</Link>
-          </li>
-          <li className="footer__list-element">
             <Link className="navigation__link" to={"/about"}>Meet us</Link>
           </li>
           <li className="footer__list-element">
-            <Link className="navigation__link" to={"/privacy_policy"}>Privacy Policy</Link>
+            <a className="navigation__link" target="_blank"  href={"https://sydney.edu.au/privacy-statement.html"}>Privacy Policy</a>
           </li>
         </ul>
         <div className="footer__list-element">
