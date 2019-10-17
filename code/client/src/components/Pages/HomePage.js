@@ -20,17 +20,17 @@ const HomePage = () => {
   return (
       <Container fluid>
           <Row>
-              <Col xs={'auto'}>
+              <Col>
                   <HeaderBanner contactRef={contactFormRef} />
               </Col>
           </Row>
           <Row>
-              <Col xs={'auto'}>
+              <Col>
                   <HeroBanner />
               </Col>
           </Row>
           <Row>
-              <Col xs={'auto'}>
+              <Col>
                       <div className="homepage__content">
                           <div className="homepage__content-leftColumn">
                               <div className="post-filter-and-search">
@@ -41,28 +41,29 @@ const HomePage = () => {
                           </div>
                       </div>
               </Col>
-          </Row>
-          <Row>
-              <Col xs={'auto'}>
+              <Col>
                   <div className="homepage__content">
-
-                      <div className="homepage__content-rightColumn">
                               <SideBannerContainer />
-                      </div>
                   </div>
               </Col>
           </Row>
           <Row>
-              <Col xs={'auto'}>
+              <Col>
                       <div className="homepage__contact">
                           <ContactForm ref={contactFormRef} />
+                      </div>
+              </Col>
+              <Col>
                           <div>
                               <Map />
                           </div>
-                      </div>
-                      <div>
-                          <Footer />
-                      </div>
+              </Col>
+          </Row>
+          <Row>
+              <Col>
+                <div>
+                    <Footer />
+                </div>
               </Col>
           </Row>
       </Container>
