@@ -2,19 +2,19 @@
   "tags": ["AI", "Machine Learning", "Robotic Process Automation", "Another Label"],
   "teamMembers": [
     {
-      "name": "Jon Doe",
+      "name": "Viji Venkataramani",
       "linkedInURL": "https://www.linkedin.com",
       "text": "I’m a paragraph. Double click me or click Edit Text, it's easy.",
       "img": "person1.webp"
     },
     {
-      "name": "Jane Doe",
+      "name": "Jim Cook",
       "linkedInURL": "https://www.linkedin.com",
       "text": "I’m a paragraph. Double click me or click Edit Text, it's easy.",
       "img": "person2.webp"
     },
     {
-      "name": "James Doe",
+      "name": "Lydia Gu",
       "linkedInURL": "https://www.linkedin.com",
       "text": "I’m a paragraph. Double click me or click Edit Text, it's easy.",
       "img": "person3.webp"

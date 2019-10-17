@@ -8,11 +8,6 @@ const navLinks = [
     requiresAuth: false
   },
   {
-    text: "Blog",
-    toPath: "/articles",
-    requiresAuth: false
-  },
-  {
     text: "Events",
     toPath: "/events",
     requiresAuth: false
@@ -22,11 +17,6 @@ const navLinks = [
     toPath: "/about",
     requiresAuth: false
   },
-  {
-    text: "Create Article",
-    toPath: "/createArticle",
-    requiresAuth: true
-  }
 ];
 
 const renderLinks = linkData => {
