@@ -3,6 +3,8 @@ import datetime
 from django.contrib import auth
 from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
 from django.core.files import File
+
+from trends import view_handlers
 from trends.db.admin import article_admin
 
 
@@ -25,26 +27,13 @@ def article_new(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
-        date = datetime.datetime.strptime(request.POST['date'], "%Y-%m-%d").date()
-
-        # Call admin methods on Article database
-        new_article = article_admin.create_article(
-            request.POST['title'],
-            request.POST['author'],
-            request.POST['abstract'],
-            "",
-            date,
-            request.POST['time_to_read'],
-            request.POST['image'],
-        )
-
-        with open('./article_html/' + new_article.pk + ".html", "w") as f:
-            file = File(f)
-            file.write(request.POST['body'])
-
-        article_admin.edit_article(new_article.pk, body='./article_html/' + new_article.pk + ".html")
-
-        return JsonResponse({'success': 'true'})
+        return view_handlers.handle_article_new(request.POST.get('title'),
+                                                request.POST.get('author'),
+                                                request.POST.get('abstract'),
+                                                request.POST.get('body'),
+                                                request.POST.get('date'),
+                                                request.POST.get('time_to_read'),
+                                                request.POST.get('image'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -69,25 +58,14 @@ def article_edit(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
-        article_id = int(request.POST['id'])
-        date = datetime.date.strftime(request.POST['date'], "%Y-%m-%d")
-        time_to_read = int(request.POST['time_to_read'])
-        with open('./article_html/' + request.POST['id'] + ".html", "w") as f:
-            file = File(f)
-            file.write(request.POST['body'])
-
-        if article_admin.edit_article(
-            article_id,
-            title=request.POST['title'],
-            author=request.POST['author'],
-            abstract=request.POST['abstract'],
-            body='./article_html/' + request.POST['id'] + ".html",
-            date=date,
-            time_to_read=time_to_read,
-            image=request.POST['image']
-        ):
-            return JsonResponse({'success': 'true'})
-        return JsonResponse({'success': 'false'})
+        return view_handlers.handle_article_edit(request.POST.get('id'),
+                                                 request.POST.get('title'),
+                                                 request.POST.get('author'),
+                                                 request.POST.get('abstract'),
+                                                 request.POST.get('body'),
+                                                 request.POST.get('date'),
+                                                 request.POST.get('time_to_read'),
+                                                 request.POST.get('image'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -105,10 +83,7 @@ def article_remove(request):
         return HttpResponseBadRequest("Authentication error")
 
     if request.method == 'POST':
-        article_id = int(request.POST["id"])
-        if article_admin.delete_article(article_id):
-            return JsonResponse({'success': 'true'})
-        return JsonResponse({'success': 'false'})
+        return view_handlers.handle_article_remove(request.POST.get('id'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
