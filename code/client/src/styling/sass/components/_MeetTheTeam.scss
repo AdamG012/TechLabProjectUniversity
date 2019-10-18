@@ -1,0 +1,31 @@
+.meet {
+  padding: 4rem;
+
+  &__row {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+
+    & > h3 {
+      font-style: normal;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.hr {
+  height: 3px;
+  width: 10%;
+  background-color: black;
+}

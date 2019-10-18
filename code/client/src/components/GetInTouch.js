@@ -1,5 +1,7 @@
 import React from "react";
 
+const HEADER_OFFSET = 80;
+
 const GetInTouch = props => {
   const contactFormReference = props.contactRef;
   return (
@@ -8,7 +10,8 @@ const GetInTouch = props => {
       onClick={() => {
         window.scrollTo(
           0,
-          contactFormReference.current.contactFormRef.current.offsetTop
+          contactFormReference.current.contactFormRef.current.offsetTop -
+            HEADER_OFFSET
         );
       }}
     >

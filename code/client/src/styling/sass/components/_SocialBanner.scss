@@ -3,7 +3,7 @@
 */
 
 .social-banner {
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: black;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
     display: flex;
   
     &-item {
-      padding: 0 15px;
+      padding: 0 0.3rem;
       list-style: none;
     }
   }

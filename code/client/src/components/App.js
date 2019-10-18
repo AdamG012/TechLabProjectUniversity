@@ -5,21 +5,16 @@ import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import ArticlePage from "./Pages/ArticlePage";
 import CreateArticle from "./CreateArticle";
+import LoginPage from "./Pages/LoginPage";
 import FourOhFour from "./Pages/FourOhFour";
 
 import "../styling/compiledStyles.css";
-
-//background video
-// https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/1080p/mp4/file.mp4
-
-/* <video className="background-video" autoPlay muted loop height="100%">
-          <source
-            src="https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/1080p/mp4/file.mp4"
-            type="video/mp4"
-          />
-        </video> */
+import SearchResultsPage from "./Pages/SearchResultsPage";
 
 class App extends React.Component {
+  state = {
+    isAuthed: false
+  };
   render() {
     return (
       <Router>
@@ -28,6 +23,12 @@ class App extends React.Component {
           <Route exact path="/createArticle" component={CreateArticle} />
           <Route path="/about" component={AboutPage} />
           <Route path="/articles" component={ArticlePage} />
+          <Route path="/article/:id" component={ArticlePage} />
+          <Route path="/login" component={LoginPage}></Route>
+          <Route
+            path="/search/:searchTerm?"
+            component={SearchResultsPage}
+          ></Route>
           <Route component={FourOhFour} />
         </Switch>
       </Router>
