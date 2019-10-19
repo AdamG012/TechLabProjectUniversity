@@ -14,7 +14,7 @@ const HeaderBanner = props => {
     <>
       <div className="header-banner">
         <div className="header-banner__title">
-          <h1><Link className="navigation__link" to="/">TechLab</Link></h1>
+            <Link className="navigation__link" to="/"><h1>TechLab</h1></Link>
         </div>
         <Navigation />
         <SocialBanner />
