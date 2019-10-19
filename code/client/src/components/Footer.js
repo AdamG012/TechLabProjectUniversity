@@ -15,43 +15,27 @@ import Col from "react-bootstrap/Col";
 
 const Footer = () => {
   return (
-      <Container fluid>
-      <Row>
     <div className="footer">
       <div className="footer__content">
         <div className="footer__img">
-          <img src={require("../img/logo.jpeg")}></img>
+          <img src={require("../img/logo.jpeg")} alt="TechLab"/>
         </div>
         <ul className="footer__list">
-          <Col>
           <li className="footer__list-element">About</li>
-          </Col>
-          <Col>
             <li className="footer__list-element">Contact Us</li>
-          </Col>
-          <Col>
             <li className="footer__list-element">Terms of Use</li>
-          </Col>
-          <Col>
             <li className="footer__list-element">Meet Us</li>
-          </Col>
-          <Col>
             <li className="footer__list-element">Privacy Policy</li>
-          </Col>
         </ul>
-        <Col>
         <div className="footer__btn">
           <Button color="black" text="Admin" />
         </div>
-        </Col>
       </div>
       <div className="footer__bottom">
         <SocialBanner />
         <p>&copy;2019 by HandOfTheFek. Proudly created with Wix.com</p>
       </div>
     </div>
-      </Row>
-      </Container>
   );
 };
 

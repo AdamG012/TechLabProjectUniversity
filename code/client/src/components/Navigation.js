@@ -98,13 +98,14 @@ class Navigation extends Component {
   render() {
     return (
         <Navbar color="black" dark expand="lg">
-          <Navbar.Brand href="/" className="navbar-brand">Home</Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse color="white" id="basic-navbar-nav">
             <Nav className="mr-auto">
+              <Nav.Link className="navbar-item" href="/">Home</Nav.Link>
               <Nav.Link className="navbar-item" href="/about">About</Nav.Link>
               <Nav.Link className="navbar-item" href="/">Events</Nav.Link>
+
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -59,7 +59,7 @@ const HomePage = () => {
               </Col>
           </Row>
           <Row>
-              <Col>
+              <Col className="black-background">
                 <div>
                     <Footer />
                 </div>

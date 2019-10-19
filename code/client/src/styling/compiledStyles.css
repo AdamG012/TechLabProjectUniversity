@@ -43,7 +43,7 @@ input, textarea {
   background-color: black;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;}
   .social-banner__list {
     display: flex;
     }
@@ -252,7 +252,7 @@ input, textarea {
   width: 100%;
   height: auto;
   align-self: flex-start;
-  margin-top: 5rem;
+  margin-top: 2rem;
   margin-left: 2rem; }
   .side-banner__heading-container {
     text-align: center;
@@ -545,7 +545,8 @@ input, textarea {
 
 .homepage__map {
   justify-content: space-around;
-
+  display: flex;
+  padding-top: 2rem;
   align-items: center;
 }
 .search-and-content-container {

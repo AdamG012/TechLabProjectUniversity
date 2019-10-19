@@ -12,8 +12,7 @@ import Row from "react-bootstrap/Row";
  */
 const ArticleSnapshot = props => {
   return (
-      <Container fluid>
-      <Row>
+      <div>
     <div
       className="article-snapshot"
       onClick={() => console.log("article clicked")}
@@ -27,8 +26,7 @@ const ArticleSnapshot = props => {
         <p className="article-snapshot__text">{props.content}</p>
       </div>
     </div>
-      </Row>
-      </Container>
+      </div>
   );
 };
 

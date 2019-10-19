@@ -10,18 +10,22 @@ const AboutPage = () => {
   return (
       <Container fluid>
         <Row>
-            <Col>
-      <HeaderBanner />
+            <Col className="black-background">
+                <HeaderBanner />
             </Col>
         </Row>
-      <MeetTheTeam />
+          <Row>
+              <Col>
+                  <MeetTheTeam />
+              </Col>
+          </Row>
         <Row>
-            <Col>
+            <Col className="black-background">
       <Footer />
             </Col>
         </Row>
       </Container>
-  );
+    );
 };
 
 export default AboutPage;
