@@ -3,6 +3,8 @@
  */
 import React from "react";
 import PropTypes from "prop-types";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 /**
  * Individual article snapshots which are rendered by the ArticlesContainer
@@ -10,6 +12,8 @@ import PropTypes from "prop-types";
  */
 const ArticleSnapshot = props => {
   return (
+      <Container fluid>
+      <Row>
     <div
       className="article-snapshot"
       onClick={() => console.log("article clicked")}
@@ -23,6 +27,8 @@ const ArticleSnapshot = props => {
         <p className="article-snapshot__text">{props.content}</p>
       </div>
     </div>
+      </Row>
+      </Container>
   );
 };
 

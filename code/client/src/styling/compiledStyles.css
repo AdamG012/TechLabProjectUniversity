@@ -42,9 +42,11 @@ input, textarea {
   padding: 0.5rem;
   background-color: black;
   display: flex;
+  flex-direction: column;
   align-items: center; }
   .social-banner__list {
-    display: flex; }
+    display: flex;
+    }
     .social-banner__list-item {
       padding: 0 0.3rem;
       list-style: none; }
@@ -124,11 +126,16 @@ input, textarea {
 .header-banner {
   height: 7rem;
   position: fixed;
+  padding: 0;
+  margin: 0;
   width: 100%;
   top: 0;
   display: flex;
   align-items: center;
-  background-color: black; }
+  background-color: black;
+  z-index: 100000;
+
+}
   .header-banner__title {
     margin-left: 2rem;
     color: white;
@@ -191,12 +198,17 @@ input, textarea {
 
 .hero-banner {
   background-color: black;
-  height: 15rem;
+  height: 20rem;
   color: white;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
   align-items: center;
-  justify-content: center; }
+  left: 0;
+  padding: 0;
+}
   .hero-banner__primary-text {
     padding: 1rem; }
   .hero-banner__secondary-text {
@@ -261,7 +273,7 @@ input, textarea {
   padding: 2rem;
   justify-content: space-evenly;
   height: 30rem;
-  width: 40%; }
+  width: 50%; }
   .contact-form__form {
     display: flex;
     flex-direction: column;
@@ -371,7 +383,7 @@ input, textarea {
 .meet {
   padding: 4rem; }
   .meet__row {
-    width: 80%;
+    width: 100%;
     margin: 0 auto; }
   .meet__heading {
     display: flex;
@@ -383,6 +395,7 @@ input, textarea {
       margin-bottom: 1rem; }
   .meet__cards {
     display: flex;
+    flex-direction: column;
     justify-content: space-around; }
 
 .hr {
@@ -396,7 +409,7 @@ input, textarea {
   align-items: center;
   margin: 2rem;
   height: auto;
-  width: 20%; }
+  width: auto; }
   .person-card__content {
     display: flex;
     flex-direction: column;
@@ -409,7 +422,8 @@ input, textarea {
       text-align: center; }
   .person-card__img {
     margin-bottom: 1.5rem;
-    width: 100%; }
+    width: 120%;
+  max-width: 400px;}
     .person-card__img > img {
       border-radius: 50%;
       width: 100%; }
@@ -460,6 +474,8 @@ input, textarea {
   .login__button {
     margin-top: 2rem;
     padding: 1.25rem; }
+
+
 
 .searchresults {
   width: 75%;
@@ -514,22 +530,61 @@ input, textarea {
   justify-content: center;
   margin: 2rem; }
   .homepage__content-leftColumn {
-    flex: 0 1 60%; }
+    flex: 0 1 100%; }
   .homepage__content-rightColumn {
-    flex: 0 1 25%; }
+    flex: 0 1 20%; }
 
 .homepage__contact {
   background-color: black;
   display: flex;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  width:100%;
 
+}
+
+.homepage__map {
+  justify-content: space-around;
+
+  align-items: center;
+}
 .search-and-content-container {
   margin: 2rem; }
 
 .post-filter-and-search {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 2rem; }
+
+
+.black-background {
+  background-color: black;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-size: 1rem;
+}
+
+.navbar {
+  background-color: black;
+  background-image: url("../img/1200px-Hamburger_icon_white.svg.png");
+}
+
+.navbar-item {
+  color: white !important;
+  font-size: 1rem;
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background-size: 100% 100%;
+  background: white no-repeat center center;
+}
+

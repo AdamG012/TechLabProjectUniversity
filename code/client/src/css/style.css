@@ -94,6 +94,14 @@ body {
   justify-content: space-around;
   font-size: 1.5rem;
 }
+.navbar-brand {
+  color: white !important;
+}
+
+
+.navItem {
+  color: white;
+}
 
 .navigation__list-item {
   border: 1px solid black;
@@ -102,6 +110,11 @@ body {
   width: 6rem;
   list-style: none;
   text-align: center;
+}
+
+.navigation__list-bootstrap-item {
+  background-color: white;
+  color: white !important;
 }
 
 .navigation__list-item:hover {

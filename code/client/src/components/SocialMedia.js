@@ -4,10 +4,11 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import Col from "react-bootstrap/Col";
 
 const SocialMedia = props => {
   return (
-    <div className="social-media">
+      <div className="social-media">
       <a title={props.alt} href={props.url}>
         <svg className="social-media__svg" style={{ fill: "FFF" }}>
           <use xlinkHref={props.svgId} />

@@ -4,6 +4,9 @@
 import React from "react";
 
 import SocialMedia from "./SocialMedia";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const socialMediaSites = [
   {
@@ -37,18 +40,25 @@ class SocialBanner extends React.Component {
   renderContent = () => {
     return socialMediaSites.map((item, index) => {
       return (
-        <li className="social-banner__list-item" key={index}>
-          <SocialMedia url={item.url} svgId={item.svg} alt={item.name} />
-        </li>
+          <Row>
+            <Col>
+              <li className="social-banner__list-item" key={index}>
+                <SocialMedia url={item.url} svgId={item.svg} alt={item.name} />
+              </li>
+            </Col>
+          </Row>
       );
     });
   };
 
   render() {
     return (
-      <div className="social-banner">
-        <ul className="social-banner__list">{this.renderContent()}</ul>
-      </div>
+
+        <Container fluid>
+            <div className="social-banner">
+              <ul className="social-banner__list">{this.renderContent()}</ul>
+            </div>
+        </Container>
     );
   }
 }
