@@ -1,5 +1,6 @@
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from trends import view_handlers
 
 from trends.db import article
 
@@ -17,11 +18,7 @@ def latest_articles(request):
     if request.method == 'GET':
         return HttpResponseBadRequest("500 Bad Request")
     else:
-        latest = article.get_latest_page(int(request.POST.get('PageNumber')))
-        if latest:
-            return JsonResponse({'success': 'true', 'latest': latest}, safe=False)
-        else:
-            return JsonResponse({'success': 'false'})
+        return view_handlers.handle_latest_articles(request.POST.get('PageNumber'))
 
 
 # Get preview data of article
@@ -41,21 +38,7 @@ def article_abstract(request):
     if request.method == 'GET':
         return JsonResponse({'success': 'false'})
     else:
-        article_obj = article.get_article(request.POST.get("id"))
-        if article_obj is None:
-            return JsonResponse({'success': 'false'})
-        tags = article.get_tags_by_article(request.POST.get("id"))
-
-        return JsonResponse({'success': 'true',
-                             'article': {
-                                 'title': str(article_obj.title),
-                                 'abstract': str(article_obj.abstract),
-                                 'author': str(article_obj.author),
-                                 'date': str(article_obj.date),
-                                 'time_to_read': str(article_obj.time_to_read),
-                                 'image': str(article_obj.image),
-                                 'tags': tags
-                             }}, safe=False)
+        return view_handlers.handle_article_abstract(request.POST.get("id"))
 
 
 # Get preview data of article
@@ -73,24 +56,7 @@ def article_abstract(request):
 @csrf_exempt
 def article_data(request, article_id):
     if request.method == 'GET':
-        article_obj = article.get_article(article_id)
-        if article_obj is None:
-            return JsonResponse({'success': 'false'})
-        tags = article.get_tags_by_article(article_id)
-        with open(str(article_obj.body), "r") as file:
-            content = file.read()
-            file.close()
-
-        return JsonResponse({'success': 'true',
-                             'article': {
-                                 'title': str(article_obj.title),
-                                 'content': content,
-                                 'author': str(article_obj.author),
-                                 'date': str(article_obj.date),
-                                 'time_to_read': str(article_obj.time_to_read),
-                                 'image': str(article_obj.image),
-                                 'tags': tags
-                             }}, safe=False)
+        return view_handlers.handle_article_data(article_id)
     else:
         return JsonResponse({'success': 'false'})
 
@@ -108,8 +74,25 @@ def article_data(request, article_id):
 @csrf_exempt
 def search(request):
     if request.method == 'POST':
-        tags = request.POST.getlist('tags')
-        results = article.search_by_title(request.POST.get("query"), request.POST.get("page"), tags=tags)
-        return JsonResponse({'success': 'true', 'results': results}, safe=False)
+        return view_handlers.handle_search(request.POST.getlist('tags'),
+                                           request.POST.get("query"),
+                                           request.POST.get("page"))
     else:
         return JsonResponse({'success': 'false'})
+
+
+# Gets entire page of abstract data
+#
+# Required parameters:
+# - "pagenumber": Integer - Page of results
+#
+# Output: JSONResponse
+# {'success': boolean, 'data': list(/abstract JSON responses)}
+#
+@csrf_exempt
+def abstract_page(request):
+    if request.method == 'POST':
+        return view_handlers.handle_abstract_page(request.POST.get('PageNumber'))
+    else:
+        return JsonResponse({'success': 'false'})
+

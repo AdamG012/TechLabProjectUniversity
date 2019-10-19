@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db: #is the database, named localhost to allow usage outside of containers
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+       MYSQL_DATABASE: 'trends_database'
+       MYSQL_USER: 'root'
+       MYSQL_PASSWORD: 'pass'
+       MYSQL_ROOT_PASSWORD: 'pass'
+
+
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py test"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

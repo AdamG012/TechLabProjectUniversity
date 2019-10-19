@@ -5,6 +5,7 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('articles/<int:article_id>', views.article_data, name='article'),
     path('latest-articles', views.latest_articles, name='latest-articles'),
+    path('abstract-page', views.abstract_page, name='abstract-page'),
     path('abstract', views.article_abstract, name='abstract'),
     path('admin/article-new', admin_views.article_new, name='article-new'),
     path('admin/article-edit', admin_views.article_edit, name='article-edit'),
