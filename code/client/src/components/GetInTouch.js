@@ -13,6 +13,7 @@ const GetInTouch = props => {
           contactFormReference.current.contactFormRef.current.offsetTop -
             HEADER_OFFSET
         );
+        contactFormReference.current.contactFormRef.current.children[1].elements[0].focus();
       }}
     >
       <p className="get-in-touch__text">Get In Touch</p>
