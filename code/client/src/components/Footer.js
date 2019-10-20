@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SocialBanner from "./SocialBanner";
 import Button from "./Button";
 
@@ -17,7 +18,9 @@ const Footer = () => {
           <li className="footer__list-element">Privacy Policy</li>
         </ul>
         <div className="footer__btn">
-          <Button color="black" text="Admin" />
+          <Link to="/login">
+            <Button color="black" text="Admin" />
+          </Link>
         </div>
       </div>
       <div className="footer__bottom">

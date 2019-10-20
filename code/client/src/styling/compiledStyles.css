@@ -509,6 +509,14 @@ input, textarea {
   .tag:hover {
     cursor: pointer; }
 
+.ck-heading_paragraph {
+  font-size: 4rem;
+  color: blue !important;
+  line-height: 4rem; }
+
+.h2 {
+  font-size: 6rem; }
+
 .homepage__content {
   display: flex;
   justify-content: center;

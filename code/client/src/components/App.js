@@ -7,6 +7,7 @@ import ArticlePage from "./Pages/ArticlePage";
 import CreateArticle from "./CreateArticle";
 import LoginPage from "./Pages/LoginPage";
 import FourOhFour from "./Pages/FourOhFour";
+import CreateArticlePage from "./Pages/CreateArticlePage";
 
 import "../styling/compiledStyles.css";
 import SearchResultsPage from "./Pages/SearchResultsPage";
@@ -20,10 +21,11 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/createArticle" component={CreateArticle} />
+          <Route exact path="/createArticle" component={CreateArticlePage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/articles" component={ArticlePage} />
           <Route path="/article/:id" component={ArticlePage} />
+          {/* <Route path="/admin/article/edit/:id" component={EditArticle} /> */}
           <Route path="/login" component={LoginPage}></Route>
           <Route
             path="/search/:searchTerm?"

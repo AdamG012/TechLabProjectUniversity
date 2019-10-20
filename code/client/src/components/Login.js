@@ -18,8 +18,10 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
+    console.log(process.env);
+    // const response = await fetch(``)
     console.log("submitted login form");
     // make api call to /login endpoint
     // wait for response
