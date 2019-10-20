@@ -15,6 +15,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "./Button";
 import Form from "react-bootstrap/Form";
 import SocialBanner from "./SocialBanner";
+import GetInTouch from "./GetInTouch";
 
 const navLinks = [
   {
@@ -81,36 +82,21 @@ const renderLinks = linkData => {
 //
 // };
 
-class Navigation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  render() {
-    return (
-        <Navbar color="black" dark expand="lg">
-
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse color="white" id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link className="navbar-item" href="/">Home</Nav.Link>
-              <Nav.Link className="navbar-item" href="/about">About</Nav.Link>
-              <Nav.Link className="navbar-item" href="/">Events</Nav.Link>
-
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-    );
-  }
-}
+const Navigation = props => {
+  return (
+      <Navbar color="black" dark expand="lg">
+        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+        <Navbar.Collapse className="nav-hamburger" id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link className="navbar-item" href="/">Home</Nav.Link>
+            <Nav.Link className="navbar-item" href="/about">About</Nav.Link>
+            <Nav.Link className="navbar-item" href="/">Events</Nav.Link>
+            <SocialBanner/>
+            <GetInTouch contactRef={props.contactRef}/>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+  );
+};
 
 export default Navigation;
