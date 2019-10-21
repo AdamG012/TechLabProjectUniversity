@@ -92,7 +92,6 @@ const Navigation = props => {
             <Nav.Link className="navbar-item" href="/about">About</Nav.Link>
             <Nav.Link className="navbar-item" href="/">Events</Nav.Link>
             <SocialBanner/>
-            <GetInTouch contactRef={props.contactRef}/>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

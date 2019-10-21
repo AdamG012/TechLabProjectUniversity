@@ -19,6 +19,7 @@ const HeaderBanner = props => {
             <h1>TechLab</h1>
         </div>
         <Navigation contactRef={props.contactRef}/>
+          <GetInTouch contactRef={props.contactRef}/>
       </div>
       <div className="header-banner__filler"/>
     </>
