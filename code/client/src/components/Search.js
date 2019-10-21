@@ -4,7 +4,6 @@
 
 import React from "react";
 import { Redirect } from "react-router-dom";
-import Row from 'react-bootstrap';
 
 class Search extends React.Component {
   state = {
