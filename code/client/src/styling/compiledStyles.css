@@ -51,7 +51,6 @@ input, textarea {
       padding: 0 0.3rem;
       display: inline-grid;
       grid-template-columns: auto;
-      grid-template-rows: auto auto auto auto auto;
       list-style: none; }
 
 
@@ -585,7 +584,8 @@ input, textarea {
   background-image: url("../img/1200px-Hamburger_icon_white.svg.png");
 }
 
-.navbar-item {
+.nav-bar-item {
+  min-height: 2rem;
   background-color: black;
   color: white !important;
   font-size: 1rem;
