@@ -3,7 +3,6 @@ import React from "react";
 import SocialBanner from "./SocialBanner";
 import Button from "./Button";
 import Navigation from "./Navigation";
-import {Link} from "react-router-dom";
 
 const Footer = () => {
   return (
