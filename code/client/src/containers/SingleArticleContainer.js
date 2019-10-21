@@ -3,6 +3,12 @@ import Article from "../components/Article";
 
 class SingleArticleContainer extends React.Component {
   state = {
+    title: "",
+    author: "",
+    date: "",
+    timeToRead: "",
+    imageURL: "",
+    tags: [],
     content: "<p>This is the content of my article</p>"
   };
   componentDidMount() {

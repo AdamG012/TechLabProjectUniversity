@@ -22,7 +22,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/createArticle" component={CreateArticle} />
           <Route path="/about" component={AboutPage} />
-          <Route path="/articles" component={ArticlePage} />
+          {/* <Route path="/articles" component={ArticlePage} /> */}
           <Route path="/article/:id" component={ArticlePage} />
           <Route path="/login" component={LoginPage}></Route>
           <Route
