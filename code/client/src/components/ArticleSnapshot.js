@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
  */
 const ArticleSnapshot = props => {
   return (
+      <div>
     <div
       className="article-snapshot"
       onClick={() => console.log("article clicked")}
@@ -23,6 +24,7 @@ const ArticleSnapshot = props => {
         <p className="article-snapshot__text">{props.content}</p>
       </div>
     </div>
+      </div>
   );
 };
 

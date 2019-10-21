@@ -6,7 +6,6 @@ class Map extends React.Component {
     render() {
         return (
             <LeafletMap
-
                 center={[-33.891710, 151.191510]}
                 zoom={13}
                 markerPosition={[-33.891710, 151.191510]}
