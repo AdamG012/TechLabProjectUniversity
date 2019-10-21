@@ -26,7 +26,8 @@
     "react-dom": "^16.9.0",
     "react-leaflet": "^2.4.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "react-bootstrap": "latest"
   },
   "scripts": {
     "dev": "npm-run-all -p sass start",

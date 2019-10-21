@@ -37,18 +37,18 @@ class SocialBanner extends React.Component {
   renderContent = () => {
     return socialMediaSites.map((item, index) => {
       return (
-        <li className="social-banner__list-item" key={index}>
-          <SocialMedia url={item.url} svgId={item.svg} alt={item.name} />
-        </li>
+          <li className="social-banner__list-item" key={index}>
+            <SocialMedia url={item.url} svgId={item.svg} alt={item.name} />
+          </li>
       );
     });
   };
 
   render() {
     return (
-      <div className="social-banner">
-        <ul className="social-banner__list">{this.renderContent()}</ul>
-      </div>
+        <div className="social-banner">
+          <ul className="social-banner__list">{this.renderContent()}</ul>
+        </div>
     );
   }
 }
