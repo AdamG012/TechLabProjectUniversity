@@ -2,16 +2,6 @@ import React from "react";
 import SocialBanner from "./SocialBanner";
 import Button from "./Button";
 import Navigation from "./Navigation";
-import Navbar from "react-bootstrap/Navbar";
-import NavbarBrand from "react-bootstrap/NavbarBrand";
-import NavbarToggle from "react-bootstrap/NavbarToggle";
-import Collapse from "react-bootstrap/Collapse";
-import Nav from "react-bootstrap/Nav";
-import NavItem from "react-bootstrap/NavItem";
-import NavLink from "react-bootstrap/NavLink";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 
 const Footer = () => {
