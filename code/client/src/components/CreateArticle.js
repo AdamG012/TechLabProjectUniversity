@@ -32,6 +32,7 @@ class CreateArticle extends Component {
         method: "POST"
       });
       const data = await response.json();
+      console.log(data);
     } catch (e) {
       console.log(e);
     }

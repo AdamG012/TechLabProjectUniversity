@@ -32,7 +32,7 @@ const navLinks = [
 const renderLinks = linkData => {
   return linkData.map(link => {
     return (
-      <li className="navigation__list-item">
+      <li key={link.toPath} className="navigation__list-item">
         <Link className="navigation__link" to={link.toPath}>
           {link.text}
         </Link>

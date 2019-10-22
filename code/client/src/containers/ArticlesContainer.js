@@ -1,6 +1,4 @@
 import React from "react";
-import axios from "axios";
-import { UNSPLASH_ACCESS_KEY } from "../utils/keys";
 import { API_URL } from "../config.json";
 
 import ArticleSnapshot from "../components/ArticleSnapshot";
@@ -10,77 +8,48 @@ class ArticlesContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [],
-      currentPage: 0,
-      articles: []
+      currentPage: 1,
+      articles: [],
+      articlesRemain: true // flag showing whether more articles can be loaded
     };
   }
 
-  async componentDidMount() {
-    // axios
-    //   .get("https://api.unsplash.com/search/photos", {
-    //     headers: {
-    //       Authorization: "Client-ID " + UNSPLASH_ACCESS_KEY
-    //     },
-    //     params: {
-    //       query: "technology",
-    //       page: 1,
-    //       per_page: 3
-    //     }
-    //   })
-    //   .then(res => {
-    //     this.setState({ images: res.data.results, currentPage: 1 });
-    //   })
-    //   .catch(err => console.log(err));
-    const response = await fetch(`${API_URL}/latest-articles`, {
-      method: "POST"
-    });
-    const data = await response.json();
-    this.setState({ articles: [...this.state.articles, data] });
+  componentDidUpdate() {
+    console.log(this.state);
   }
 
-  getNextPage = () => {
-    axios
-      .get("https://api.unsplash.com/search/photos", {
-        headers: {
-          Authorization: "Client-ID " + UNSPLASH_ACCESS_KEY
-        },
-        params: {
-          query: "technology",
-          page: this.state.currentPage + 1,
-          per_page: 3
-        }
-      })
-      .then(res => {
-        this.setState({
-          images: [...this.state.images, ...res.data.results], // check this
-          currentPage: this.state.currentPage + 1
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  async componentDidMount() {
+    const response = await fetch(`${API_URL}/articles`, {
+      method: "GET"
+    });
+    const data = await response.json();
+    this.setState({ articles: data });
+  }
 
-  // renderContent = () => {
-  //   const { images } = this.state;
-  //   return images.map(image => {
-  //     return (
-  //       <ArticleSnapshot
-  //         key={image.urls.full}
-  //         imageURL={image.urls.full}
-  //         title="Example Article"
-  //         content="This is your blog post. To really engage your site visitors we suggest you blog about subjects that are related to your site or business. Blogging is really great for SEO, so we recommend including keywords that relate to your services, products or industry within your posts"
-  //       />
-  //     );
-  //   });
-  // };
+  getNextPage = async () => {
+    const { currentPage } = this.state;
+    console.log("CURRENT PAGE: ", currentPage);
+    const response = await fetch(`${API_URL}/articles?page=${currentPage + 1}`);
+    const data = await response.json();
+    if (data.length === 0) {
+      this.setState({ articlesRemain: false });
+      window.alert("No more articles available at this time");
+    }
+    this.setState({
+      articles: [...this.state.articles, ...data],
+      currentPage: currentPage + 1
+    });
+  };
 
   renderContent = () => {
     const { articles } = this.state;
     return articles.map(article => {
       return (
         <ArticleSnapshot
+          id={article.id}
           key={article.id}
           author={article.author}
+          abstract={article.abstract}
           imageURL={article.image}
           title={article.title}
           timeToRead={article.time_to_read}

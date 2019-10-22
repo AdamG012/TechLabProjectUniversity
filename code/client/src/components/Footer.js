@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer__content">
         <div className="footer__img">
-          <img src={require("../img/logo.jpeg")}></img>
+          <img src={require("../img/logo.jpeg")} alt="techlab logo"></img>
         </div>
         <ul className="footer__list">
           <li className="footer__list-element">About</li>
