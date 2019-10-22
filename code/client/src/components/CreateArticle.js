@@ -10,8 +10,15 @@ class CreateArticle extends Component {
     author: "",
     abstract: "",
     articleImage: "", // url to image for article
-    currentContent: ""
+    currentContent: "",
+    tags: []
   };
+
+  componentDidMount() {
+    // TODO: retrieve tags to display
+    // user should be able to select
+    // and have them applied to the article
+  }
 
   componentDidUpdate() {
     console.log(this.state.currentContent);
@@ -23,15 +30,42 @@ class CreateArticle extends Component {
 
   handleSubmit = async () => {
     console.log(this.state);
-    console.log("making call");
+    const {
+      title,
+      author,
+      abstract,
+      articleImage,
+      currentContent,
+      tags
+    } = this.state;
+    const bodyData = {
+      title: title,
+      author: author,
+      abstract: abstract,
+      image: articleImage,
+      tags: tags,
+      content: currentContent
+    };
     let response;
     try {
-      // https://jsonplaceholder.typicode.com/posts/1
-      //${API_URL}/admin/article-new
-      response = await fetch(`${API_URL}/admin/article-new`, {
-        method: "POST"
+      response = await fetch(`${API_URL}/admin/article/create`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bodyData)
       });
       const data = await response.json();
+      window.alert("ARTICLE SUCCESSFULLY CREATED");
+      this.setState({
+        title: "",
+        author: "",
+        abstract: "",
+        image: "",
+        tags: [],
+        currentContent: ""
+      });
       console.log(data);
     } catch (e) {
       console.log(e);
@@ -56,7 +90,7 @@ class CreateArticle extends Component {
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
-        <label for="abstract">Abstract</label>
+        <label htmlFor="abstract">Abstract</label>
         <textarea
           name="abstract"
           type="text"
@@ -102,7 +136,7 @@ class CreateArticle extends Component {
             }
           }}
           editor={ClassicEditor}
-          data="Create an Article for USYD Techlab Trends!!"
+          data={this.state.currentContent}
           onInit={editor => {
             // You can store the "editor" and use when it is needed.
             console.log("Editor is ready to use!", editor);
