@@ -38,7 +38,8 @@ def article_abstract(request):
     if request.method == 'GET':
         return JsonResponse({'success': 'false'})
     else:
-        return view_handlers.handle_article_abstract(request.POST.get("id"))
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_article_abstract(request.POST.get("id"), media_uri)
 
 
 # Get preview data of article
@@ -56,7 +57,8 @@ def article_abstract(request):
 @csrf_exempt
 def article_data(request, article_id):
     if request.method == 'GET':
-        return view_handlers.handle_article_data(article_id)
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_article_data(article_id, media_uri)
     else:
         return JsonResponse({'success': 'false'})
 
@@ -92,7 +94,7 @@ def search(request):
 @csrf_exempt
 def abstract_page(request):
     if request.method == 'POST':
-        return view_handlers.handle_abstract_page(request.POST.get('PageNumber'))
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_abstract_page(request.POST.get('PageNumber'), media_uri)
     else:
         return JsonResponse({'success': 'false'})
-

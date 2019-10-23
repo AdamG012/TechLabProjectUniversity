@@ -33,7 +33,7 @@ def article_new(request):
                                                 request.POST.get('body'),
                                                 request.POST.get('date'),
                                                 request.POST.get('time_to_read'),
-                                                request.POST.get('image'))
+                                                request.FILES.get('image'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -65,7 +65,7 @@ def article_edit(request):
                                                  request.POST.get('body'),
                                                  request.POST.get('date'),
                                                  request.POST.get('time_to_read'),
-                                                 request.POST.get('image'))
+                                                 request.FILES.get('image'))
     else:
         return HttpResponseBadRequest("Bad Request")
 

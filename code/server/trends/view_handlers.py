@@ -2,6 +2,8 @@ import datetime
 
 from django.core.files import File
 from django.http import JsonResponse
+
+from server.settings import MEDIA_ROOT
 from trends.db import article
 from trends.db.admin import article_admin
 
@@ -14,7 +16,7 @@ def handle_latest_articles(pagenumber):
         return JsonResponse({'success': 'false'})
 
 
-def handle_article_abstract(article_id):
+def handle_article_abstract(article_id, uri):
     article_obj = article.get_article(int(article_id))
     if article_obj is None:
         return JsonResponse({'success': 'false'})
@@ -27,12 +29,12 @@ def handle_article_abstract(article_id):
                              'author': str(article_obj.author),
                              'date': str(article_obj.date),
                              'time_to_read': str(article_obj.time_to_read),
-                             'image': str(article_obj.image),
+                             'image': uri + str(article_obj.image),
                              'tags': tags
                          }}, safe=False)
 
 
-def handle_article_data(article_id):
+def handle_article_data(article_id, uri):
     article_obj = article.get_article(int(article_id))
     if article_obj is None:
         return JsonResponse({'success': 'false'})
@@ -48,7 +50,7 @@ def handle_article_data(article_id):
                              'author': str(article_obj.author),
                              'date': str(article_obj.date),
                              'time_to_read': str(article_obj.time_to_read),
-                             'image': str(article_obj.image),
+                             'image': uri + str(article_obj.image),
                              'tags': tags
                          }}, safe=False)
 
@@ -58,7 +60,7 @@ def handle_search(tags, query, pagenumber):
     return JsonResponse({'success': 'true', 'results': results}, safe=False)
 
 
-def handle_abstract_page(pagenumber):
+def handle_abstract_page(pagenumber, uri):
     data = []
     latest = article.get_latest_page(int(pagenumber))
     for i in latest:
@@ -72,7 +74,7 @@ def handle_abstract_page(pagenumber):
                          'author': str(article_obj.author),
                          'date': str(article_obj.date),
                          'time_to_read': str(article_obj.time_to_read),
-                         'image': str(article_obj.image),
+                         'image': uri + str(article_obj.image),
                          'tags': tags
                      }})
 
@@ -90,20 +92,32 @@ def handle_article_new(title, author, abstract, body, date, time_to_read, image)
         "",
         format_date,
         int(time_to_read),
-        image,
+        "",
     )
+
+    # Save image
+    with open(MEDIA_ROOT + new_article.pk + ".jpg", 'wb+') as file:
+        for chunk in image.chunks():
+            file.write(chunk)
 
     with open('./article_html/' + new_article.pk + ".html", "w") as f:
         file = File(f)
         file.write(body)
 
-    article_admin.edit_article(new_article.pk, body='./article_html/' + new_article.pk + ".html")
+    article_admin.edit_article(new_article.pk,
+                               body='./article_html/' + new_article.pk + ".html",
+                               image=str(new_article.pk) + ".jpg")
 
     return JsonResponse({'success': 'true'})
 
 
 def handle_article_edit(article_id, title, author, abstract, body, date, time_to_read, image):
     format_date = datetime.date.strftime(date, "%Y-%m-%d")
+
+    with open(MEDIA_ROOT + article_id + ".jpg", 'wb+') as file:
+        for chunk in image.chunks():
+            file.write(chunk)
+
     with open('./article_html/' + article_id + ".html", "w") as f:
         file = File(f)
         file.write(body)
@@ -116,7 +130,7 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
             body='./article_html/' + article_id + ".html",
             date=format_date,
             time_to_read=int(time_to_read),
-            image=image
+            image=article_id + ".jpg"
     ):
         return JsonResponse({'success': 'true'})
 

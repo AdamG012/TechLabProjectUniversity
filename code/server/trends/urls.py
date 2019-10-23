@@ -1,4 +1,7 @@
+from django.conf.urls.static import static
 from django.urls import path
+
+from server import settings
 from trends import views, admin_views
 
 urlpatterns = [
@@ -13,3 +16,7 @@ urlpatterns = [
     path('admin/login', admin_views.login, name='login'),
     path('admin/logout', admin_views.logout, name='logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
