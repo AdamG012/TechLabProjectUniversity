@@ -4,7 +4,7 @@ from django.core.files import File
 from django.http import JsonResponse
 
 from server.settings import MEDIA_ROOT
-from trends.db import article
+from trends.db import article, contact
 from trends.db.admin import article_admin
 
 
@@ -139,5 +139,11 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
 
 def handle_article_remove(article_id):
     if article_admin.delete_article(int(article_id)):
+        return JsonResponse({'success': 'true'})
+    return JsonResponse({'success': 'false'})
+
+
+def handle_contact(name, email, subject, content):
+    if contact.add_contact_request(name, email, subject, content):
         return JsonResponse({'success': 'true'})
     return JsonResponse({'success': 'false'})

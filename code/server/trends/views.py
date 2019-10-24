@@ -98,3 +98,12 @@ def abstract_page(request):
         return view_handlers.handle_abstract_page(request.POST.get('PageNumber'), media_uri)
     else:
         return JsonResponse({'success': 'false'})
+
+
+@csrf_exempt
+def contact(request):
+    if request.method == 'POST':
+        return view_handlers.handle_contact(request.POST.get('name'),
+                                            request.POST.get('email'),
+                                            request.POST.get('subject'),
+                                            request.POST.get('content'))
