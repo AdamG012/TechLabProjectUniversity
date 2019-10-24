@@ -2,7 +2,7 @@ import datetime
 
 from django.core.files import File
 
-from trends.db.admin import article_admin
+from trends.db.admin import article_admin, usermgmt
 from trends.db.article import Article
 
 
@@ -48,3 +48,5 @@ article_admin.create_article("Skynet",
                              datetime.datetime.strptime("1997-08-04", "%Y-%m-%d").date(),
                              9999,
                              "https://upload.wikimedia.org/wikipedia/en/b/b9/Terminator-2-judgement-day.jpg")
+
+usermgmt.create_user("Fek", "usyd", "Top", "Fek", "smh@email.com")
