@@ -3,6 +3,7 @@ import datetime
 from django.contrib import auth
 from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
 from django.core.files import File
+from django.views.decorators.csrf import csrf_exempt
 
 from trends import view_handlers
 from trends.db.admin import article_admin
@@ -97,6 +98,7 @@ def article_remove(request):
 # Output: JSONResponse
 # {'success': boolean}
 #
+@csrf_exempt
 def login(request):
     user = auth.authenticate(username=request.POST["username"],
                              password=request.POST["password"])
@@ -113,5 +115,6 @@ def login(request):
 #
 # Output: None
 #
+@csrf_exempt
 def logout(request):
     auth.logout(request)
