@@ -100,8 +100,8 @@ def article_remove(request):
 #
 @csrf_exempt
 def login(request):
-    user = auth.authenticate(username=request.POST["username"],
-                             password=request.POST["password"])
+    user = auth.authenticate(username=request.POST.get("username"),
+                             password=request.POST.get("password"))
     if user is not None and user.is_active:
         auth.login(request, user)
         return JsonResponse({'success': 'true'})
