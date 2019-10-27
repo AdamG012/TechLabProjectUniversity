@@ -16,10 +16,11 @@ const HomePage = () => {
   const contactFormRef = React.createRef();
   return (
     <div className="overlay" id="overlay">
-      <HeaderBanner contactRef={contactFormRef} />
       <Container fluid>
         <Row>
-          <Col className="black-background"></Col>
+          <Col className="black-background">
+            <HeaderBanner contactRef={contactFormRef} />
+          </Col>
         </Row>
         <Row>
           <Col className="black-background">
