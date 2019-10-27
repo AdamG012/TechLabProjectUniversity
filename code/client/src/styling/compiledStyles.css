@@ -132,7 +132,12 @@ input, textarea {
 /**
 * HeaderBanner Styles
 */
+.container-fluid {
+  margin: 0;
+  padding: 0; }
+
 .header-banner {
+  z-index: 100000;
   height: 7rem;
   position: fixed;
   width: 100%;

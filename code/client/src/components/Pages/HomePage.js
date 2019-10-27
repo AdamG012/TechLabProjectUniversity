@@ -11,17 +11,15 @@ import SideBannerContainer from "../../containers/SideBannerContainer";
 import Map from "../Map";
 import Footer from "../Footer";
 import Search from "../Search";
-import ArticleFilter from "../ArticleFilter";
 
 const HomePage = () => {
   const contactFormRef = React.createRef();
   return (
     <div className="overlay" id="overlay">
-      <Container fluid>
+      <HeaderBanner contactRef={contactFormRef} />
+      <Container fluid className="container-fluid">
         <Row>
-          <Col className="black-background">
-            <HeaderBanner contactRef={contactFormRef} />
-          </Col>
+          <Col className="black-background"></Col>
         </Row>
         <Row>
           <Col className="black-background">
