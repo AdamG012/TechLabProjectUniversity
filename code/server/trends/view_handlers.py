@@ -135,9 +135,15 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
     else:
         image_file = Article._meta.get_field('image').get_default()
 
-    with open('./article_html/' + article_id + ".html", "w") as f:
-        file = File(f)
-        file.write(body)
+    if body:
+        with open('./article_html/' + article_id + ".html", "w") as f:
+            file = File(f)
+            file.write(body)
+
+    if time_to_read:
+        ttr = int(time_to_read)
+    else:
+        ttr = None
 
     if article_admin.edit_article(
             int(article_id),
@@ -146,7 +152,7 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
             abstract=abstract,
             body='./article_html/' + article_id + ".html",
             date=format_date,
-            time_to_read=int(time_to_read),
+            time_to_read=ttr,
             image=image_file
     ):
         article_admin.set_article_tags(article_id, [x.lower() for x in tags])
