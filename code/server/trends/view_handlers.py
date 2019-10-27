@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from server.settings import MEDIA_ROOT
 from trends.db import article, contact
 from trends.db.admin import article_admin
+from trends.db.obj.articleModel import Article
 
 
 def handle_latest_articles(pagenumber):
@@ -56,6 +57,12 @@ def handle_article_data(article_id, uri):
 
 
 def handle_search(tags, query, pagenumber):
+    if query is None:
+        return JsonResponse({'success': 'false'})
+    if pagenumber is None:
+        pagenumber = 1
+    if tags:
+        tags = [x.lower() for x in tags]
     results = article.search_by_title(query, int(pagenumber), tags=tags)
     return JsonResponse({'success': 'true', 'results': results}, safe=False)
 
@@ -81,7 +88,7 @@ def handle_abstract_page(pagenumber, uri):
     return JsonResponse({'success': 'true', 'data': data}, safe=False)
 
 
-def handle_article_new(title, author, abstract, body, date, time_to_read, image):
+def handle_article_new(title, author, abstract, body, date, time_to_read, image, tags):
     format_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
 
     # Call admin methods on Article database
@@ -95,28 +102,38 @@ def handle_article_new(title, author, abstract, body, date, time_to_read, image)
         "",
     )
 
-    # Save image
-    with open(MEDIA_ROOT + new_article.pk + ".jpg", 'wb+') as file:
-        for chunk in image.chunks():
-            file.write(chunk)
+    article_admin.set_article_tags(new_article, [x.lower() for x in tags])
 
-    with open('./article_html/' + new_article.pk + ".html", "w") as f:
+    # Save image
+    if image:
+        with open(MEDIA_ROOT + str(new_article.pk) + ".jpg", 'wb+') as file:
+            for chunk in image.chunks():
+                file.write(chunk)
+        image_file = "img/" + str(new_article.pk) + ".jpg"
+    else:
+        image_file = Article._meta.get_field('image').get_default()
+
+    with open('./article_html/' + str(new_article.pk) + ".html", "w") as f:
         file = File(f)
         file.write(body)
 
     article_admin.edit_article(new_article.pk,
-                               body='./article_html/' + new_article.pk + ".html",
-                               image=str(new_article.pk) + ".jpg")
+                               body='./article_html/' + str(new_article.pk) + ".html",
+                               image=image_file)
 
     return JsonResponse({'success': 'true'})
 
 
-def handle_article_edit(article_id, title, author, abstract, body, date, time_to_read, image):
+def handle_article_edit(article_id, title, author, abstract, body, date, time_to_read, image, tags):
     format_date = datetime.date.strftime(date, "%Y-%m-%d")
 
-    with open(MEDIA_ROOT + article_id + ".jpg", 'wb+') as file:
-        for chunk in image.chunks():
-            file.write(chunk)
+    if image:
+        with open(MEDIA_ROOT + article_id + ".jpg", 'wb+') as file:
+            for chunk in image.chunks():
+                file.write(chunk)
+        image_file = "img/" + article_id + ".jpg"
+    else:
+        image_file = Article._meta.get_field('image').get_default()
 
     with open('./article_html/' + article_id + ".html", "w") as f:
         file = File(f)
@@ -130,8 +147,9 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
             body='./article_html/' + article_id + ".html",
             date=format_date,
             time_to_read=int(time_to_read),
-            image=article_id + ".jpg"
+            image=image_file
     ):
+        article_admin.set_article_tags(article_id, [x.lower() for x in tags])
         return JsonResponse({'success': 'true'})
 
     return JsonResponse({'success': 'false'})

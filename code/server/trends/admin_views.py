@@ -1,12 +1,10 @@
-import datetime
+import json
 
 from django.contrib import auth
 from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
-from django.core.files import File
 from django.views.decorators.csrf import csrf_exempt
 
 from trends import view_handlers
-from trends.db.admin import article_admin
 
 
 # POST request handler for article creation (Admin only)
@@ -34,7 +32,8 @@ def article_new(request):
                                                 request.POST.get('body'),
                                                 request.POST.get('date'),
                                                 request.POST.get('time_to_read'),
-                                                request.FILES.get('image'))
+                                                request.FILES.get('image'),
+                                                request.POST.getlist('tags[]'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -66,7 +65,8 @@ def article_edit(request):
                                                  request.POST.get('body'),
                                                  request.POST.get('date'),
                                                  request.POST.get('time_to_read'),
-                                                 request.FILES.get('image'))
+                                                 request.FILES.get('image'),
+                                                 request.POST.getlist('tags[]'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -84,7 +84,8 @@ def article_remove(request):
         return HttpResponseBadRequest("Authentication error")
 
     if request.method == 'POST':
-        return view_handlers.handle_article_remove(request.POST.get('id'))
+        params = json.loads(request.body)
+        return view_handlers.handle_article_remove(params.get('id'))
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -100,9 +101,10 @@ def article_remove(request):
 #
 @csrf_exempt
 def login(request):
-    user = auth.authenticate(username=request.POST.get("username"),
-                             password=request.POST.get("password"))
-    if user is not None and user.is_active:
+    params = json.loads(request.body)
+    user = auth.authenticate(username=params.get("username"),
+                             password=params.get("password"))
+    if user is not None:
         auth.login(request, user)
         return JsonResponse({'success': 'true'})
     else:

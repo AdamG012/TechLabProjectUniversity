@@ -1,6 +1,7 @@
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from trends import view_handlers
+import json
 
 from trends.db import article
 
@@ -8,7 +9,7 @@ from trends.db import article
 # Get IDs of latest articles
 #
 # Required parameters:
-# - "PageNumber": Integer - n'th page of latest articles
+# - "page": Integer - n'th page of latest articles
 #
 # Output: JSONResponse
 # {'success': boolean, 'latest': list(Integer)}
@@ -16,9 +17,10 @@ from trends.db import article
 @csrf_exempt
 def latest_articles(request):
     if request.method == 'GET':
-        return HttpResponseBadRequest("500 Bad Request")
+        params = json.loads(request.body)
+        return view_handlers.handle_latest_articles(params.get('page'))
     else:
-        return view_handlers.handle_latest_articles(request.POST.get('PageNumber'))
+        return HttpResponseBadRequest("500 Bad Request")
 
 
 # Get preview data of article
@@ -36,10 +38,11 @@ def latest_articles(request):
 @csrf_exempt
 def article_abstract(request):
     if request.method == 'GET':
-        return JsonResponse({'success': 'false'})
-    else:
+        params = json.loads(request.body)
         media_uri = request.build_absolute_uri('/media/')
-        return view_handlers.handle_article_abstract(request.POST.get("id"), media_uri)
+        return view_handlers.handle_article_abstract(params.get("id"), media_uri)
+    else:
+        return JsonResponse({'success': 'false'})
 
 
 # Get preview data of article
@@ -76,17 +79,18 @@ def article_data(request, article_id):
 @csrf_exempt
 def search(request):
     if request.method == 'POST':
-        return view_handlers.handle_search(request.POST.getlist('tags'),
-                                           request.POST.get("query"),
-                                           request.POST.get("page"))
-    else:
         return JsonResponse({'success': 'false'})
+    else:
+        params = json.loads(request.body)
+        return view_handlers.handle_search(params.get('tags'),
+                                           params.get("query"),
+                                           params.get("page"))
 
 
 # Gets entire page of abstract data
 #
 # Required parameters:
-# - "pagenumber": Integer - Page of results
+# - "page": Integer - Page of results
 #
 # Output: JSONResponse
 # {'success': boolean, 'data': list(/abstract JSON responses)}
@@ -94,16 +98,18 @@ def search(request):
 @csrf_exempt
 def abstract_page(request):
     if request.method == 'POST':
-        media_uri = request.build_absolute_uri('/media/')
-        return view_handlers.handle_abstract_page(request.POST.get('PageNumber'), media_uri)
-    else:
         return JsonResponse({'success': 'false'})
+    else:
+        params = json.loads(request.body)
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_abstract_page(params.get('page'), media_uri)
 
 
 @csrf_exempt
 def contact(request):
     if request.method == 'POST':
-        return view_handlers.handle_contact(request.POST.get('name'),
-                                            request.POST.get('email'),
-                                            request.POST.get('subject'),
-                                            request.POST.get('content'))
+        params = json.loads(request.body)
+        return view_handlers.handle_contact(params.get('name'),
+                                            params.get('email'),
+                                            params.get('subject'),
+                                            params.get('content'))
