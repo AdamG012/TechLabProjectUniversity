@@ -575,11 +575,21 @@ input, textarea {
   align-items: center;
   margin-bottom: 2rem; }
 
-
+/**
+  Filler black background for Col Bootstrap elements.
+ */
 .black-background {
   background-color: black;
 }
 
+/**
+ Navigation Styles
+ Specific for the navbar
+ Includes shifting hamburger icon up
+ Black background for items
+ White text
+ Ensures component doesn't move off screen when pulled up
+ */
 .nav-bar-item {
   min-height: 2rem;
   background-color: black;
