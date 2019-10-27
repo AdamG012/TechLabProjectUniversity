@@ -53,6 +53,20 @@ input, textarea {
   grid-template-columns: auto;
   list-style: none; }
 
+
+/**
+* Animation to fade the screen while the page is scrolled to the contact form
+* Style is applied to a div covering the whole screen
+*/
+.overlay {
+  opacity: 1;
+  transition: opacity 0.25s; }
+
+.fade-out {
+  opacity: 0; }
+
+/**
+
 /**
 * Article Snapshot Styles
 */
@@ -203,7 +217,7 @@ input, textarea {
 
 .hero-banner {
   background-color: black;
-  height: 20rem;
+  height: 15rem;
   color: white;
   display: flex;
   flex-direction: column;
@@ -211,8 +225,6 @@ input, textarea {
   width: 100%;
   margin: 0;
   align-items: center;
-  left: 0;
-  padding: 0;
 }
 .hero-banner__primary-text {
   padding: 1rem; }
@@ -257,7 +269,7 @@ input, textarea {
   width: 100%;
   height: auto;
   align-self: flex-start;
-  margin-top: 2rem;
+  margin-top: 5rem;
   margin-left: 2rem; }
 .side-banner__heading-container {
   text-align: center;
@@ -416,7 +428,7 @@ input, textarea {
   align-items: center;
   margin: 2rem;
   height: auto;
-  }
+}
 .person-card__content {
   display: flex;
   flex-direction: column;
@@ -544,7 +556,6 @@ input, textarea {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width:100%;
 
 }
 
@@ -560,7 +571,7 @@ input, textarea {
 .post-filter-and-search {
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem; }
 
