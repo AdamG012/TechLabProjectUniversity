@@ -20,8 +20,7 @@ class Login extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    console.log(process.env);
-    // const response = await fetch(``)
+    this.props.authFunc(this.state.username, this.state.password);
     console.log("submitted login form");
     // make api call to /login endpoint
     // wait for response

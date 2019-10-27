@@ -7,7 +7,7 @@ def get_article(article_id):
 
 def get_articles_by_tag(tag):
     article_ids = Tag.objects.filter(tag=tag).values_list('article', flat=True)
-    return list(Article.objects.filter(id__in=list(article_ids)).values_list('ids', flat=True))
+    return Article.objects.filter(id__in=list(article_ids)).values_list('id', 'date')
 
 
 def get_tags_by_article(article_id):
@@ -31,13 +31,18 @@ def search_by_title(query, page, tags=None):
 
     NUM_RESULTS = 8
 
+    # print(tags)
     if tags:
-        results = Article.objects.none()
+        results = None
         for tag in tags:
-            results.union(get_articles_by_tag(tag))
-        results = results.filter(title__contains=query).order_by('-date', '-id')
+            if results:
+                results.union(get_articles_by_tag(tag))
+            else:
+                results = get_articles_by_tag(tag)
+            print(get_articles_by_tag(tag))
+        results = results.filter(title__icontains=query).order_by('-date', '-id')
     else:
-        results = Article.objects.filter(title__contains=query).order_by('-date', '-id')
+        results = Article.objects.filter(title__icontains=query).order_by('-date', '-id')
 
     first_page = min((page - 1) * NUM_RESULTS, results.count())
     last_page = min(page * NUM_RESULTS, results.count())

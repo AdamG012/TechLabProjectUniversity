@@ -19,6 +19,15 @@ class ArticlesContainer extends React.Component {
   }
 
   async componentDidMount() {
+    // get the article ids for the first page
+    const articleIds = await fetch(
+      `${API_URL}/latest-articles/${this.state.currentPage}`,
+      {
+        method: "GET"
+      }
+    );
+    console.log("ARTICLE IDS: ", articleIds);
+
     const response = await fetch(`${API_URL}/articles`, {
       method: "GET"
     });

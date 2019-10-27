@@ -3,6 +3,7 @@
 */
 
 .header-banner {
+  z-index: 100000;
   height: $headerBannerHeight;
   position: fixed;
   width: 100%;

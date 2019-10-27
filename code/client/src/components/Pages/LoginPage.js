@@ -4,11 +4,14 @@ import Login from "../Login";
 import Footer from "../Footer";
 
 class LoginPage extends React.Component {
+  componentDidMount() {
+    console.log("LoginPage state: ", this.props);
+  }
   render() {
     return (
       <>
         <HeaderBanner />
-        <Login />
+        <Login authFunc={this.props.authFunc} />
         <Footer />
       </>
     );

@@ -1,6 +1,7 @@
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from trends import view_handlers
+import json
 
 from trends.db import article
 
@@ -8,17 +9,17 @@ from trends.db import article
 # Get IDs of latest articles
 #
 # Required parameters:
-# - "PageNumber": Integer - n'th page of latest articles
+# - "page": Integer - n'th page of latest articles
 #
 # Output: JSONResponse
 # {'success': boolean, 'latest': list(Integer)}
 #
 @csrf_exempt
-def latest_articles(request):
+def latest_articles(request, page):
     if request.method == 'GET':
-        return HttpResponseBadRequest("500 Bad Request")
+        return view_handlers.handle_latest_articles(page)
     else:
-        return view_handlers.handle_latest_articles(request.POST.get('PageNumber'))
+        return HttpResponseBadRequest("500 Bad Request")
 
 
 # Get preview data of article
@@ -34,11 +35,12 @@ def latest_articles(request):
 #                           'tags': list(String)}
 #
 @csrf_exempt
-def article_abstract(request):
+def article_abstract(request, article_id):
     if request.method == 'GET':
-        return JsonResponse({'success': 'false'})
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_article_abstract(article_id, media_uri)
     else:
-        return view_handlers.handle_article_abstract(request.POST.get("id"))
+        return JsonResponse({'success': 'false'})
 
 
 # Get preview data of article
@@ -56,7 +58,8 @@ def article_abstract(request):
 @csrf_exempt
 def article_data(request, article_id):
     if request.method == 'GET':
-        return view_handlers.handle_article_data(article_id)
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_article_data(article_id, media_uri)
     else:
         return JsonResponse({'success': 'false'})
 
@@ -73,26 +76,37 @@ def article_data(request, article_id):
 #
 @csrf_exempt
 def search(request):
-    if request.method == 'POST':
-        return view_handlers.handle_search(request.POST.getlist('tags'),
-                                           request.POST.get("query"),
-                                           request.POST.get("page"))
-    else:
+    if request.method == 'GET':
         return JsonResponse({'success': 'false'})
+    else:
+        params = json.loads(request.body)
+        return view_handlers.handle_search(params.get('tags'),
+                                           params.get("query"),
+                                           params.get("page"))
 
 
 # Gets entire page of abstract data
 #
 # Required parameters:
-# - "pagenumber": Integer - Page of results
+# - "page": Integer - Page of results
 #
 # Output: JSONResponse
 # {'success': boolean, 'data': list(/abstract JSON responses)}
 #
 @csrf_exempt
-def abstract_page(request):
+def abstract_page(request, page):
     if request.method == 'POST':
-        return view_handlers.handle_abstract_page(request.POST.get('PageNumber'))
-    else:
         return JsonResponse({'success': 'false'})
+    else:
+        media_uri = request.build_absolute_uri('/media/')
+        return view_handlers.handle_abstract_page(page, media_uri)
 
+
+@csrf_exempt
+def contact(request):
+    if request.method == 'POST':
+        params = json.loads(request.body)
+        return view_handlers.handle_contact(params.get('name'),
+                                            params.get('email'),
+                                            params.get('subject'),
+                                            params.get('content'))

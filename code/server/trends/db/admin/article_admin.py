@@ -1,4 +1,4 @@
-from trends.db.obj.articleModel import Article
+from trends.db.obj.articleModel import Article, Tag
 from trends.db import article
 
 
@@ -39,3 +39,10 @@ def delete_article(article_id):
         return True
     else:
         return False
+
+
+def set_article_tags(article_id, tags):
+    if tags:
+        for tag in tags:
+            t = Tag(tag=tag, article=article_id)
+            t.save()

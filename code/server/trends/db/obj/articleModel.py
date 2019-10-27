@@ -8,7 +8,7 @@ class Article(models.Model):
     body = models.CharField(max_length=1024)
     date = models.DateField()
     time_to_read = models.IntegerField()
-    image = models.CharField(max_length=1024)
+    image = models.ImageField(upload_to="img", default="img/Blank.jpg")
 
 
 class Tag(models.Model):

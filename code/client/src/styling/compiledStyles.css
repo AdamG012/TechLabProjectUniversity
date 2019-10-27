@@ -36,6 +36,17 @@ input, textarea {
   font-style: inherit; }
 
 /**
+* Animation to fade the screen while the page is scrolled to the contact form
+* Style is applied to a div covering the whole screen
+*/
+.overlay {
+  opacity: 1;
+  transition: opacity 0.25s; }
+
+.fade-out {
+  opacity: 0; }
+
+/**
 * SocialBanner Styles
 */
 .social-banner {
@@ -122,6 +133,7 @@ input, textarea {
 * HeaderBanner Styles
 */
 .header-banner {
+  z-index: 100000;
   height: 7rem;
   position: fixed;
   width: 100%;
@@ -290,6 +302,7 @@ input, textarea {
   height: 2rem;
   width: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   display: flex;
@@ -516,6 +529,10 @@ input, textarea {
 
 .h2 {
   font-size: 6rem; }
+
+.admin-options__list {
+  display: flex;
+  flex-direction: column; }
 
 .homepage__content {
   display: flex;
