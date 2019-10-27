@@ -12,11 +12,18 @@ class GetInTouch extends React.Component {
   handleClick = () => {
     if (this.props.contactRef) {
       const contactFormReference = this.props.contactRef;
+      const overlay = document.getElementById("overlay");
+      overlay.classList.add("fade-out");
       window.scrollTo(
         0,
         contactFormReference.current.contactFormRef.current.offsetTop -
           HEADER_OFFSET
       );
+
+      setTimeout(() => {
+        overlay.classList.remove("fade-out");
+      }, 500);
+
       contactFormReference.current.contactFormRef.current.children[1].elements[0].focus();
     } else {
       this.setState({ isRedirect: true });
