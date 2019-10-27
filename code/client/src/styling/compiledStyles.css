@@ -521,6 +521,10 @@ input, textarea {
   .tag:hover {
     cursor: pointer; }
 
+.admin-options__list {
+  display: flex;
+  flex-direction: column; }
+
 .homepage__content {
   display: flex;
   justify-content: center;
