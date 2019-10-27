@@ -17,7 +17,7 @@ const HomePage = () => {
   return (
     <div className="overlay" id="overlay">
       <HeaderBanner contactRef={contactFormRef} />
-      <Container fluid className="container-fluid">
+      <Container fluid>
         <Row>
           <Col className="black-background"></Col>
         </Row>
