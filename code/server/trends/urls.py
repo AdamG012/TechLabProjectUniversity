@@ -7,9 +7,9 @@ from trends import views, admin_views
 urlpatterns = [
     path('search', views.search, name='search'),
     path('articles/<int:article_id>', views.article_data, name='article'),
-    path('latest-articles', views.latest_articles, name='latest-articles'),
-    path('abstract-page', views.abstract_page, name='abstract-page'),
-    path('abstract', views.article_abstract, name='abstract'),
+    path('latest-articles/<int:page>', views.latest_articles, name='latest-articles'),
+    path('abstract-page/<int:page>', views.abstract_page, name='abstract-page'),
+    path('abstract/<int:article_id>', views.article_abstract, name='abstract'),
     path('contact', views.contact, name='contact'),
     path('admin/article-new', admin_views.article_new, name='article-new'),
     path('admin/article-edit', admin_views.article_edit, name='article-edit'),

@@ -15,10 +15,9 @@ from trends.db import article
 # {'success': boolean, 'latest': list(Integer)}
 #
 @csrf_exempt
-def latest_articles(request):
+def latest_articles(request, page):
     if request.method == 'GET':
-        params = json.loads(request.body)
-        return view_handlers.handle_latest_articles(params.get('page'))
+        return view_handlers.handle_latest_articles(page)
     else:
         return HttpResponseBadRequest("500 Bad Request")
 
@@ -36,11 +35,10 @@ def latest_articles(request):
 #                           'tags': list(String)}
 #
 @csrf_exempt
-def article_abstract(request):
+def article_abstract(request, article_id):
     if request.method == 'GET':
-        params = json.loads(request.body)
         media_uri = request.build_absolute_uri('/media/')
-        return view_handlers.handle_article_abstract(params.get("id"), media_uri)
+        return view_handlers.handle_article_abstract(article_id, media_uri)
     else:
         return JsonResponse({'success': 'false'})
 
@@ -78,7 +76,7 @@ def article_data(request, article_id):
 #
 @csrf_exempt
 def search(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         return JsonResponse({'success': 'false'})
     else:
         params = json.loads(request.body)
@@ -96,13 +94,12 @@ def search(request):
 # {'success': boolean, 'data': list(/abstract JSON responses)}
 #
 @csrf_exempt
-def abstract_page(request):
+def abstract_page(request, page):
     if request.method == 'POST':
         return JsonResponse({'success': 'false'})
     else:
-        params = json.loads(request.body)
         media_uri = request.build_absolute_uri('/media/')
-        return view_handlers.handle_abstract_page(params.get('page'), media_uri)
+        return view_handlers.handle_abstract_page(page, media_uri)
 
 
 @csrf_exempt
