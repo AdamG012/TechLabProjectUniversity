@@ -133,6 +133,7 @@ input, textarea {
 * HeaderBanner Styles
 */
 .header-banner {
+  z-index: 100000;
   height: 7rem;
   position: fixed;
   width: 100%;
@@ -520,6 +521,10 @@ input, textarea {
   text-align: center; }
   .tag:hover {
     cursor: pointer; }
+
+.admin-options__list {
+  display: flex;
+  flex-direction: column; }
 
 .homepage__content {
   display: flex;

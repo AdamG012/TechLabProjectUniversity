@@ -11,7 +11,6 @@ import SideBannerContainer from "../../containers/SideBannerContainer";
 import Map from "../Map";
 import Footer from "../Footer";
 import Search from "../Search";
-import ArticleFilter from "../ArticleFilter";
 
 const HomePage = () => {
   const contactFormRef = React.createRef();

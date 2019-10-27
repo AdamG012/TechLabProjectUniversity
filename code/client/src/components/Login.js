@@ -20,6 +20,7 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.authFunc(this.state.username, this.state.password);
     console.log("submitted login form");
     // make api call to /login endpoint
     // wait for response
