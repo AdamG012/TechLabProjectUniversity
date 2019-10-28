@@ -167,6 +167,7 @@ input, textarea {
   .search__input {
     height: 3rem;
     border: none;
+    width: 15rem;
     border-bottom: 2px solid lightgray; }
   .search__input:focus {
     outline-width: 0; }
