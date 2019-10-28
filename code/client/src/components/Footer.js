@@ -20,7 +20,7 @@ const Footer = () => {
           </ul>
           <ul className="footer__list">
             <li className="footer__list-element">
-              <a className="navigation__link" target="_blank"  href={"https://sydney.edu.au/privacy-statement.html"}>Privacy Policy</a>
+              <a className="navigation__link" target="_blank" rel="noopener noreferrer" href={"https://sydney.edu.au/privacy-statement.html"}>Privacy Policy</a>
             </li>
           <div className="footer__list-element">
             <Link className="navigation__link" to="/admin">Admin</Link>
