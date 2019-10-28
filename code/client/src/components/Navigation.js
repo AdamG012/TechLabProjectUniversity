@@ -1,21 +1,10 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col";
-import {Container} from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import NavbarBrand from "react-bootstrap/NavbarBrand";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavLink from "react-bootstrap/NavLink";
 import NavItem from "react-bootstrap/NavItem";
-import Collapse from "react-bootstrap/Collapse";
-import NavbarToggle from "react-bootstrap/NavbarToggle";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "./Button";
-import Form from "react-bootstrap/Form";
 import SocialBanner from "./SocialBanner";
-import GetInTouch from "./GetInTouch";
 
 const navLinks = [
   {

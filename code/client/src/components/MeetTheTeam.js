@@ -3,7 +3,6 @@ import PersonCard from "./PersonCard";
 import { teamMembers } from "../master.json";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 
 let renderContent = () => {
   return teamMembers.map(member => {

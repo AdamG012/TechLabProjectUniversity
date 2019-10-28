@@ -1,8 +1,6 @@
 import {Link} from "react-router-dom";
 import React from "react";
 import SocialBanner from "./SocialBanner";
-import Button from "./Button";
-import Navigation from "./Navigation";
 
 const Footer = () => {
   return (
