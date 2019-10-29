@@ -27,7 +27,6 @@ class ArticlesContainer extends React.Component {
       }
     );
     const data = await articleIds.json();
-    console.log("Response: ", data);
 
     data.latest.map(async articleId => {
       const articleData = await fetch(`${API_URL}/abstract/${articleId}`, {
@@ -40,17 +39,13 @@ class ArticlesContainer extends React.Component {
       this.setState({
         articles: [...this.state.articles, articleToAdd]
       });
-      console.log("ARTICLE: ", article);
     });
     this.setState({ currentPage: this.state.currentPage + 1 });
   }
 
   getNextPage = async () => {
     const { currentPage } = this.state;
-    console.log("CURRENT PAGE: ", currentPage);
-    const response = await fetch(
-      `${API_URL}/latest-articles/${this.state.currentPage}`
-    );
+    const response = await fetch(`${API_URL}/latest-articles/${currentPage}`);
     const data = await response.json();
     console.log(data);
     if (data.success === "false") {
@@ -69,7 +64,7 @@ class ArticlesContainer extends React.Component {
         articles: [...this.state.articles, articleToAdd]
       });
     });
-    this.setState({ currentPage: this.state.currentPage + 1 });
+    this.setState({ currentPage: currentPage + 1 });
   };
 
   renderContent = () => {

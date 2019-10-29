@@ -16,19 +16,45 @@ class SingleArticleContainer extends React.Component {
     const { articleId } = this.props;
     // API call to retrieve article data
     const res = await fetch(`${API_URL}/articles/${articleId}`);
-    const articleData = await res.json();
-    this.setState({ articleData });
-    if (articleId) {
-      // make api call to retrieve data for specific article
-      this.setState({
-        content: `<h1>This is article ${articleId}</h1>`
-      });
+    const data = await res.json();
+    if (data.success === "false") {
+      window.alert("Article data could not be retrieved");
+      return;
     }
+    const { article } = data;
+    this.setState({
+      title: article.title,
+      author: article.author,
+      date: article.date,
+      imageURL: article.image,
+      tags: article.tags,
+      timeToRead: article.time_to_read,
+      content: article.content
+    });
   }
 
   render() {
-    console.log(this.state.content);
-    return <Article content={this.state.content} />;
+    console.log("ARTICLE CONTAINER CONTENT: ", this.state);
+    const {
+      title,
+      author,
+      date,
+      imageURL,
+      tags,
+      timeToRead,
+      content
+    } = this.state;
+    return (
+      <Article
+        title={title}
+        author={author}
+        date={date}
+        imageURL={imageURL}
+        tags={tags}
+        timeToRead={timeToRead}
+        content={content}
+      />
+    );
   }
 }
 

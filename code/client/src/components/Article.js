@@ -10,6 +10,8 @@ class Article extends React.Component {
         <p>{this.props.title}</p>
         <h6>Author</h6>
         <p>{this.props.author}</p>
+        <h6>Time to read</h6>
+        <p>{this.props.timeToRead} min</p>
         <h6>Content</h6>
         <div
           className="article__content-container"
