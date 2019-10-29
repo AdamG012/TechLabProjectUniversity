@@ -26,33 +26,56 @@ class ArticlesContainer extends React.Component {
         method: "GET"
       }
     );
-    console.log("ARTICLE IDS: ", articleIds);
+    const data = await articleIds.json();
+    console.log("Response: ", data);
 
-    const response = await fetch(`${API_URL}/articles`, {
-      method: "GET"
+    data.latest.map(async articleId => {
+      const articleData = await fetch(`${API_URL}/abstract/${articleId}`, {
+        method: "GET"
+      });
+
+      const article = await articleData.json();
+      const articleToAdd = article.article;
+      article.article.id = articleId;
+      this.setState({
+        articles: [...this.state.articles, articleToAdd]
+      });
+      console.log("ARTICLE: ", article);
     });
-    const data = await response.json();
-    this.setState({ articles: data });
+    this.setState({ currentPage: this.state.currentPage + 1 });
   }
 
   getNextPage = async () => {
     const { currentPage } = this.state;
     console.log("CURRENT PAGE: ", currentPage);
-    const response = await fetch(`${API_URL}/articles?page=${currentPage + 1}`);
+    const response = await fetch(
+      `${API_URL}/latest-articles/${this.state.currentPage}`
+    );
     const data = await response.json();
-    if (data.length === 0) {
+    console.log(data);
+    if (data.success === "false") {
       this.setState({ articlesRemain: false });
       window.alert("No more articles available at this time");
+      return;
     }
-    this.setState({
-      articles: [...this.state.articles, ...data],
-      currentPage: currentPage + 1
+    data.latest.map(async articleId => {
+      const articleData = await fetch(`${API_URL}/abstract/${articleId}`, {
+        method: "GET"
+      });
+
+      const article = await articleData.json();
+      const articleToAdd = article.article;
+      this.setState({
+        articles: [...this.state.articles, articleToAdd]
+      });
     });
+    this.setState({ currentPage: this.state.currentPage + 1 });
   };
 
   renderContent = () => {
     const { articles } = this.state;
     return articles.map(article => {
+      console.log(article);
       return (
         <ArticleSnapshot
           id={article.id}
@@ -63,7 +86,7 @@ class ArticlesContainer extends React.Component {
           title={article.title}
           timeToRead={article.time_to_read}
           tags={article.tags}
-          content={article.content}
+          content={article.abstract}
         />
       );
     });

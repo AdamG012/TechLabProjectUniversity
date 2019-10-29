@@ -12,7 +12,7 @@ const MiniArticle = props => {
     <div className="mini-article">
       <div className="mini-article__image">
         <img
-          alt="mini logo"
+          alt="Techlab Event"
           src="https://static.wixstatic.com/media/fd5752f4ee5b4580b359d3ea16c8b715.jpeg/v1/fill/w_125,h_120,al_c,q_80,usm_0.66_1.00_0.01/fd5752f4ee5b4580b359d3ea16c8b715.webp"
         />
       </div>

@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import SocialBanner from "./SocialBanner";
-import Button from "./Button";
-import Navigation from "./Navigation";
 
 const Footer = () => {
   return (
     <div className="footer">
       <div className="footer__content">
         <div className="black-background">
-          <img src={require("../img/logo.jpeg")}></img>
+          <img alt="techlab logo" src={require("../img/logo.jpeg")}></img>
         </div>
         <ul className="footer__list">
           <li className="footer__list-element">
@@ -31,6 +29,7 @@ const Footer = () => {
             <a
               className="navigation__link"
               target="_blank"
+              rel="noopener noreferrer"
               href={"https://sydney.edu.au/privacy-statement.html"}
             >
               Privacy Policy

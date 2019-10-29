@@ -3,12 +3,11 @@ import PersonCard from "./PersonCard";
 import { teamMembers } from "../master.json";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 
 let renderContent = () => {
   return teamMembers.map(member => {
     return (
-        <Row>
+      <Row>
         <Col>
           <PersonCard
             name={member.name}
@@ -17,7 +16,7 @@ let renderContent = () => {
             img={member.img}
           />
         </Col>
-        </Row>
+      </Row>
     );
   });
 };
@@ -28,12 +27,12 @@ const MeetTheTeam = () => {
       <div className="meet__row">
         <div className="meet__heading">
           <h3 className="h3">Meet The Team</h3>
-          <hr className="hr"/>
+          <hr className="hr" />
         </div>
       </div>
       <div className="meet__row">
-          <div className="meet__cards">{renderContent()}</div>
-    </div>
+        <div className="meet__cards">{renderContent()}</div>
+      </div>
     </div>
   );
 };

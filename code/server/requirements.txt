@@ -1,3 +1,4 @@
 Django
 mysqlclient
 pillow
+django-cors-middleware
