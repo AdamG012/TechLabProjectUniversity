@@ -18,7 +18,7 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.authFunc(this.state.username, this.state.password);
     console.log("submitted login form");

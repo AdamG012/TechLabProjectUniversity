@@ -1,19 +1,20 @@
-import React from 'react';
-import HeaderBanner from '../HeaderBanner';
-import EditArticle from '../EditArticle';
-import Footer from '../Footer';
+import React from "react";
+import HeaderBanner from "../HeaderBanner";
+import EditArticle from "../EditArticle";
+import Footer from "../Footer";
 
 class EditArticlePage extends React.Component {
-
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <HeaderBanner />
-      <EditArticle />
-      <Footer />
-    )
+      <>
+        <HeaderBanner />
+        <EditArticle />
+        <Footer />
+      </>
+    );
   }
 }
+
+export default EditArticlePage;

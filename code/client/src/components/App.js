@@ -10,32 +10,49 @@ import CreateArticlePage from "./Pages/CreateArticlePage";
 import ContactPage from "./Pages/ContactPage";
 import AdminOptionsPage from "./Pages/AdminOptionsPage";
 import ProtectedRoute from "./hocs/ProtectedRoute";
+import EditArticlePage from "./Pages/EditArticlePage";
+import DeleteArticlePage from "./Pages/DeleteArticlePage";
+
+import { API_URL } from "../config.json";
 
 import "../styling/compiledStyles.css";
 import SearchResultsPage from "./Pages/SearchResultsPage";
 
 class App extends React.Component {
   state = {
-    isAuthed: true
+    isAuthed: false
   };
 
   componentDidUpdate() {
     console.log("IS AUTHED", this.state.isAuthed);
   }
-  authenticate = (username, password) => {
-    console.log("authenticate called");
-    // make API call with credentials
 
-    // parse API call result
-    // const { username } = response;
+  authenticate = async (username, password) => {
+    const loginData = {
+      username,
+      password
+    };
+    const res = await fetch(`${API_URL}/admin/login`, {
+      method: "POST",
+      body: JSON.stringify(loginData)
+    });
+    console.log("auth returned");
 
-    if (username) {
+    const resData = await res.json();
+
+    if (resData.success === "true") {
       this.setState({ isAuthed: true });
+      window.alert("SUCCESSFULLY LOGGED IN");
+    } else {
+      window.alert("incorrect credentials");
     }
   };
 
   logout = () => {
-    this.setState({ isAuthed: false });
+    this.setState({ isAuthed: false }); // make API call with credentials
+
+    // parse API call result
+    // const { username } = response;te({ isAuthed: false });
   };
 
   render() {
@@ -43,10 +60,20 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route
-            exact
-            path="/admin/articles/create"
+          <ProtectedRoute
+            isAllowed={this.state.isAuthed}
+            path="/admin/article/create"
             component={CreateArticlePage}
+          />
+          <Route
+            isAllowed={this.state.isAuthed}
+            path="/admin/article/edit"
+            component={EditArticlePage}
+          />
+          <Route
+            isAllowed={this.state.isAuthed}
+            path="/admin/article/delete"
+            component={DeleteArticlePage}
           />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
@@ -54,7 +81,7 @@ class App extends React.Component {
           <Route path="/login">
             <LoginPage authFunc={this.authenticate} />
           </Route>
-          <ProtectedRoute
+          <Route
             isAllowed={this.state.isAuthed}
             path="/admin"
             component={AdminOptionsPage}

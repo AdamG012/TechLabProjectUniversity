@@ -9,7 +9,7 @@ class CreateArticle extends Component {
     title: "", // add input for this
     author: "",
     abstract: "",
-    articleImage: "", // url to image for article
+    articleImageData: "", // url to image for article
     currentContent: "",
     tags: []
   };
@@ -26,6 +26,10 @@ class CreateArticle extends Component {
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onImageChange = e => {
+    console.log(e.target.files);
   };
 
   handleSubmit = async () => {
@@ -46,15 +50,20 @@ class CreateArticle extends Component {
       tags: tags,
       content: currentContent
     };
+
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("abstract", abstract);
+    formData.append("image", articleImage);
+    formData.append("tags", tags);
+    formData.append("content", currentContent);
     let response;
     try {
-      response = await fetch(`${API_URL}/admin/article/create`, {
+      response = await fetch(`${API_URL}/admin/article-new`, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(bodyData)
+        credentials: "include",
+        body: formData
       });
       const data = await response.json();
       window.alert("ARTICLE SUCCESSFULLY CREATED");
@@ -76,20 +85,22 @@ class CreateArticle extends Component {
   render() {
     return (
       <div className="App">
-        <label for="title">Article Name</label>
+        <label htmlFor="title">Article Name</label>
         <input
           name="title"
           type="text"
           value={this.state.title}
           onChange={this.handleInputChange}
         ></input>
-        <label for="author">Author</label>
+        <label htmlFor="author">Author</label>
         <input
           name="author"
           type="text"
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
+        <label htmlFor="image">Upload Image</label>
+        <input name="image" type="file" onChange={this.onImageChange} />
         <label htmlFor="abstract">Abstract</label>
         <textarea
           name="abstract"
