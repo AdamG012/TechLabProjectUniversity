@@ -12,7 +12,11 @@ class AdminOptions extends React.Component {
 
     return listItems.map(item => {
       return (
-        <Link to={item.link} key={item.link}>
+        <Link
+          to={item.link}
+          key={item.link}
+          className="admin-options__list-item"
+        >
           {item.name}
         </Link>
       );
