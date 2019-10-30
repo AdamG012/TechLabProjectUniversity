@@ -8,7 +8,12 @@ import PropTypes from "prop-types";
 const SocialMedia = props => {
   return (
     <div className="social-media">
-      <a title={props.alt} target="_blank" href={props.url}>
+      <a
+        title={props.alt}
+        target="_blank"
+        rel="noopener noreferrer"
+        href={props.url}
+      >
         <svg className="social-media__svg" style={{ fill: "FFF" }}>
           <use xlinkHref={props.svgId} />
         </svg>
