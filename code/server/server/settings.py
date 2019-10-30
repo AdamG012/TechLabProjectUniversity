@@ -27,8 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ORIGIN_REGEX_WHITELIST = ()
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+    'localhost:8000'
+)
 
 
 # Application definition
