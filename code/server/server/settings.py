@@ -37,6 +37,9 @@ CORS_ALLOW_CREDENTIALS = True
 
 SESSION_COOKIE_SAMESITE = None
 
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_HTTPONLY = False
+
 
 # Application definition
 
