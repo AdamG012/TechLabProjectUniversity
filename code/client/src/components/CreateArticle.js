@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Cookies from "js-cookie";
 import Button from "./Button";
 import { API_URL } from "../config.json";
 
@@ -58,14 +59,18 @@ class CreateArticle extends Component {
     formData.append("image", articleImage);
     formData.append("tags", tags);
     formData.append("content", currentContent);
+    const csrf = Cookies.get("csrftoken");
     let response;
     try {
       response = await fetch(`${API_URL}/admin/article-new`, {
         method: "POST",
         credentials: "include",
+        headers: {
+          "X-CSRFToken": csrf
+        },
         body: formData
       });
-      const data = await response.json();
+      console.log(response);
       window.alert("ARTICLE SUCCESSFULLY CREATED");
       this.setState({
         title: "",
@@ -75,7 +80,6 @@ class CreateArticle extends Component {
         tags: [],
         currentContent: ""
       });
-      console.log(data);
     } catch (e) {
       console.log(e);
     }
