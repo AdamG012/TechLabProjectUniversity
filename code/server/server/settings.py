@@ -33,6 +33,10 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8000'
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SAMESITE = None
+
 
 # Application definition
 
