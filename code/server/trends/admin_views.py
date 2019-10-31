@@ -53,7 +53,6 @@ def article_new(request):
 # Output: JSONResponse
 # {'success': boolean}, true if successful, false if otherwise
 #
-@csrf_exempt
 def article_edit(request):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Permission denied")
