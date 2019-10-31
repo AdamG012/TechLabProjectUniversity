@@ -53,6 +53,7 @@ def article_new(request):
 # Output: JSONResponse
 # {'success': boolean}, true if successful, false if otherwise
 #
+@csrf_exempt
 def article_edit(request):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Permission denied")
@@ -79,6 +80,7 @@ def article_edit(request):
 # Output: JSONResponse
 # {'success': boolean}, true if successful, false if otherwise
 #
+@csrf_exempt
 def article_remove(request):
     if not request.user.is_authenticated:
         return HttpResponseBadRequest("Authentication error")
