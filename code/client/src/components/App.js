@@ -33,6 +33,7 @@ class App extends React.Component {
       password
     };
     const res = await fetch(`${API_URL}/admin/login`, {
+      credentials: 'include',
       method: "POST",
       body: JSON.stringify(loginData)
     });
