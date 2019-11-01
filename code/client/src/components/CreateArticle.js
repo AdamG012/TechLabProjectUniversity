@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Cookies from "js-cookie";
-import moment from "moment";
 
 import Button from "./Button";
 import { API_URL } from "../config.json";
@@ -13,10 +12,12 @@ class CreateArticle extends Component {
     title: "", // add input for this
     author: "",
     abstract: "",
-    articleImageData: "", // url to image for article
     currentContent: "",
-    tags: []
+    tags: [],
+    timeToRead: ""
   };
+
+  fileInputRef = React.createRef();
 
   componentDidMount() {
     // TODO: retrieve tags to display
@@ -25,7 +26,7 @@ class CreateArticle extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.currentContent);
+    // console.log(this.state.currentContent);
   }
 
   handleInputChange = e => {
@@ -33,52 +34,35 @@ class CreateArticle extends Component {
   };
 
   onImageChange = e => {
-    console.log(e.target.files);
+    console.log("FILES: ", e.target.files);
   };
 
   handleSubmit = async () => {
     console.log(this.state);
+    // console.log("SELECTED FILE: ", this.fileInputRef.current.files[0]);
     const {
       title,
       author,
       abstract,
-      articleImage,
       currentContent,
-      tags
+      tags,
+      timeToRead
     } = this.state;
-    const bodyData = {
-      title: title,
-      author: author,
-      abstract: abstract,
-      image: articleImage,
-      tags: tags,
-      content: currentContent
-    };
 
     let formData = new FormData();
     formData.append("title", title);
     formData.append("author", author);
     formData.append("abstract", abstract);
-    formData.append("image", articleImage);
+    formData.append("image", this.fileInputRef.current.files[0]);
     formData.append("tags", tags);
-    formData.append("content", currentContent);
+    formData.append("time_to_read", Number(timeToRead));
+    formData.append("body", currentContent);
     const csrf = Cookies.get("csrftoken");
 
     formData.append("csrfmiddlewaretoken", csrf);
-    let response;
     transport.post(`${API_URL}/admin/article-new`, formData).then(res => {
       console.log(res);
     });
-    // try {
-    //   response = await fetch(`${API_URL}/admin/article-new`, {
-    //     method: "POST",
-    //     credentials: "same-origin",
-    //     headers: {
-    //       "X-CSRFToken": csrf
-    //     },
-    //     body: formData
-    //   });
-    //   console.log(response);
     window.alert("ARTICLE SUCCESSFULLY CREATED");
     this.setState({
       title: "",
@@ -88,10 +72,6 @@ class CreateArticle extends Component {
       tags: [],
       currentContent: ""
     });
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    // TODO: finish this method once API is fixed and working
   };
 
   render() {
@@ -111,8 +91,15 @@ class CreateArticle extends Component {
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
+        <label htmlFor="timeToRead">Time To Read</label>
+        <input
+          name="timeToRead"
+          type="text"
+          value={this.state.timeToRead}
+          onChange={this.handleInputChange}
+        ></input>
         <label htmlFor="image">Upload Image</label>
-        <input name="image" type="file" onChange={this.onImageChange} />
+        <input name="image" type="file" ref={this.fileInputRef} />
         <label htmlFor="abstract">Abstract</label>
         <textarea
           name="abstract"
