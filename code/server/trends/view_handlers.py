@@ -109,7 +109,7 @@ def handle_article_new(title, author, abstract, body, date, time_to_read, image,
 
     # Save image
     if image:
-        with open(MEDIA_ROOT + str(new_article.pk) + ".jpg", 'wb+') as file:
+        with open(MEDIA_ROOT + "/img/" + str(new_article.pk) + ".jpg", 'wb+') as file:
             for chunk in image.chunks():
                 file.write(chunk)
         image_file = "img/" + str(new_article.pk) + ".jpg"
@@ -134,7 +134,7 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
         format_date = datetime.datetime.now().date()
 
     if image:
-        with open(MEDIA_ROOT + article_id + ".jpg", 'wb+') as file:
+        with open(MEDIA_ROOT + "/img/" + article_id + ".jpg", 'wb+') as file:
             for chunk in image.chunks():
                 file.write(chunk)
         image_file = "img/" + article_id + ".jpg"
