@@ -35,6 +35,7 @@ class App extends React.Component {
       username,
       password
     };
+<<<<<<< HEAD
     transport
       .post(`${API_URL}/admin/login`, {
         username,
@@ -55,6 +56,14 @@ class App extends React.Component {
     // });
     // console.log("auth returned");
     // console.log(res);
+=======
+    const res = await fetch(`${API_URL}/admin/login`, {
+      credentials: 'include',
+      method: "POST",
+      body: JSON.stringify(loginData)
+    });
+    console.log("auth returned");
+>>>>>>> master
 
     // const resData = await res.json();
 

@@ -89,7 +89,10 @@ def handle_abstract_page(pagenumber, uri):
 
 
 def handle_article_new(title, author, abstract, body, date, time_to_read, image, tags):
-    format_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+    if date:
+        format_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+    else:
+        format_date = datetime.datetime.now().date()
 
     # Call admin methods on Article database
     new_article = article_admin.create_article(
@@ -125,7 +128,10 @@ def handle_article_new(title, author, abstract, body, date, time_to_read, image,
 
 
 def handle_article_edit(article_id, title, author, abstract, body, date, time_to_read, image, tags):
-    format_date = datetime.date.strftime(date, "%Y-%m-%d")
+    if date:
+        format_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+    else:
+        format_date = datetime.datetime.now().date()
 
     if image:
         with open(MEDIA_ROOT + article_id + ".jpg", 'wb+') as file:
