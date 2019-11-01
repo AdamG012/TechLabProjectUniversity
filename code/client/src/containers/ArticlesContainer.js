@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import { UNSPLASH_ACCESS_KEY } from "../utils/keys";
+import { API_URL } from "../config.json";
 
 import ArticleSnapshot from "../components/ArticleSnapshot";
 import Button from "../components/Button";
@@ -9,59 +8,80 @@ class ArticlesContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [],
-      currentPage: 0
+      currentPage: 1,
+      articles: [],
+      articlesRemain: true // flag showing whether more articles can be loaded
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("https://api.unsplash.com/search/photos", {
-        headers: {
-          Authorization: "Client-ID " + UNSPLASH_ACCESS_KEY
-        },
-        params: {
-          query: "technology",
-          page: 1,
-          per_page: 3
-        }
-      })
-      .then(res => {
-        this.setState({ images: res.data.results, currentPage: 1 });
-      })
-      .catch(err => console.log(err));
+  componentDidUpdate() {
+    console.log(this.state);
   }
 
-  getNextPage = () => {
-    axios
-      .get("https://api.unsplash.com/search/photos", {
-        headers: {
-          Authorization: "Client-ID " + UNSPLASH_ACCESS_KEY
-        },
-        params: {
-          query: "technology",
-          page: this.state.currentPage + 1,
-          per_page: 3
-        }
-      })
-      .then(res => {
-        this.setState({
-          images: [...this.state.images, ...res.data.results], // check this
-          currentPage: this.state.currentPage + 1
-        });
-      })
-      .catch(err => console.log(err));
+  async componentDidMount() {
+    // get the article ids for the first page
+    const articleIds = await fetch(
+      `${API_URL}/latest-articles/${this.state.currentPage}`,
+      {
+        method: "GET"
+      }
+    );
+    const data = await articleIds.json();
+
+    data.latest.map(async articleId => {
+      const articleData = await fetch(`${API_URL}/abstract/${articleId}`, {
+        method: "GET"
+      });
+
+      const article = await articleData.json();
+      const articleToAdd = article.article;
+      article.article.id = articleId;
+      this.setState({
+        articles: [...this.state.articles, articleToAdd]
+      });
+    });
+    this.setState({ currentPage: this.state.currentPage + 1 });
+  }
+
+  getNextPage = async () => {
+    const { currentPage } = this.state;
+    const response = await fetch(`${API_URL}/latest-articles/${currentPage}`);
+    const data = await response.json();
+    console.log(data);
+    if (data.success === "false") {
+      this.setState({ articlesRemain: false });
+      window.alert("No more articles available at this time");
+      return;
+    }
+    data.latest.map(async articleId => {
+      const articleData = await fetch(`${API_URL}/abstract/${articleId}`, {
+        method: "GET"
+      });
+
+      const article = await articleData.json();
+      const articleToAdd = article.article;
+      this.setState({
+        articles: [...this.state.articles, articleToAdd]
+      });
+    });
+    this.setState({ currentPage: currentPage + 1 });
   };
 
   renderContent = () => {
-    const { images } = this.state;
-    return images.map(image => {
+    const { articles } = this.state;
+    return articles.map(article => {
+      console.log(article);
       return (
         <ArticleSnapshot
-          key={image.urls.full}
-          imageURL={image.urls.full}
-          title="Example Article"
-          content="This is your blog post. To really engage your site visitors we suggest you blog about subjects that are related to your site or business. Blogging is really great for SEO, so we recommend including keywords that relate to your services, products or industry within your posts"
+          id={article.id}
+          key={article.id}
+          author={article.author}
+          abstract={article.abstract}
+          imageURL={article.image}
+          title={article.title}
+          timeToRead={article.time_to_read}
+          tags={article.tags}
+          content={article.abstract}
         />
       );
     });

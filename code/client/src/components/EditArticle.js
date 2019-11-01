@@ -1,85 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
+import { API_URL } from "../config.json";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "./Button";
-import { API_URL } from "../config.json";
 
-class CreateArticle extends Component {
+class EditArticle extends React.Component {
   state = {
-    title: "", // add input for this
-    author: "",
-    abstract: "",
-    articleImageData: "", // url to image for article
-    currentContent: "",
-    tags: []
+    articleBeingEdited: this.props.match.params.id
+    // TODO: need same state as createArticle Page
   };
 
   componentDidMount() {
-    // TODO: retrieve tags to display
-    // user should be able to select
-    // and have them applied to the article
+    this.loadArticleData();
   }
 
-  componentDidUpdate() {
-    console.log(this.state.currentContent);
-  }
-
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onImageChange = e => {
-    console.log(e.target.files);
-  };
-
-  handleSubmit = async () => {
-    console.log(this.state);
-    const {
-      title,
-      author,
-      abstract,
-      articleImage,
-      currentContent,
-      tags
-    } = this.state;
-    const bodyData = {
-      title: title,
-      author: author,
-      abstract: abstract,
-      image: articleImage,
-      tags: tags,
-      content: currentContent
-    };
-
-    let formData = new FormData();
-    formData.append("title", title);
-    formData.append("author", author);
-    formData.append("abstract", abstract);
-    formData.append("image", articleImage);
-    formData.append("tags", tags);
-    formData.append("content", currentContent);
-    let response;
-    try {
-      response = await fetch(`${API_URL}/admin/article-new`, {
-        method: "POST",
-        credentials: "include",
-        body: formData
-      });
-      const data = await response.json();
-      window.alert("ARTICLE SUCCESSFULLY CREATED");
-      this.setState({
-        title: "",
-        author: "",
-        abstract: "",
-        image: "",
-        tags: [],
-        currentContent: ""
-      });
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-    // TODO: finish this method once API is fixed and working
+  loadArticleData = async id => {
+    const response = await fetch(
+      `${API_URL}/articles/${this.state.articleBeingEdited}`
+    );
+    const data = await response.json();
+    this.setState(data); // TODO: check this part works, may need to be more explicir
   };
 
   render() {
@@ -170,4 +110,4 @@ class CreateArticle extends Component {
   }
 }
 
-export default CreateArticle;
+export default EditArticle;

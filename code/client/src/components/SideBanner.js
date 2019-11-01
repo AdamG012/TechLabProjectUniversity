@@ -26,7 +26,13 @@ const events = [
 
 const renderContent = data => {
   return data.map(element => {
-    return <MiniArticle title={element.title} content={element.text} />;
+    return (
+      <MiniArticle
+        key={element.title}
+        title={element.title}
+        content={element.text}
+      />
+    );
   });
 };
 

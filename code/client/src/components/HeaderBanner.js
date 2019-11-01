@@ -9,7 +9,6 @@ import GetInTouch from "./GetInTouch";
 import { Link } from "react-router-dom";
 
 const HeaderBanner = props => {
-  console.log(props);
   return (
     <>
       <div className="header-banner">

@@ -3,6 +3,7 @@
  */
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 /**
  * Individual article snapshots which are rendered by the ArticlesContainer
@@ -10,21 +11,18 @@ import PropTypes from "prop-types";
  */
 const ArticleSnapshot = props => {
   return (
-      <div>
-    <div
-      className="article-snapshot"
-      onClick={() => console.log("article clicked")}
-    >
-      <div
-        className="article-snapshot__img-container"
-        style={{ backgroundImage: `url(${props.imageURL})` }}
-      ></div>
-      <div className="article-snapshot__content-container">
-        <h6 className="article-snapshot__heading">{props.title}</h6>
-        <p className="article-snapshot__text">{props.content}</p>
+    <Link to={`article/${props.id}`}>
+      <div className="article-snapshot">
+        <div
+          className="article-snapshot__img-container"
+          style={{ backgroundImage: `url(${props.imageURL})` }}
+        ></div>
+        <div className="article-snapshot__content-container">
+          <h6 className="article-snapshot__heading">{props.title}</h6>
+          <p className="article-snapshot__text">{props.abstract}</p>
+        </div>
       </div>
-    </div>
-      </div>
+    </Link>
   );
 };
 

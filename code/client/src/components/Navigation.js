@@ -7,7 +7,7 @@ import SocialBanner from "./SocialBanner";
 class Navigation extends Component {
   render() {
     return (
-      <Navbar color="black" dark expand="lg">
+      <Navbar color="black" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="nav-hamburger" id="basic-navbar-nav">
           <Nav className="mr-auto">
