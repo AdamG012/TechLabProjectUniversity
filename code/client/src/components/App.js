@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import axios from "axios";
 
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
@@ -12,6 +13,8 @@ import AdminOptionsPage from "./Pages/AdminOptionsPage";
 import ProtectedRoute from "./hocs/ProtectedRoute";
 import EditArticlePage from "./Pages/EditArticlePage";
 import DeleteArticlePage from "./Pages/DeleteArticlePage";
+
+import transport from "../axios.js";
 
 import { API_URL } from "../config.json";
 
@@ -32,20 +35,35 @@ class App extends React.Component {
       username,
       password
     };
-    const res = await fetch(`${API_URL}/admin/login`, {
-      method: "POST",
-      body: JSON.stringify(loginData)
-    });
-    console.log("auth returned");
+    transport
+      .post(`${API_URL}/admin/login`, {
+        username,
+        password
+      })
+      .then(res => {
+        console.log(res);
+        if (res.data.success === "true") {
+          this.setState({ isAuthed: true });
+          window.alert("SUCCESSFULLY LOGGED IN");
+        } else {
+          window.alert("incorrect credentials");
+        }
+      });
+    // const res = await fetch(`${API_URL}/admin/login`, {
+    //   method: "POST",
+    //   body: JSON.stringify(loginData)
+    // });
+    // console.log("auth returned");
+    // console.log(res);
 
-    const resData = await res.json();
+    // const resData = await res.json();
 
-    if (resData.success === "true") {
-      this.setState({ isAuthed: true });
-      window.alert("SUCCESSFULLY LOGGED IN");
-    } else {
-      window.alert("incorrect credentials");
-    }
+    // if (resData.success === "true") {
+    //   this.setState({ isAuthed: true });
+    //   window.alert("SUCCESSFULLY LOGGED IN");
+    // } else {
+    //   window.alert("incorrect credentials");
+    // }
   };
 
   logout = () => {

@@ -4,6 +4,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Cookies from "js-cookie";
 import Button from "./Button";
 import { API_URL } from "../config.json";
+import transport from "../axios";
 
 class CreateArticle extends Component {
   state = {
@@ -60,29 +61,34 @@ class CreateArticle extends Component {
     formData.append("tags", tags);
     formData.append("content", currentContent);
     const csrf = Cookies.get("csrftoken");
+
+    formData.append("csrfmiddlewaretoken", csrf);
     let response;
-    try {
-      response = await fetch(`${API_URL}/admin/article-new`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "X-CSRFToken": csrf
-        },
-        body: formData
-      });
-      console.log(response);
-      window.alert("ARTICLE SUCCESSFULLY CREATED");
-      this.setState({
-        title: "",
-        author: "",
-        abstract: "",
-        image: "",
-        tags: [],
-        currentContent: ""
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    transport.post(`${API_URL}/admin/article-new`, formData).then(res => {
+      console.log(res);
+    });
+    // try {
+    //   response = await fetch(`${API_URL}/admin/article-new`, {
+    //     method: "POST",
+    //     credentials: "same-origin",
+    //     headers: {
+    //       "X-CSRFToken": csrf
+    //     },
+    //     body: formData
+    //   });
+    //   console.log(response);
+    window.alert("ARTICLE SUCCESSFULLY CREATED");
+    this.setState({
+      title: "",
+      author: "",
+      abstract: "",
+      image: "",
+      tags: [],
+      currentContent: ""
+    });
+    // } catch (e) {
+    //   console.log(e);
+    // }
     // TODO: finish this method once API is fixed and working
   };
 
