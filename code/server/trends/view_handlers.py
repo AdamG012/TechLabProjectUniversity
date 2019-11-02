@@ -180,3 +180,7 @@ def handle_contact(name, email, subject, content):
     if contact.add_contact_request(name, email, subject, content):
         return JsonResponse({'success': 'true'})
     return JsonResponse({'success': 'false'})
+
+
+def handle_tags():
+    return JsonResponse({'success': 'true', 'tags': article.get_tags()})
