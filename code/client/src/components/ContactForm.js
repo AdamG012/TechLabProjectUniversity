@@ -1,4 +1,5 @@
 import React from "react";
+import transport from "../axios";
 
 class ContactForm extends React.Component {
   constructor(props) {
@@ -13,7 +14,16 @@ class ContactForm extends React.Component {
   }
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log("form submitted");
+    const { name, email, subject, content } = this.state;
+    const data = {
+      title: name,
+      subject,
+      email,
+      content
+    };
+    transport.post("/contact", {
+      data: JSON.stringify(data)
+    });
 
     this.setState({ name: "", email: "", subject: "", content: "" });
   };
