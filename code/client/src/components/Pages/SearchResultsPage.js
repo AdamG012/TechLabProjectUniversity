@@ -11,12 +11,15 @@ class SearchResultsPage extends React.Component {
     tags: tags,
     loadingResults: true,
     queryMade: false,
-    selectedTag: tags[0]
+    selectedTag: tags[0],
+    query: ""
   };
 
   componentDidMount() {
     console.log(tags);
     console.log(this.props.match.params.searchTerm);
+    const { searchTerm } = this.props.match.params;
+    this.setState({ query: searchTerm });
     // make api call to get results for query
     // set queryMade to true
     // add results to state.results
@@ -29,6 +32,10 @@ class SearchResultsPage extends React.Component {
     // query the api
     // load the results
     // set state of results and loadingResults
+  };
+
+  handleInputChange = e => {
+    this.setState({ query: e.target.value });
   };
 
   selectTag = tagNumber => {
@@ -85,6 +92,8 @@ class SearchResultsPage extends React.Component {
               name="search"
               type="text"
               placeholder="Search ..."
+              onChange={this.handleInputChange}
+              value={this.state.query}
             ></input>
             <button>X</button>
           </div>
