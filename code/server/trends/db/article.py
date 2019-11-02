@@ -1,4 +1,5 @@
 from trends.db.obj.articleModel import Article, Tag
+from django.db.models import Count
 
 
 def get_article(article_id):
@@ -47,3 +48,8 @@ def search_by_title(query, page, tags=None):
     first_page = min((page - 1) * NUM_RESULTS, results.count())
     last_page = min(page * NUM_RESULTS, results.count())
     return list(results[first_page:last_page].values_list('id', flat=True))
+
+
+def get_tags():
+    results = Tag.objects.values("tag").annotate(num_tags=Count("id")).order_by("-num_tags").values_list("tag", flat=True)
+    return list(results)

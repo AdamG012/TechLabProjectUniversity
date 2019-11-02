@@ -110,3 +110,9 @@ def contact(request):
                                             params.get('email'),
                                             params.get('subject'),
                                             params.get('content'))
+
+
+@csrf_exempt
+def tags(request):
+    if request.method == 'GET':
+        return view_handlers.handle_tags()

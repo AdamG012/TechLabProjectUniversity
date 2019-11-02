@@ -11,6 +11,7 @@ urlpatterns = [
     path('abstract-page/<int:page>', views.abstract_page, name='abstract-page'),
     path('abstract/<int:article_id>', views.article_abstract, name='abstract'),
     path('contact', views.contact, name='contact'),
+    path('tags', views.tags, name='tags'),
     path('admin/article-new', admin_views.article_new, name='article-new'),
     path('admin/article-edit', admin_views.article_edit, name='article-edit'),
     path('admin/article-remove', admin_views.article_remove, name='article-remove'),
