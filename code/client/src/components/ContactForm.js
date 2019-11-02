@@ -12,19 +12,22 @@ class ContactForm extends React.Component {
       content: ""
     };
   }
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
     e.preventDefault();
     const { name, email, subject, content } = this.state;
-    const data = {
-      name,
-      subject,
-      email,
-      content
-    };
-    transport.post("/contact", {
-      data: JSON.stringify(data)
+    const res = await transport.post("/contact", {
+      name: name,
+      subject: subject,
+      email: email,
+      content: content
     });
-
+    console.log("RES: ", res);
+    const { data } = res;
+    if (data.success) {
+      window.alert("Successfully submitted contact form");
+    } else {
+      window.alert("There was an error submitting your form, please try again");
+    }
     this.setState({ name: "", email: "", subject: "", content: "" });
   };
 
