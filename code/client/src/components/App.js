@@ -30,10 +30,6 @@ class App extends React.Component {
   }
 
   authenticate = async (username, password) => {
-    const loginData = {
-      username,
-      password
-    };
     transport
       .post(`${API_URL}/admin/login`, {
         username,
@@ -48,21 +44,6 @@ class App extends React.Component {
           window.alert("incorrect credentials");
         }
       });
-    // const res = await fetch(`${API_URL}/admin/login`, {
-    //   method: "POST",
-    //   body: JSON.stringify(loginData)
-    // });
-    // console.log("auth returned");
-    // console.log(res);
-
-    // const resData = await res.json();
-
-    // if (resData.success === "true") {
-    //   this.setState({ isAuthed: true });
-    //   window.alert("SUCCESSFULLY LOGGED IN");
-    // } else {
-    //   window.alert("incorrect credentials");
-    // }
   };
 
   logout = () => {
