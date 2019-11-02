@@ -72,10 +72,13 @@ def handle_abstract_page(pagenumber, uri):
     latest = article.get_latest_page(int(pagenumber))
     for i in latest:
         article_obj = article.get_article(i)
+        if article_obj is None:
+            return JsonResponse({'success': 'false'})
         tags = article.get_tags_by_article(i)
 
         data.append({'success': 'true',
                      'article': {
+                         'id': str(article_obj.pk),
                          'title': str(article_obj.title),
                          'abstract': str(article_obj.abstract),
                          'author': str(article_obj.author),
