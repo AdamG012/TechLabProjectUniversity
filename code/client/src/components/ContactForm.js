@@ -16,7 +16,7 @@ class ContactForm extends React.Component {
     e.preventDefault();
     const { name, email, subject, content } = this.state;
     const data = {
-      title: name,
+      name,
       subject,
       email,
       content
