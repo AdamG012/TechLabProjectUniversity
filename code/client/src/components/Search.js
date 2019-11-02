@@ -10,6 +10,7 @@ class Search extends React.Component {
     redirect: false,
     searchTerm: ""
   };
+
   enterPressed = e => {
     let code = e.key || e.which;
     if (code === "Enter") {

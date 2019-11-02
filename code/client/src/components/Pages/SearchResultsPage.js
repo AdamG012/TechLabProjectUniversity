@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import ArticleSnapshot from "../ArticleSnapshot";
 import Tag from "../Tag";
 import { tags } from "../../master.json";
+import transport from "../../axios";
 
 class SearchResultsPage extends React.Component {
   state = {
@@ -27,15 +28,31 @@ class SearchResultsPage extends React.Component {
     this.setState({ loadingResults: false });
   }
 
-  search = searchTerm => {
+  search = async () => {
     this.setState({ loadingResults: true });
+    const res = await transport.post("/search", {
+      query: this.state.query
+    });
+    console.log("SEARCH RES: ", res);
     // query the api
     // load the results
     // set state of results and loadingResults
   };
 
+  enterPressed = e => {
+    let code = e.key || e.which;
+    if (code === "Enter") {
+      this.search();
+      return;
+    }
+  };
+
   handleInputChange = e => {
     this.setState({ query: e.target.value });
+  };
+
+  clearQuery = () => {
+    this.setState({ query: "" });
   };
 
   selectTag = tagNumber => {
@@ -94,8 +111,9 @@ class SearchResultsPage extends React.Component {
               placeholder="Search ..."
               onChange={this.handleInputChange}
               value={this.state.query}
+              onKeyPress={this.enterPressed}
             ></input>
-            <button>X</button>
+            <button onClick={this.clearQuery}>X</button>
           </div>
           <div className="searchresults__tags">
             {this.renderTags(this.state.tags)}
