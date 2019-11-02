@@ -4,27 +4,115 @@ import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "./Button";
 
+import Cookies from "js-cookie";
+import transport from "../axios";
+
 class EditArticle extends React.Component {
   state = {
-    articleBeingEdited: this.props.match.params.id
-    // TODO: need same state as createArticle Page
+    articleToEdit: "",
+    articleId: "",
+    title: "",
+    author: "",
+    image: "",
+    abstract: "",
+    timeToRead: "",
+    currentContent: ""
   };
 
-  componentDidMount() {
-    this.loadArticleData();
+  componentDidUpdate() {
+    console.log("STATE: ", this.state);
   }
 
-  loadArticleData = async id => {
+  fileInputRef = React.createRef();
+
+  handleSubmit = async () => {
+    const {
+      articleId,
+      title,
+      author,
+      abstract,
+      currentContent,
+      tags,
+      timeToRead
+    } = this.state;
+
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("id", articleId);
+    formData.append("author", author);
+    formData.append("abstract", abstract);
+    if (this.fileInputRef.current.file) {
+      formData.append("image", this.fileInputRef.current.files[0]);
+    }
+
+    formData.append("tags", tags);
+    formData.append("time_to_read", Number(timeToRead));
+    formData.append("body", currentContent);
+    const csrf = Cookies.get("csrftoken");
+
+    formData.append("csrfmiddlewaretoken", csrf);
+    transport.post(`${API_URL}/admin/article-edit`, formData).then(res => {
+      console.log(res);
+    });
+    window.alert("ARTICLE SUCCESSFULLY EDITED");
+    this.setState({
+      title: "",
+      author: "",
+      abstract: "",
+      image: "",
+      tags: [],
+      timeToRead: "",
+      currentContent: ""
+    });
+  };
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleChange = e => {
+    this.setState({ articleToEdit: e.target.value });
+  };
+
+  loadArticleData = async () => {
     const response = await fetch(
-      `${API_URL}/articles/${this.state.articleBeingEdited}`
+      `${API_URL}/articles/${this.state.articleToEdit}`
     );
     const data = await response.json();
-    this.setState(data); // TODO: check this part works, may need to be more explicir
+    if (!data.success) {
+      window.alert("Couldn't load article data");
+    }
+    const { article } = data;
+    this.setState({
+      articleId: this.state.articleToEdit,
+      title: article.title,
+      author: article.author,
+      abstract: article.abstract,
+      currentContent: article.content,
+      timeToRead: article.time_to_read
+    });
+
+    // get abstract data
+    const abstractData = await transport.get(
+      `${API_URL}/abstract/${this.state.articleToEdit}`
+    );
+    // const d = await abstractData.json();
+    console.log(abstractData.data.article.abstract);
+    this.setState({ abstract: abstractData.data.article.abstract });
   };
 
   render() {
     return (
       <div className="App">
+        <h2>Edit Article</h2>
+        <label htmlFor="articleToEdit">Enter id of article to edit</label>
+        <input
+          name="articleToEdit"
+          type="text"
+          value={this.state.articleToEdit}
+          onChange={this.handleChange}
+        ></input>
+        <button onClick={this.loadArticleData}>Get Article Data</button>
         <label htmlFor="title">Article Name</label>
         <input
           name="title"
@@ -39,8 +127,17 @@ class EditArticle extends React.Component {
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="image">Upload Image</label>
-        <input name="image" type="file" onChange={this.onImageChange} />
+        <label htmlFor="timeToRead">Time To Read</label>
+        <input
+          name="timeToRead"
+          type="text"
+          value={this.state.timeToRead}
+          onChange={this.handleInputChange}
+        ></input>
+        <label htmlFor="image">
+          Upload Image (if no image is provided, the old image will be used)
+        </label>
+        <input name="image" type="file" ref={this.fileInputRef} />
         <label htmlFor="abstract">Abstract</label>
         <textarea
           name="abstract"
@@ -48,8 +145,7 @@ class EditArticle extends React.Component {
           value={this.state.abstract}
           onChange={this.handleInputChange}
         ></textarea>
-
-        <h2>Create the article content below</h2>
+        <h2>Edit the article content below</h2>
         <CKEditor
           config={{
             toolbar: [
