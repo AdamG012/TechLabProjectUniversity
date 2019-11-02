@@ -10,17 +10,24 @@ import transport from "../axios";
 class EditArticle extends React.Component {
   state = {
     articleToEdit: "",
+    articleId: "",
     title: "",
     author: "",
     image: "",
     abstract: "",
+    timeToRead: "",
     currentContent: ""
   };
+
+  componentDidUpdate() {
+    console.log("STATE: ", this.state);
+  }
 
   fileInputRef = React.createRef();
 
   handleSubmit = async () => {
     const {
+      articleId,
       title,
       author,
       abstract,
@@ -31,6 +38,7 @@ class EditArticle extends React.Component {
 
     let formData = new FormData();
     formData.append("title", title);
+    formData.append("id", articleId);
     formData.append("author", author);
     formData.append("abstract", abstract);
     if (this.fileInputRef.current.file) {
@@ -53,6 +61,7 @@ class EditArticle extends React.Component {
       abstract: "",
       image: "",
       tags: [],
+      timeToRead: "",
       currentContent: ""
     });
   };
@@ -65,7 +74,7 @@ class EditArticle extends React.Component {
     this.setState({ articleToEdit: e.target.value });
   };
 
-  loadArticleData = async id => {
+  loadArticleData = async () => {
     const response = await fetch(
       `${API_URL}/articles/${this.state.articleToEdit}`
     );
@@ -75,10 +84,12 @@ class EditArticle extends React.Component {
     }
     const { article } = data;
     this.setState({
+      articleId: this.state.articleToEdit,
       title: article.title,
       author: article.author,
       abstract: article.abstract,
-      currentContent: article.content
+      currentContent: article.content,
+      timeToRead: article.time_to_read
     });
 
     // get abstract data
@@ -114,6 +125,13 @@ class EditArticle extends React.Component {
           name="author"
           type="text"
           value={this.state.author}
+          onChange={this.handleInputChange}
+        ></input>
+        <label htmlFor="timeToRead">Time To Read</label>
+        <input
+          name="timeToRead"
+          type="text"
+          value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
         <label htmlFor="image">
