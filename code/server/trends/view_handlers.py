@@ -142,7 +142,7 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
                 file.write(chunk)
         image_file = "img/" + article_id + ".jpg"
     else:
-        image_file = Article._meta.get_field('image').get_default()
+        image_file = None
 
     if body:
         with open('./article_html/' + article_id + ".html", "w") as f:
