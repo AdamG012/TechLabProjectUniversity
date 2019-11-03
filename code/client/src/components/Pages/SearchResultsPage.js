@@ -15,20 +15,12 @@ class SearchResultsPage extends React.Component {
     query: ""
   };
 
-  componentDidUpdate() {
-    console.log("STATE: ", this.state);
-  }
   async componentDidMount() {
     // get the tags
     const tags = await transport.get("/tags");
-    console.log(tags.data.tags);
     const { searchTerm } = this.props.match.params;
     this.setState({ query: searchTerm, tags: tags.data.tags });
     this.search();
-    // make api call to get results for query
-    // set queryMade to true
-    // add results to state.results
-    // set loadingResults to false
   }
 
   search = async query => {
@@ -76,7 +68,6 @@ class SearchResultsPage extends React.Component {
 
   toggleTagSelected = index => {
     const { selectedTags, tags } = this.state;
-    console.log("TAGSINDEX: ", tags[index]);
     // if the tag is in selectedTags, remove it
     if (selectedTags.includes(tags[index])) {
       const updatedTags = selectedTags.filter(tag => {
@@ -87,10 +78,8 @@ class SearchResultsPage extends React.Component {
       // else add the tag to selectedTags
       this.setState({ selectedTags: [...selectedTags, tags[index]] });
     }
-    console.log("before timeout");
     setTimeout(() => {
       this.search(this.state.query);
-      console.log("after timeout");
     }, 10);
   };
 
