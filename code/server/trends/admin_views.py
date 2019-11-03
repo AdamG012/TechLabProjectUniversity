@@ -17,6 +17,7 @@ from trends import view_handlers
 # - "date": String - Article date, format "YYYY-MM-DD"
 # - "time_to_read": Integer - Estimated time to read article, in minutes
 # - "image": String/URL - URL to article image
+# - "tags": String - Comma-separated string of tags
 #
 # Output: JSONResponse
 # {'success': boolean}, true if successful, false if otherwise
@@ -26,6 +27,7 @@ def article_new(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
+        tags = ",".split(request.POST.get('tags'))
         return view_handlers.handle_article_new(request.POST.get('title'),
                                                 request.POST.get('author'),
                                                 request.POST.get('abstract'),
@@ -33,7 +35,7 @@ def article_new(request):
                                                 request.POST.get('date'),
                                                 request.POST.get('time_to_read'),
                                                 request.FILES.get('image'),
-                                                request.POST.getlist('tags[]'))
+                                                tags)
     else:
         return HttpResponseBadRequest("Bad Request")
 
@@ -49,6 +51,7 @@ def article_new(request):
 # - "date": String - New article date, format "YYYY-MM-DD"
 # - "time_to_read": Integer - New estimated time to read article, in minutes
 # - "image": String/URL - New URL to article image
+# - "tags": String - Comma-separated string of tags
 #
 # Output: JSONResponse
 # {'success': boolean}, true if successful, false if otherwise
@@ -58,6 +61,7 @@ def article_edit(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
+        tags = ",".split(request.POST.get('tags'))
         return view_handlers.handle_article_edit(request.POST.get('id'),
                                                  request.POST.get('title'),
                                                  request.POST.get('author'),
@@ -66,7 +70,7 @@ def article_edit(request):
                                                  request.POST.get('date'),
                                                  request.POST.get('time_to_read'),
                                                  request.FILES.get('image'),
-                                                 request.POST.getlist('tags[]'))
+                                                 tags)
     else:
         return HttpResponseBadRequest("Bad Request")
 
