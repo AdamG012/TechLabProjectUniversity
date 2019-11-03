@@ -92,6 +92,9 @@ input, textarea {
     font-size: 1rem;
     padding: 1rem;
     line-height: 1.3; }
+    .article-snapshot__text--small {
+      font-size: 0.65rem;
+      padding-left: 1rem; }
 
 /**
 * Navigation Component Styles
@@ -230,10 +233,8 @@ input, textarea {
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  margin: 0;
-  align-items: center; }
+  align-items: center;
+  justify-content: center; }
   .hero-banner__primary-text {
     padding: 1rem; }
   .hero-banner__secondary-text {
@@ -298,7 +299,7 @@ input, textarea {
   padding: 2rem;
   justify-content: space-evenly;
   height: 30rem;
-  width: 50%; }
+  width: 40%; }
   .contact-form__form {
     display: flex;
     flex-direction: column;
@@ -327,6 +328,7 @@ input, textarea {
   height: 2rem;
   width: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   display: flex;
@@ -386,8 +388,7 @@ input, textarea {
     align-items: center; }
   .footer__img {
     height: auto;
-    width: auto;
-    min-width: 20%; }
+    width: auto; }
     .footer__img img {
       width: 100%;
       height: 100%; }
@@ -395,7 +396,7 @@ input, textarea {
     width: 20%; }
   .footer__list {
     flex: 0 1 30%;
-    columns: 1;
+    columns: 3;
     list-style: none; }
     .footer__list-element {
       font-size: 1rem;
@@ -409,7 +410,7 @@ input, textarea {
 .meet {
   padding: 4rem; }
   .meet__row {
-    width: 100%;
+    width: 80%;
     margin: 0 auto; }
   .meet__heading {
     display: flex;
@@ -421,7 +422,6 @@ input, textarea {
       margin-bottom: 1rem; }
   .meet__cards {
     display: flex;
-    flex-direction: column;
     justify-content: space-around; }
 
 .hr {
@@ -575,9 +575,9 @@ input, textarea {
   justify-content: center;
   margin: 2rem; }
   .homepage__content-leftColumn {
-    flex: 0 1 100%; }
+    flex: 0 1 60%; }
   .homepage__content-rightColumn {
-    flex: 0 1 20%; }
+    flex: 0 1 25%; }
 
 .homepage__contact {
   background-color: black;
