@@ -36,25 +36,6 @@ input, textarea {
   font-style: inherit; }
 
 /**
-* SocialBanner Styles
-*/
-.social-banner {
-  padding: 0.5rem;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;}
-  .social-banner__list {
-
-  }
-  .social-banner__list-item {
-    padding: 0 0.3rem;
-    display: inline-grid;
-    grid-template-columns: auto;
-    list-style: none; }
-
-
-/**
 * Animation to fade the screen while the page is scrolled to the contact form
 * Style is applied to a div covering the whole screen
 */
@@ -65,7 +46,23 @@ input, textarea {
 .fade-out {
   opacity: 0; }
 
+.black-background {
+  background-color: black; }
+
 /**
+* SocialBanner Styles
+*/
+.social-banner {
+  padding: 0.5rem;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .social-banner__list-item {
+    padding: 0 0.3rem;
+    list-style: none;
+    display: inline-grid;
+    grid-template-columns: auto; }
 
 /**
 * Article Snapshot Styles
@@ -127,6 +124,24 @@ input, textarea {
   .navigation__link:visited, .navigation__link:link {
     text-decoration: none; }
 
+.nav-bar-item {
+  min-height: 2rem;
+  background-color: black;
+  color: white !important;
+  font-size: 1rem; }
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background-size: 100% 100%;
+  background: white no-repeat center center; }
+
+.nav-hamburger {
+  max-height: 1rem; }
+
 /**
 * ArticlesContainer styles
 */
@@ -147,8 +162,7 @@ input, textarea {
   top: 0;
   display: flex;
   align-items: center;
-  background-color: black;
-  z-index: 100000; }
+  background-color: black; }
   .header-banner__title {
     margin-left: 2rem;
     color: white;
@@ -168,8 +182,8 @@ input, textarea {
     height: 3rem;
     border: none;
     border-bottom: 2px solid lightgray; }
-  .search__input:focus {
-    outline-width: 0; }
+    .search__input:focus {
+      outline-width: 0; }
   .search__button {
     height: 3rem;
     background-color: #333;
@@ -192,10 +206,7 @@ input, textarea {
   /* Microsoft Edge */
   color: red; }
 
-/*
- Hide Get in touch bar
- */
-@media(min-width:420px){
+@media (min-width: 420px) {
   .get-in-touch {
     background-color: black;
     display: flex;
@@ -203,17 +214,15 @@ input, textarea {
     align-items: center;
     margin-right: 2rem;
     cursor: pointer; }
-
-  .get-in-touch__text {
-    padding: 0.5rem 2rem;
-    border: 1px solid white;
-    color: white;
-    font-size: 1rem;
-    transition: all 0.5s; }
-    .get-in-touch__text:hover {
-      color: black;
-      background-color: white; }
-}
+    .get-in-touch__text {
+      padding: 0.5rem 2rem;
+      border: 1px solid white;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.5s; }
+      .get-in-touch__text:hover {
+        color: black;
+        background-color: white; } }
 
 .hero-banner {
   background-color: black;
@@ -239,7 +248,7 @@ input, textarea {
   padding: 2rem;
   justify-content: space-evenly;
   height: 30rem;
-  width: 40%; }
+  width: 50%; }
   .contact-form__form {
     display: flex;
     flex-direction: column;
@@ -255,8 +264,8 @@ input, textarea {
     background-color: black;
     padding: 1rem;
     width: 100%; }
-  .contact-form__input--large {
-    height: 10rem; }
+    .contact-form__input--large {
+      height: 10rem; }
   .contact-form__submit {
     align-self: flex-start; }
 
@@ -305,8 +314,8 @@ input, textarea {
     background-color: black;
     padding: 1rem;
     width: 100%; }
-  .contact-form__input--large {
-    height: 10rem; }
+    .contact-form__input--large {
+      height: 10rem; }
   .contact-form__submit {
     align-self: flex-start; }
 
@@ -425,7 +434,8 @@ input, textarea {
   flex-direction: column;
   align-items: center;
   margin: 2rem;
-  height: auto;}
+  height: auto;
+  width: 20%; }
   .person-card__content {
     display: flex;
     flex-direction: column;
@@ -439,7 +449,7 @@ input, textarea {
   .person-card__img {
     margin-bottom: 1.5rem;
     width: 100%;
-    max-width: 400px;}
+    max-width: 400px; }
     .person-card__img > img {
       border-radius: 50%;
       width: 100%; }
@@ -490,6 +500,9 @@ input, textarea {
   .login__button {
     margin-top: 2rem;
     padding: 1.25rem; }
+
+.black-background {
+  background-color: black; }
 
 .searchresults {
   width: 75%;
@@ -551,6 +564,12 @@ input, textarea {
   display: flex;
   flex-direction: column; }
 
+.homepage__map {
+  justify-content: space-around;
+  display: flex;
+  padding-top: 2rem;
+  align-items: center; }
+
 .homepage__content {
   display: flex;
   justify-content: center;
@@ -564,19 +583,8 @@ input, textarea {
   background-color: black;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: center; }
 
-}
-
-/*
-  Adding styling for map to get the black background back
- */
-.homepage__map {
-  justify-content: space-around;
-  display: flex;
-  padding-top: 2rem;
-  align-items: center;
-}
 .search-and-content-container {
   margin: 2rem; }
 
@@ -586,39 +594,3 @@ input, textarea {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem; }
-
-/**
-  Filler black background for Col Bootstrap elements.
- */
-.black-background {
-  background-color: black;
-}
-
-/**
- Navigation Styles
- Specific for the navbar
- Includes shifting hamburger icon up
- Black background for items
- White text
- Ensures component doesn't move off screen when pulled up
- */
-.nav-bar-item {
-  min-height: 2rem;
-  background-color: black;
-  color: white !important;
-  font-size: 1rem;
-}
-
-.navbar-toggler-icon {
-  display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: middle;
-  content: "";
-  background-size: 100% 100%;
-  background: white no-repeat center center;
-}
-
-.nav-hamburger {
-  max-height: 1rem;
-}
