@@ -108,50 +108,71 @@ class EditArticle extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="edit-article">
         <h2>Edit Article</h2>
-        <label htmlFor="articleToEdit">Enter id of article to edit</label>
+        <label className="create-article__label" htmlFor="articleToEdit">
+          Enter id of article to edit
+        </label>
+        <div>
+          <input
+            className="create-article__input"
+            name="articleToEdit"
+            type="text"
+            value={this.state.articleToEdit}
+            onChange={this.handleChange}
+          ></input>
+          <button onClick={this.loadArticleData}>Get Article Data</button>
+        </div>
+
+        <label className="create-article__label" htmlFor="title">
+          Article Name
+        </label>
         <input
-          name="articleToEdit"
-          type="text"
-          value={this.state.articleToEdit}
-          onChange={this.handleChange}
-        ></input>
-        <button onClick={this.loadArticleData}>Get Article Data</button>
-        <label htmlFor="title">Article Name</label>
-        <input
+          className="create-article__input"
           name="title"
           type="text"
           value={this.state.title}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="author">Author</label>
+        <label className="create-article__label" htmlFor="author">
+          Author
+        </label>
         <input
+          className="create-article__input"
           name="author"
           type="text"
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="timeToRead">Time To Read</label>
+        <label className="create-article__label" htmlFor="timeToRead">
+          Time To Read
+        </label>
         <input
+          className="create-article__input"
           name="timeToRead"
           type="text"
           value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="tags">Tags</label>
+        <label className="create-article__label" htmlFor="tags">
+          Tags
+        </label>
         <input
+          className="create-article__input"
           name="tags"
           type="text"
           value={this.state.tags}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="image">
+        <label className="create-article__label" htmlFor="image">
           Upload Image (if no image is provided, the old image will be used)
         </label>
         <input name="image" type="file" ref={this.fileInputRef} />
-        <label htmlFor="abstract">Abstract</label>
+        <label className="create-article__label" htmlFor="abstract">
+          Abstract
+        </label>
         <textarea
+          className="create-article__input"
           name="abstract"
           type="text"
           value={this.state.abstract}

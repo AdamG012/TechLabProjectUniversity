@@ -601,6 +601,10 @@ input, textarea {
   .article__row {
     margin-bottom: 2rem; }
 
+.edit-article {
+  display: flex;
+  flex-direction: column; }
+
 .homepage__map {
   justify-content: space-around;
   display: flex;
