@@ -154,7 +154,7 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
     else:
         ttr = None
 
-    if article_admin.edit_article(
+    article = article_admin.edit_article(
             int(article_id),
             title=title,
             author=author,
@@ -163,8 +163,10 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
             date=format_date,
             time_to_read=ttr,
             image=image_file
-    ):
-        article_admin.set_article_tags(article_id, [x.lower().strip() for x in tags])
+    )
+
+    if article:
+        article_admin.set_article_tags(article, [x.lower().strip() for x in tags])
         return JsonResponse({'success': 'true'})
 
     return JsonResponse({'success': 'false'})
