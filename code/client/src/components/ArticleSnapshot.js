@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
  */
 const ArticleSnapshot = props => {
   return (
-    <Link to={`article/${props.id}`}>
+    <Link to={`/article/${props.id}`}>
       <div className="article-snapshot">
         <div
           className="article-snapshot__img-container"

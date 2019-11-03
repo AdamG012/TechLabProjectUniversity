@@ -18,9 +18,14 @@ class SearchResultsPage extends React.Component {
   async componentDidMount() {
     // get the tags
     const tags = await transport.get("/tags");
-    const { searchTerm } = this.props.match.params;
+    let { searchTerm } = this.props.match.params;
+    if (!searchTerm) {
+      searchTerm = "";
+    }
     this.setState({ query: searchTerm, tags: tags.data.tags });
-    this.search();
+    setTimeout(() => {
+      this.search(this.state.query);
+    }, 10);
   }
 
   search = async query => {
