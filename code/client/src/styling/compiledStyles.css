@@ -449,7 +449,7 @@ input, textarea {
   align-items: center;
   margin: 2rem;
   height: auto;
-  width: 20%; }
+  width: 100%; }
   .person-card__content {
     display: flex;
     flex-direction: column;
@@ -550,7 +550,8 @@ input, textarea {
       border-left: none !important;
       border-top: none !important; }
   .searchresults__results {
-    align-self: flex-start; }
+    align-self: flex-start;
+    width: 100%; }
   .searchresults__input {
     border: none;
     display: inline-block;

@@ -12,6 +12,7 @@ import AdminOptionsPage from "./Pages/AdminOptionsPage";
 import ProtectedRoute from "./hocs/ProtectedRoute";
 import EditArticlePage from "./Pages/EditArticlePage";
 import DeleteArticlePage from "./Pages/DeleteArticlePage";
+import Logout from "./Logout";
 
 import transport from "../axios.js";
 
@@ -46,11 +47,11 @@ class App extends React.Component {
       });
   };
 
-  logout = () => {
+  logout = async () => {
+    const res = await transport.post("/admin/logout");
+    console.log("RES: ", res);
+    console.log(res.data.success);
     this.setState({ isAuthed: false }); // make API call with credentials
-
-    // parse API call result
-    // const { username } = response;te({ isAuthed: false });
   };
 
   render() {
@@ -58,17 +59,20 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path="/admin/logout">
+            <Logout logout={this.logout} />
+          </Route>
           <ProtectedRoute
             isAllowed={this.state.isAuthed}
             path="/admin/article/create"
             component={CreateArticlePage}
           />
-          <Route
+          <ProtectedRoute
             isAllowed={this.state.isAuthed}
             path="/admin/article/edit"
             component={EditArticlePage}
           />
-          <Route
+          <ProtectedRoute
             isAllowed={this.state.isAuthed}
             path="/admin/article/delete"
             component={DeleteArticlePage}
@@ -79,7 +83,7 @@ class App extends React.Component {
           <Route path="/login">
             <LoginPage authFunc={this.authenticate} />
           </Route>
-          <Route
+          <ProtectedRoute
             isAllowed={this.state.isAuthed}
             path="/admin"
             component={AdminOptionsPage}
