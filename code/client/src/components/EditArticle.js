@@ -16,12 +16,9 @@ class EditArticle extends React.Component {
     image: "",
     abstract: "",
     timeToRead: "",
-    currentContent: ""
+    currentContent: "",
+    tags: ""
   };
-
-  componentDidUpdate() {
-    console.log("STATE: ", this.state);
-  }
 
   fileInputRef = React.createRef();
 
@@ -51,16 +48,19 @@ class EditArticle extends React.Component {
     const csrf = Cookies.get("csrftoken");
 
     formData.append("csrfmiddlewaretoken", csrf);
-    transport.post(`${API_URL}/admin/article-edit`, formData).then(res => {
-      console.log(res);
-    });
+    const res = await transport.post(`${API_URL}/admin/article-edit`, formData);
+    console.log(res);
+    if (res.data.success === "false") {
+      window.alert("Unable to edit the article at this time");
+      return;
+    }
     window.alert("ARTICLE SUCCESSFULLY EDITED");
     this.setState({
       title: "",
       author: "",
       abstract: "",
       image: "",
-      tags: [],
+      tags: "",
       timeToRead: "",
       currentContent: ""
     });
@@ -79,17 +79,22 @@ class EditArticle extends React.Component {
       `${API_URL}/articles/${this.state.articleToEdit}`
     );
     const data = await response.json();
-    if (!data.success) {
+    if (data.success === "false") {
       window.alert("Couldn't load article data");
+      return;
     }
     const { article } = data;
+    const tagArray = article.tags;
+    const tagString = tagArray.join(",");
+    console.log("TAGSTRINGS: ", tagString);
     this.setState({
       articleId: this.state.articleToEdit,
       title: article.title,
       author: article.author,
       abstract: article.abstract,
       currentContent: article.content,
-      timeToRead: article.time_to_read
+      timeToRead: article.time_to_read,
+      tags: tagString
     });
 
     // get abstract data
@@ -103,43 +108,71 @@ class EditArticle extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="edit-article">
         <h2>Edit Article</h2>
-        <label htmlFor="articleToEdit">Enter id of article to edit</label>
+        <label className="create-article__label" htmlFor="articleToEdit">
+          Enter id of article to edit
+        </label>
+        <div>
+          <input
+            className="create-article__input"
+            name="articleToEdit"
+            type="text"
+            value={this.state.articleToEdit}
+            onChange={this.handleChange}
+          ></input>
+          <button onClick={this.loadArticleData}>Get Article Data</button>
+        </div>
+
+        <label className="create-article__label" htmlFor="title">
+          Article Name
+        </label>
         <input
-          name="articleToEdit"
-          type="text"
-          value={this.state.articleToEdit}
-          onChange={this.handleChange}
-        ></input>
-        <button onClick={this.loadArticleData}>Get Article Data</button>
-        <label htmlFor="title">Article Name</label>
-        <input
+          className="create-article__input"
           name="title"
           type="text"
           value={this.state.title}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="author">Author</label>
+        <label className="create-article__label" htmlFor="author">
+          Author
+        </label>
         <input
+          className="create-article__input"
           name="author"
           type="text"
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="timeToRead">Time To Read</label>
+        <label className="create-article__label" htmlFor="timeToRead">
+          Time To Read
+        </label>
         <input
+          className="create-article__input"
           name="timeToRead"
           type="text"
           value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="image">
+        <label className="create-article__label" htmlFor="tags">
+          Tags
+        </label>
+        <input
+          className="create-article__input"
+          name="tags"
+          type="text"
+          value={this.state.tags}
+          onChange={this.handleInputChange}
+        ></input>
+        <label className="create-article__label" htmlFor="image">
           Upload Image (if no image is provided, the old image will be used)
         </label>
         <input name="image" type="file" ref={this.fileInputRef} />
-        <label htmlFor="abstract">Abstract</label>
+        <label className="create-article__label" htmlFor="abstract">
+          Abstract
+        </label>
         <textarea
+          className="create-article__input"
           name="abstract"
           type="text"
           value={this.state.abstract}

@@ -19,6 +19,10 @@ class Search extends React.Component {
     }
   };
 
+  handleClick = () => {
+    this.setState({ redirect: true });
+  };
+
   handleInputChange = e => {
     this.setState({ searchTerm: e.target.value });
   };
@@ -40,7 +44,9 @@ class Search extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.searchTerm}
           />
-          <button className="search__button">Adv Search</button>
+          <button onClick={this.handleClick} className="search__button">
+            Search
+          </button>
         </div>
       );
     }
