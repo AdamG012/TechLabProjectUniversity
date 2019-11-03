@@ -79,13 +79,9 @@ class CreateArticle extends Component {
   render() {
     return (
       <div className="create-article">
-<<<<<<< HEAD
         <label className="create-article__label" htmlFor="title">
           Article Name
         </label>
-=======
-        <label htmlFor="title">Article Name</label>
->>>>>>> master
         <input
           className="create-article__input"
           name="title"
@@ -113,7 +109,6 @@ class CreateArticle extends Component {
           value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
-<<<<<<< HEAD
         <label className="create-article__label" htmlFor="image">
           Upload Image
         </label>
@@ -126,13 +121,6 @@ class CreateArticle extends Component {
         <label className="create-article__label" htmlFor="abstract">
           Abstract
         </label>
-=======
-        <label htmlFor="image">Upload Image</label>
-        <input name="image" type="file" ref={this.fileInputRef} />
-        <label htmlFor="tags">Tags (Provide as comma separated values)</label>
-        <input name="tags" type="text" onChange={this.handleInputChange} />
-        <label htmlFor="abstract">Abstract</label>
->>>>>>> master
         <textarea
           className="create-article__input"
           name="abstract"
@@ -161,7 +149,9 @@ class CreateArticle extends Component {
             console.log("Focus.", editor);
           }}
         />
-        <Button handleClick={this.handleSubmit} />
+        <div className="create-article__button">
+          <Button text="Add Article" handleClick={this.handleSubmit} />
+        </div>
       </div>
     );
   }

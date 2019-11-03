@@ -347,12 +347,13 @@ input, textarea {
 .btn {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   padding: 0.5rem 2rem;
   transition: background-color 0.5s, color 0.5s; }
   .btn__text {
     padding: 0.5rem 2rem;
-    font-size: 1rem; }
+    font-size: 1rem;
+    margin: 0; }
   .btn:hover {
     cursor: pointer; }
   .btn--white {
@@ -574,6 +575,13 @@ input, textarea {
     font-size: 1.2rem; }
   .create-article__input {
     width: 25%; }
+  .create-article__button {
+    width: 20%;
+    border: 2px solid black;
+    margin: 1rem 0;
+    display: flex;
+    align-content: center;
+    justify-content: center; }
 
 .homepage__map {
   justify-content: space-around;
