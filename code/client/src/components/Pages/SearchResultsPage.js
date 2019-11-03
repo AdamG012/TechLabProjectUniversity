@@ -3,33 +3,31 @@ import HeaderBanner from "../HeaderBanner";
 import Footer from "../Footer";
 import ArticleSnapshot from "../ArticleSnapshot";
 import Tag from "../Tag";
-import { tags } from "../../master.json";
 import transport from "../../axios";
 
 class SearchResultsPage extends React.Component {
   state = {
     results: [], // stores abstract responses
-    tags: tags,
+    tags: [],
     loadingResults: true,
     queryMade: false,
-    selectedTag: tags[0],
+    selectedTags: [],
     query: ""
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    // get the tags
+    const tags = await transport.get("/tags");
     const { searchTerm } = this.props.match.params;
-    this.setState({ query: searchTerm });
+    this.setState({ query: searchTerm, tags: tags.data.tags });
     this.search();
-    // make api call to get results for query
-    // set queryMade to true
-    // add results to state.results
-    // set loadingResults to false
   }
 
   search = async query => {
     this.setState({ loadingResults: true, results: [] });
     const res = await transport.post("/search", {
-      query: query
+      query: query,
+      tags: this.state.selectedTags
     });
     if (!res.data.results) {
       // no results found
@@ -60,25 +58,42 @@ class SearchResultsPage extends React.Component {
   };
 
   clearQuery = () => {
-    this.setState({ query: "" });
+    this.setState({ query: "", selectedTags: [] });
     this.search("");
   };
 
   selectTag = tagNumber => {
-    this.setState({ selectedTag: tags[tagNumber] });
+    // this.setState({ selectedTag: tags[tagNumber] });
+  };
+
+  toggleTagSelected = index => {
+    const { selectedTags, tags } = this.state;
+    // if the tag is in selectedTags, remove it
+    if (selectedTags.includes(tags[index])) {
+      const updatedTags = selectedTags.filter(tag => {
+        return tag !== tags[index];
+      });
+      this.setState({ selectedTags: updatedTags });
+    } else {
+      // else add the tag to selectedTags
+      this.setState({ selectedTags: [...selectedTags, tags[index]] });
+    }
+    setTimeout(() => {
+      this.search(this.state.query);
+    }, 10);
   };
 
   renderTags = tags => {
-    const { selectedTag } = this.state;
     if (!tags) {
       return null;
     } else {
       return tags.map((tag, index) => {
-        const selected = tag === selectedTag ? true : false;
+        // const selected = tag === selectedTag ? true : false;
+        const selected = this.state.selectedTags.includes(tag);
         return (
           <Tag
             key={index}
-            onClick={() => this.selectTag(index)}
+            onClick={() => this.toggleTagSelected(index)}
             isSelected={selected}
             content={tag}
           />
