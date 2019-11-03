@@ -20,6 +20,7 @@
   &__img {
     height: auto;
     width: auto;
+    min-width: 20%;
 
     & img {
       width: 100%;
@@ -33,7 +34,7 @@
 
   &__list {
     flex: 0 1 30%;
-    columns: 3;
+    columns: 1;
     list-style: none;
     // display: flex;
     // justify-content: space-around;

@@ -14,7 +14,7 @@ const Footer = () => {
             <b>About</b>
           </li>
           <li className="footer__list-element">
-            <Link className="navigation__link" to="/">
+            <Link className="navigation__link" to="/contact">
               Contact Us
             </Link>
           </li>
@@ -44,7 +44,7 @@ const Footer = () => {
       </div>
       <div className="footer__bottom">
         <SocialBanner />
-        <p>&copy;2019 by HandOfTheFek. Proudly created with Wix.com</p>
+        <p>&copy;2019 by USyd Techlab</p>
       </div>
     </div>
   );

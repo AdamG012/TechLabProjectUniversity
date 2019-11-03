@@ -13,7 +13,7 @@ class CreateArticle extends Component {
     author: "",
     abstract: "",
     currentContent: "",
-    tags: [],
+    tags: "",
     timeToRead: ""
   };
 
@@ -27,6 +27,7 @@ class CreateArticle extends Component {
 
   componentDidUpdate() {
     // console.log(this.state.currentContent);
+    console.log(this.state);
   }
 
   handleInputChange = e => {
@@ -54,6 +55,7 @@ class CreateArticle extends Component {
     formData.append("author", author);
     formData.append("abstract", abstract);
     formData.append("image", this.fileInputRef.current.files[0]);
+    // formData.append("tags", tagArray);
     formData.append("tags", tags);
     formData.append("time_to_read", Number(timeToRead));
     formData.append("body", currentContent);
@@ -69,39 +71,58 @@ class CreateArticle extends Component {
       author: "",
       abstract: "",
       image: "",
-      tags: [],
+      tags: "",
       currentContent: ""
     });
   };
 
   render() {
     return (
-      <div className="App">
-        <label htmlFor="title">Article Name</label>
+      <div className="create-article">
+        <label className="create-article__label" htmlFor="title">
+          Article Name
+        </label>
         <input
+          className="create-article__input"
           name="title"
           type="text"
           value={this.state.title}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="author">Author</label>
+        <label className="create-article__label" htmlFor="author">
+          Author
+        </label>
         <input
+          className="create-article__input"
           name="author"
           type="text"
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="timeToRead">Time To Read</label>
+        <label className="create-article__label" htmlFor="timeToRead">
+          Time To Read
+        </label>
         <input
+          className="create-article__input"
           name="timeToRead"
           type="text"
           value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="image">Upload Image</label>
-        <input name="image" type="file" ref={this.fileInputRef} />
-        <label htmlFor="abstract">Abstract</label>
+        <label className="create-article__label" htmlFor="image">
+          Upload Image
+        </label>
+        <input
+          className="create-article__input"
+          name="image"
+          type="file"
+          ref={this.fileInputRef}
+        />
+        <label className="create-article__label" htmlFor="abstract">
+          Abstract
+        </label>
         <textarea
+          className="create-article__input"
           name="abstract"
           type="text"
           value={this.state.abstract}
@@ -110,41 +131,6 @@ class CreateArticle extends Component {
 
         <h2>Create the article content below</h2>
         <CKEditor
-          config={{
-            toolbar: [
-              "heading",
-              "|",
-              "bold",
-              "italic",
-              "link",
-              "bulletedList",
-              "numberedList",
-              "blockQuote"
-            ],
-            heading: {
-              options: [
-                {
-                  model: "paragraph",
-                  title: "Paragraphhhh",
-                  class: "ck-heading_paragraph",
-                  viewClass: "ck-heading_paragraph"
-                },
-                {
-                  model: "heading1",
-                  view: "h1",
-                  title: "Heading 1",
-                  class: "ck-heading_heading1",
-                  viewClass: "ck-heading_heading1"
-                },
-                {
-                  model: "heading2",
-                  view: "h2",
-                  title: "Heading 2",
-                  class: "ck-heading_heading2"
-                }
-              ]
-            }
-          }}
           editor={ClassicEditor}
           data={this.state.currentContent}
           onInit={editor => {
@@ -163,7 +149,9 @@ class CreateArticle extends Component {
             console.log("Focus.", editor);
           }}
         />
-        <Button handleClick={this.handleSubmit} />
+        <div className="create-article__button">
+          <Button text="Add Article" handleClick={this.handleSubmit} />
+        </div>
       </div>
     );
   }

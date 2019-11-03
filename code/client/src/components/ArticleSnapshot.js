@@ -19,6 +19,9 @@ const ArticleSnapshot = props => {
         ></div>
         <div className="article-snapshot__content-container">
           <h6 className="article-snapshot__heading">{props.title}</h6>
+          <p className="article-snapshot__text--small">
+            Time to read: {props.timeToRead} mins
+          </p>
           <p className="article-snapshot__text">{props.abstract}</p>
         </div>
       </div>
