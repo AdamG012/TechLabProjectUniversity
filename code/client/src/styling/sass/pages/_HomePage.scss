@@ -1,4 +1,11 @@
 .homepage {
+
+  &__map {
+    justify-content: space-around;
+    display: flex;
+    padding-top: 2rem;
+    align-items: center;
+  }
   
   &__content {
     display: flex;
@@ -7,11 +14,11 @@
 
 
     &-leftColumn {
-    flex: 0 1 60%;
+    flex: 0 1 100%;
     }
 
     &-rightColumn {
-      flex: 0 1 25%;
+      flex: 0 1 20%;
     }
   }
 
