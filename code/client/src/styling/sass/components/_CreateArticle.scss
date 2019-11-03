@@ -1,4 +1,22 @@
 .create-article {
   display: flex;
   flex-direction: column;
+
+  &__label {
+    font-size: 1.2rem;
+    
+  }
+
+  &__input {
+    width: 25%;
+  }
+
+  &__button {
+    width: 20%;
+    border: 2px solid black;
+    margin: 1rem 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
 }

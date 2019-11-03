@@ -79,33 +79,50 @@ class CreateArticle extends Component {
   render() {
     return (
       <div className="create-article">
-        <label htmlFor="title">Article Name</label>
+        <label className="create-article__label" htmlFor="title">
+          Article Name
+        </label>
         <input
+          className="create-article__input"
           name="title"
           type="text"
           value={this.state.title}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="author">Author</label>
+        <label className="create-article__label" htmlFor="author">
+          Author
+        </label>
         <input
+          className="create-article__input"
           name="author"
           type="text"
           value={this.state.author}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="timeToRead">Time To Read</label>
+        <label className="create-article__label" htmlFor="timeToRead">
+          Time To Read
+        </label>
         <input
+          className="create-article__input"
           name="timeToRead"
           type="text"
           value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
-        <label htmlFor="image">Upload Image</label>
-        <input name="image" type="file" ref={this.fileInputRef} />
-        <label htmlFor="tags">Tags (Provide as comma separated values)</label>
-        <input name="tags" type="text" onChange={this.handleInputChange} />
-        <label htmlFor="abstract">Abstract</label>
+        <label className="create-article__label" htmlFor="image">
+          Upload Image
+        </label>
+        <input
+          className="create-article__input"
+          name="image"
+          type="file"
+          ref={this.fileInputRef}
+        />
+        <label className="create-article__label" htmlFor="abstract">
+          Abstract
+        </label>
         <textarea
+          className="create-article__input"
           name="abstract"
           type="text"
           value={this.state.abstract}
@@ -132,7 +149,9 @@ class CreateArticle extends Component {
             console.log("Focus.", editor);
           }}
         />
-        <Button handleClick={this.handleSubmit} />
+        <div className="create-article__button">
+          <Button text="Add Article" handleClick={this.handleSubmit} />
+        </div>
       </div>
     );
   }
