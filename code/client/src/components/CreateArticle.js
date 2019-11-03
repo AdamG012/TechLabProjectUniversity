@@ -13,7 +13,7 @@ class CreateArticle extends Component {
     author: "",
     abstract: "",
     currentContent: "",
-    tags: [],
+    tags: "",
     timeToRead: ""
   };
 
@@ -27,6 +27,7 @@ class CreateArticle extends Component {
 
   componentDidUpdate() {
     // console.log(this.state.currentContent);
+    console.log(this.state);
   }
 
   handleInputChange = e => {
@@ -54,6 +55,7 @@ class CreateArticle extends Component {
     formData.append("author", author);
     formData.append("abstract", abstract);
     formData.append("image", this.fileInputRef.current.files[0]);
+    // formData.append("tags", tagArray);
     formData.append("tags", tags);
     formData.append("time_to_read", Number(timeToRead));
     formData.append("body", currentContent);
@@ -69,7 +71,7 @@ class CreateArticle extends Component {
       author: "",
       abstract: "",
       image: "",
-      tags: [],
+      tags: "",
       currentContent: ""
     });
   };
@@ -77,9 +79,13 @@ class CreateArticle extends Component {
   render() {
     return (
       <div className="create-article">
+<<<<<<< HEAD
         <label className="create-article__label" htmlFor="title">
           Article Name
         </label>
+=======
+        <label htmlFor="title">Article Name</label>
+>>>>>>> master
         <input
           className="create-article__input"
           name="title"
@@ -107,6 +113,7 @@ class CreateArticle extends Component {
           value={this.state.timeToRead}
           onChange={this.handleInputChange}
         ></input>
+<<<<<<< HEAD
         <label className="create-article__label" htmlFor="image">
           Upload Image
         </label>
@@ -119,6 +126,13 @@ class CreateArticle extends Component {
         <label className="create-article__label" htmlFor="abstract">
           Abstract
         </label>
+=======
+        <label htmlFor="image">Upload Image</label>
+        <input name="image" type="file" ref={this.fileInputRef} />
+        <label htmlFor="tags">Tags (Provide as comma separated values)</label>
+        <input name="tags" type="text" onChange={this.handleInputChange} />
+        <label htmlFor="abstract">Abstract</label>
+>>>>>>> master
         <textarea
           className="create-article__input"
           name="abstract"
@@ -129,41 +143,6 @@ class CreateArticle extends Component {
 
         <h2>Create the article content below</h2>
         <CKEditor
-          config={{
-            toolbar: [
-              "heading",
-              "|",
-              "bold",
-              "italic",
-              "link",
-              "bulletedList",
-              "numberedList",
-              "blockQuote"
-            ],
-            heading: {
-              options: [
-                {
-                  model: "paragraph",
-                  title: "Paragraphhhh",
-                  class: "ck-heading_paragraph",
-                  viewClass: "ck-heading_paragraph"
-                },
-                {
-                  model: "heading1",
-                  view: "h1",
-                  title: "Heading 1",
-                  class: "ck-heading_heading1",
-                  viewClass: "ck-heading_heading1"
-                },
-                {
-                  model: "heading2",
-                  view: "h2",
-                  title: "Heading 2",
-                  class: "ck-heading_heading2"
-                }
-              ]
-            }
-          }}
           editor={ClassicEditor}
           data={this.state.currentContent}
           onInit={editor => {
