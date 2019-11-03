@@ -27,7 +27,7 @@ def article_new(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
-        tags = ",".split(request.POST.get('tags'))
+        tags = request.POST.get('tags').split(",")
         return view_handlers.handle_article_new(request.POST.get('title'),
                                                 request.POST.get('author'),
                                                 request.POST.get('abstract'),
@@ -61,7 +61,7 @@ def article_edit(request):
         return HttpResponseForbidden("Permission denied")
 
     if request.method == 'POST':
-        tags = ",".split(request.POST.get('tags'))
+        tags = request.POST.get('tags').split(",")
         return view_handlers.handle_article_edit(request.POST.get('id'),
                                                  request.POST.get('title'),
                                                  request.POST.get('author'),
