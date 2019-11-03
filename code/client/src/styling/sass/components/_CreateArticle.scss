@@ -1,0 +1,13 @@
+.create-article {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: 1.2rem;
+    
+  }
+
+  &__input {
+    width: 25%;
+  }
+}

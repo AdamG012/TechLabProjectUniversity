@@ -233,8 +233,10 @@ input, textarea {
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  align-items: center; }
   .hero-banner__primary-text {
     padding: 1rem; }
   .hero-banner__secondary-text {
@@ -299,7 +301,7 @@ input, textarea {
   padding: 2rem;
   justify-content: space-evenly;
   height: 30rem;
-  width: 40%; }
+  width: 50%; }
   .contact-form__form {
     display: flex;
     flex-direction: column;
@@ -328,7 +330,6 @@ input, textarea {
   height: 2rem;
   width: 2rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-content: center;
   display: flex;
@@ -388,7 +389,8 @@ input, textarea {
     align-items: center; }
   .footer__img {
     height: auto;
-    width: auto; }
+    width: auto;
+    min-width: 20%; }
     .footer__img img {
       width: 100%;
       height: 100%; }
@@ -396,7 +398,7 @@ input, textarea {
     width: 20%; }
   .footer__list {
     flex: 0 1 30%;
-    columns: 3;
+    columns: 1;
     list-style: none; }
     .footer__list-element {
       font-size: 1rem;
@@ -410,7 +412,7 @@ input, textarea {
 .meet {
   padding: 4rem; }
   .meet__row {
-    width: 80%;
+    width: 100%;
     margin: 0 auto; }
   .meet__heading {
     display: flex;
@@ -422,6 +424,7 @@ input, textarea {
       margin-bottom: 1rem; }
   .meet__cards {
     display: flex;
+    flex-direction: column;
     justify-content: space-around; }
 
 .hr {
@@ -564,6 +567,14 @@ input, textarea {
   display: flex;
   flex-direction: column; }
 
+.create-article {
+  display: flex;
+  flex-direction: column; }
+  .create-article__label {
+    font-size: 1.2rem; }
+  .create-article__input {
+    width: 25%; }
+
 .homepage__map {
   justify-content: space-around;
   display: flex;
@@ -575,9 +586,9 @@ input, textarea {
   justify-content: center;
   margin: 2rem; }
   .homepage__content-leftColumn {
-    flex: 0 1 60%; }
+    flex: 0 1 100%; }
   .homepage__content-rightColumn {
-    flex: 0 1 25%; }
+    flex: 0 1 20%; }
 
 .homepage__contact {
   background-color: black;

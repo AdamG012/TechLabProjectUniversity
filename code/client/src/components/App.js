@@ -22,7 +22,7 @@ import SearchResultsPage from "./Pages/SearchResultsPage";
 
 class App extends React.Component {
   state = {
-    isAuthed: false
+    isAuthed: true
   };
 
   componentDidUpdate() {
