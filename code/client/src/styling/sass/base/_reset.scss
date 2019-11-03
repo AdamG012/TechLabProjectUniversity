@@ -10,3 +10,16 @@ html {
   scroll-behavior: smooth;
 
 }
+
+
+a {
+  color: inherit;
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: inherit;
+    text-decoration: none;
+  }
+}

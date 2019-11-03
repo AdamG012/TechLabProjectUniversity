@@ -16,12 +16,9 @@ class EditArticle extends React.Component {
     image: "",
     abstract: "",
     timeToRead: "",
-    currentContent: ""
+    currentContent: "",
+    tags: ""
   };
-
-  componentDidUpdate() {
-    console.log("STATE: ", this.state);
-  }
 
   fileInputRef = React.createRef();
 
@@ -51,16 +48,19 @@ class EditArticle extends React.Component {
     const csrf = Cookies.get("csrftoken");
 
     formData.append("csrfmiddlewaretoken", csrf);
-    transport.post(`${API_URL}/admin/article-edit`, formData).then(res => {
-      console.log(res);
-    });
+    const res = await transport.post(`${API_URL}/admin/article-edit`, formData);
+    console.log(res);
+    if (res.data.success === "false") {
+      window.alert("Unable to edit the article at this time");
+      return;
+    }
     window.alert("ARTICLE SUCCESSFULLY EDITED");
     this.setState({
       title: "",
       author: "",
       abstract: "",
       image: "",
-      tags: [],
+      tags: "",
       timeToRead: "",
       currentContent: ""
     });
@@ -79,17 +79,22 @@ class EditArticle extends React.Component {
       `${API_URL}/articles/${this.state.articleToEdit}`
     );
     const data = await response.json();
-    if (!data.success) {
+    if (data.success === "false") {
       window.alert("Couldn't load article data");
+      return;
     }
     const { article } = data;
+    const tagArray = article.tags;
+    const tagString = tagArray.join(",");
+    console.log("TAGSTRINGS: ", tagString);
     this.setState({
       articleId: this.state.articleToEdit,
       title: article.title,
       author: article.author,
       abstract: article.abstract,
       currentContent: article.content,
-      timeToRead: article.time_to_read
+      timeToRead: article.time_to_read,
+      tags: tagString
     });
 
     // get abstract data
@@ -132,6 +137,13 @@ class EditArticle extends React.Component {
           name="timeToRead"
           type="text"
           value={this.state.timeToRead}
+          onChange={this.handleInputChange}
+        ></input>
+        <label htmlFor="tags">Tags</label>
+        <input
+          name="tags"
+          type="text"
+          value={this.state.tags}
           onChange={this.handleInputChange}
         ></input>
         <label htmlFor="image">
