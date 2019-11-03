@@ -239,14 +239,15 @@ input, textarea {
 
 .hero-banner {
   background-color: black;
-  height: 15rem;
+  min-height: 15rem;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   margin: 0;
-  align-items: center; }
+  align-items: center;
+  text-align: center; }
   .hero-banner__primary-text {
     padding: 1rem; }
   .hero-banner__secondary-text {

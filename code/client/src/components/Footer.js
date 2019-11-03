@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import SocialBanner from "./SocialBanner";
+import { Container } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <Container fluid className="footer">
       <div className="footer__content">
         <div className="black-background">
           <img alt="techlab logo" src={require("../img/logo.jpeg")}></img>
@@ -46,7 +47,7 @@ const Footer = () => {
         <SocialBanner />
         <p>&copy;2019 by USyd Techlab</p>
       </div>
-    </div>
+    </Container>
   );
 };
 
