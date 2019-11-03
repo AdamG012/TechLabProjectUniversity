@@ -2,7 +2,7 @@
   padding: 4rem;
 
   &__row {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
   }
 
@@ -20,6 +20,7 @@
 
   &__cards {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
   }
 }

@@ -46,6 +46,9 @@ input, textarea {
 .fade-out {
   opacity: 0; }
 
+.black-background {
+  background-color: black; }
+
 /**
 * SocialBanner Styles
 */
@@ -53,12 +56,13 @@ input, textarea {
   padding: 0.5rem;
   background-color: black;
   display: flex;
+  flex-direction: column;
   align-items: center; }
-  .social-banner__list {
-    display: flex; }
-    .social-banner__list-item {
-      padding: 0 0.3rem;
-      list-style: none; }
+  .social-banner__list-item {
+    padding: 0 0.3rem;
+    list-style: none;
+    display: inline-grid;
+    grid-template-columns: auto; }
 
 /**
 * Article Snapshot Styles
@@ -88,6 +92,9 @@ input, textarea {
     font-size: 1rem;
     padding: 1rem;
     line-height: 1.3; }
+    .article-snapshot__text--small {
+      font-size: 0.65rem;
+      padding-left: 1rem; }
 
 /**
 * Navigation Component Styles
@@ -119,6 +126,24 @@ input, textarea {
     color: white; }
   .navigation__link:visited, .navigation__link:link {
     text-decoration: none; }
+
+.nav-bar-item {
+  min-height: 2rem;
+  background-color: black;
+  color: white !important;
+  font-size: 1rem; }
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background-size: 100% 100%;
+  background: white no-repeat center center; }
+
+.nav-hamburger {
+  max-height: 1rem; }
 
 /**
 * ArticlesContainer styles
@@ -184,22 +209,23 @@ input, textarea {
   /* Microsoft Edge */
   color: red; }
 
-.get-in-touch {
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2rem;
-  cursor: pointer; }
-  .get-in-touch__text {
-    padding: 0.5rem 2rem;
-    border: 1px solid white;
-    color: white;
-    font-size: 1rem;
-    transition: all 0.5s; }
-    .get-in-touch__text:hover {
-      color: black;
-      background-color: white; }
+@media (min-width: 420px) {
+  .get-in-touch {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    cursor: pointer; }
+    .get-in-touch__text {
+      padding: 0.5rem 2rem;
+      border: 1px solid white;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.5s; }
+      .get-in-touch__text:hover {
+        color: black;
+        background-color: white; } }
 
 .hero-banner {
   background-color: black;
@@ -223,7 +249,7 @@ input, textarea {
   padding: 2rem;
   justify-content: space-evenly;
   height: 30rem;
-  width: 40%; }
+  width: 50%; }
   .contact-form__form {
     display: flex;
     flex-direction: column;
@@ -422,7 +448,8 @@ input, textarea {
       text-align: center; }
   .person-card__img {
     margin-bottom: 1.5rem;
-    width: 100%; }
+    width: 100%;
+    max-width: 400px; }
     .person-card__img > img {
       border-radius: 50%;
       width: 100%; }
@@ -473,6 +500,9 @@ input, textarea {
   .login__button {
     margin-top: 2rem;
     padding: 1.25rem; }
+
+.black-background {
+  background-color: black; }
 
 .searchresults {
   width: 75%;
@@ -534,9 +564,11 @@ input, textarea {
   display: flex;
   flex-direction: column; }
 
-.create-article {
+.homepage__map {
+  justify-content: space-around;
   display: flex;
-  flex-direction: column; }
+  padding-top: 2rem;
+  align-items: center; }
 
 .homepage__content {
   display: flex;
