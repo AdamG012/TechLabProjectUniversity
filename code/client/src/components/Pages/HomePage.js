@@ -106,12 +106,12 @@ class HomePage extends React.Component {
         // const selected = tag === selectedTag ? true : false;
         const selected = this.state.selectedTags.includes(tag);
         return (
-            <Tag
-                key={index}
-                onClick={() => this.toggleTagSelected(index)}
-                isSelected={selected}
-                content={tag}
-            />
+          <Tag
+            key={index}
+            onClick={() => this.toggleTagSelected(index)}
+            isSelected={selected}
+            content={tag}
+          />
         );
       });
     }
@@ -129,78 +129,80 @@ class HomePage extends React.Component {
 
     return results.map(article => {
       return (
-          <ArticleSnapshot
-              id={article.id}
-              key={article.id}
-              author={article.author}
-              abstract={article.abstract}
-              imageURL={article.image}
-              title={article.title}
-              timeToRead={article.time_to_read}
-              tags={article.tags}
-              content={article.abstract}
-          />
+        <ArticleSnapshot
+          id={article.id}
+          key={article.id}
+          author={article.author}
+          abstract={article.abstract}
+          imageURL={article.image}
+          title={article.title}
+          timeToRead={article.time_to_read}
+          tags={article.tags}
+          content={article.abstract}
+        />
       );
     });
   };
   contactFormRef = React.createRef();
   render() {
     return (
-        <div className="overlay" id="overlay">
-          <Container fluid>
-            <Row>
-              <Col className="black-background">
-                <HeaderBanner contactRef={this.contactFormRef}/>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="black-background">
-                <HeroBanner/>
-              </Col>
-            </Row>
-            <Row>
-              <Col xl={8}>
-                <div className="homepage__content">
-                  <div className="homepage__content-leftColumn">
-                    <div className="post-filter-and-search">
-                      <div className="searchresults__tags">
-                        {this.renderTags(this.state.tags)}
-                      </div>
-                      <Search/>
+      <div className="overlay" id="overlay">
+        <Container fluid>
+          <Row>
+            <Col className="black-background">
+              <HeaderBanner contactRef={this.contactFormRef} />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="black-background">
+              <HeroBanner />
+            </Col>
+          </Row>
+          <Row>
+            <Col xl={8}>
+              <div className="homepage__content">
+                <div className="homepage__content-leftColumn">
+                  <div>
+                    <Search />
+                    <div className="searchresults__tags">
+                      {this.renderTags(this.state.tags)}
                     </div>
-                    <ArticlesContainer/>
+                    <ArticlesContainer>
+                      {this.renderResults(this.state.results)}
+                    </ArticlesContainer>
                   </div>
                 </div>
-              </Col>
-              <Col>
-                <div className="homepage__content">
-                  <SideBannerContainer/>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="black-background">
-                <div className="homepage__contact">
-                  <ContactForm ref={this.contactFormRef}/>
-                </div>
-              </Col>
-              <Col className="black-background">
-                <div className="homepage__map">
-                  <Map/>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="black-background">
-                <div>
-                  <Footer/>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+              </div>
+            </Col>
+            <Col>
+              <div className="homepage__content">
+                <SideBannerContainer />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="black-background">
+              <div className="homepage__contact">
+                <ContactForm ref={this.contactFormRef} />
+              </div>
+            </Col>
+            <Col className="black-background">
+              <div className="homepage__map">
+                <Map />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="black-background">
+              <div>
+                <Footer />
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
-};
+}
 
 export default HomePage;
