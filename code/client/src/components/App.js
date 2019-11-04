@@ -26,10 +26,6 @@ class App extends React.Component {
     isAuthed: false
   };
 
-  componentDidUpdate() {
-    console.log("IS AUTHED", this.state.isAuthed);
-  }
-
   authenticate = async (username, password) => {
     transport
       .post(`${API_URL}/admin/login`, {
@@ -37,7 +33,6 @@ class App extends React.Component {
         password
       })
       .then(res => {
-        console.log(res);
         if (res.data.success === "true") {
           this.setState({ isAuthed: true });
           window.alert("SUCCESSFULLY LOGGED IN");
@@ -49,8 +44,6 @@ class App extends React.Component {
 
   logout = async () => {
     const res = await transport.post("/admin/logout");
-    console.log("RES: ", res);
-    console.log(res.data.success);
     this.setState({ isAuthed: false }); // make API call with credentials
   };
 

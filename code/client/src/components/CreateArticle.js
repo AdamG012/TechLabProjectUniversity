@@ -25,22 +25,11 @@ class CreateArticle extends Component {
     // and have them applied to the article
   }
 
-  componentDidUpdate() {
-    // console.log(this.state.currentContent);
-    console.log(this.state);
-  }
-
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onImageChange = e => {
-    console.log("FILES: ", e.target.files);
-  };
-
   handleSubmit = async () => {
-    console.log(this.state);
-    // console.log("SELECTED FILE: ", this.fileInputRef.current.files[0]);
     const {
       title,
       author,
@@ -62,18 +51,20 @@ class CreateArticle extends Component {
     const csrf = Cookies.get("csrftoken");
 
     formData.append("csrfmiddlewaretoken", csrf);
-    transport.post(`${API_URL}/admin/article-new`, formData).then(res => {
-      console.log(res);
-    });
-    window.alert("ARTICLE SUCCESSFULLY CREATED");
-    this.setState({
-      title: "",
-      author: "",
-      abstract: "",
-      image: "",
-      tags: "",
-      currentContent: ""
-    });
+    const res = await transport.post(`${API_URL}/admin/article-new`, formData);
+    if (res.data.success === "true") {
+      window.alert("Article Successfully Created");
+      this.setState({
+        title: "",
+        author: "",
+        abstract: "",
+        image: "",
+        tags: "",
+        currentContent: ""
+      });
+    } else {
+      window.alert("Article couldn't be created at this time");
+    }
   };
 
   render() {
@@ -135,19 +126,13 @@ class CreateArticle extends Component {
           data={this.state.currentContent}
           onInit={editor => {
             // You can store the "editor" and use when it is needed.
-            console.log("Editor is ready to use!", editor);
           }}
           onChange={(event, editor) => {
             const data = editor.getData();
-            console.log({ event, editor, data });
             this.setState({ currentContent: data });
           }}
-          onBlur={(event, editor) => {
-            console.log("Blur.", editor);
-          }}
-          onFocus={(event, editor) => {
-            console.log("Focus.", editor);
-          }}
+          onBlur={(event, editor) => {}}
+          onFocus={(event, editor) => {}}
         />
         <div className="create-article__button">
           <Button text="Add Article" handleClick={this.handleSubmit} />

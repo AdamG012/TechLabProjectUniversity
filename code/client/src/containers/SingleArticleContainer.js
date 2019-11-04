@@ -34,7 +34,6 @@ class SingleArticleContainer extends React.Component {
   }
 
   render() {
-    console.log("ARTICLE CONTAINER CONTENT: ", this.state);
     const {
       title,
       author,

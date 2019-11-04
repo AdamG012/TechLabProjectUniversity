@@ -14,10 +14,6 @@ class ArticlesContainer extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
   async componentDidMount() {
     // get the article ids for the first page
     const articleIds = await fetch(
@@ -47,7 +43,6 @@ class ArticlesContainer extends React.Component {
     const { currentPage } = this.state;
     const response = await fetch(`${API_URL}/latest-articles/${currentPage}`);
     const data = await response.json();
-    console.log(data);
     if (data.success === "false") {
       this.setState({ articlesRemain: false });
       window.alert("No more articles available at this time");
@@ -70,7 +65,6 @@ class ArticlesContainer extends React.Component {
   renderContent = () => {
     const { articles } = this.state;
     return articles.map(article => {
-      console.log(article);
       return (
         <ArticleSnapshot
           id={article.id}
