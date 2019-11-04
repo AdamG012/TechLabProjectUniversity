@@ -239,14 +239,15 @@ input, textarea {
 
 .hero-banner {
   background-color: black;
-  height: 15rem;
+  min-height: 15rem;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   margin: 0;
-  align-items: center; }
+  align-items: center;
+  text-align: center; }
   .hero-banner__primary-text {
     padding: 1rem; }
   .hero-banner__secondary-text {
@@ -449,7 +450,7 @@ input, textarea {
   align-items: center;
   margin: 2rem;
   height: auto;
-  width: 20%; }
+  width: 100%; }
   .person-card__content {
     display: flex;
     flex-direction: column;
@@ -550,7 +551,8 @@ input, textarea {
       border-left: none !important;
       border-top: none !important; }
   .searchresults__results {
-    align-self: flex-start; }
+    align-self: flex-start;
+    width: 100%; }
   .searchresults__input {
     border: none;
     display: inline-block;

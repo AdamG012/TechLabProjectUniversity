@@ -1,6 +1,6 @@
 .hero-banner {
   background-color: black;
-  height: 15rem;
+  min-height: 15rem;
   color: white;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,7 @@
   width: 100%;
   margin: 0;
   align-items: center;
+  text-align: center;
 
   &__primary-text {
     padding: 1rem;

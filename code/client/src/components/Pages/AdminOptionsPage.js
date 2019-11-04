@@ -9,7 +9,7 @@ class AdminOptionsPage extends React.Component {
     return (
       <>
         <HeaderBanner />
-        <AdminOptions />
+        <AdminOptions logout={this.props.logout} />
         <Footer />
       </>
     );
