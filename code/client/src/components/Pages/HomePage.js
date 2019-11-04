@@ -28,7 +28,7 @@ const HomePage = () => {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col xl={8}>
             <div className="homepage__content">
               <div className="homepage__content-leftColumn">
                 <div className="post-filter-and-search">

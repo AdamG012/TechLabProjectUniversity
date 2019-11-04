@@ -6,7 +6,7 @@ $content-max-width: 20rem;
   align-self: flex-start;
   margin-top: 5rem;
   margin-left: 2rem;
-
+  max-width: 30rem;
 
   &__heading-container {
     text-align: center;
@@ -20,6 +20,7 @@ $content-max-width: 20rem;
 
   &__content {
     background-color: $sidebar-background;
+    display: contents;
     max-width: $content-max-width;
 
   }

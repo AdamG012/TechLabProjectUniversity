@@ -292,7 +292,8 @@ input, textarea {
   height: auto;
   align-self: flex-start;
   margin-top: 5rem;
-  margin-left: 2rem; }
+  margin-left: 2rem;
+  max-width: 30rem; }
   .side-banner__heading-container {
     text-align: center;
     margin-bottom: 1rem;
@@ -301,6 +302,7 @@ input, textarea {
     font-size: 1.5rem; }
   .side-banner__content {
     background-color: #444;
+    display: contents;
     max-width: 20rem; }
 
 .contact-form {
@@ -578,6 +580,7 @@ input, textarea {
 
 .admin-options__list {
   display: flex;
+  font-size: 2rem;
   flex-direction: column; }
 
 .create-article {
@@ -610,7 +613,7 @@ input, textarea {
 .homepage__map {
   justify-content: space-around;
   display: flex;
-  padding-top: 2rem;
+  padding-top: 4rem;
   align-items: center; }
 
 .homepage__content {
