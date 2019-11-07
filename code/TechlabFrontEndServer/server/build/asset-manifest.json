@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b6a4b621.chunk.css",
+    "main.js": "/static/js/main.7a7a5e9e.chunk.js",
+    "main.js.map": "/static/js/main.7a7a5e9e.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.9e6e601a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.9e6e601a.js.map",
+    "static/css/2.0624914a.chunk.css": "/static/css/2.0624914a.chunk.css",
+    "static/js/2.88c1bb24.chunk.js": "/static/js/2.88c1bb24.chunk.js",
+    "static/js/2.88c1bb24.chunk.js.map": "/static/js/2.88c1bb24.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.155c1e2bd5147e1a01f80e3c25333d51.js": "/precache-manifest.155c1e2bd5147e1a01f80e3c25333d51.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.0624914a.chunk.css.map": "/static/css/2.0624914a.chunk.css.map",
+    "static/css/main.b6a4b621.chunk.css.map": "/static/css/main.b6a4b621.chunk.css.map",
+    "static/media/logo.webp": "/static/media/logo.387d7a60.webp",
+    "static/media/person1.webp": "/static/media/person1.d6efed25.webp",
+    "static/media/person2.webp": "/static/media/person2.b09ef03f.webp",
+    "static/media/person3.webp": "/static/media/person3.8b98812f.webp",
+    "static/media/staticmap.png": "/static/media/staticmap.09193fc5.png"
+  }
+}
