@@ -42,6 +42,9 @@ def delete_article(article_id):
 
 
 def set_article_tags(article_id, tags):
+    existing_tags = Tag.objects.filter(article__pk=article_id.pk)
+    if existing_tags:
+        existing_tags.delete()
     if tags:
         for tag in tags:
             t = Tag(tag=tag, article=article_id)

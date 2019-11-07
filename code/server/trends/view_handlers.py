@@ -70,6 +70,8 @@ def handle_search(tags, query, pagenumber):
 def handle_abstract_page(pagenumber, uri):
     data = []
     latest = article.get_latest_page(int(pagenumber))
+    if latest is None:
+        return JsonResponse({'success': 'false'})
     for i in latest:
         article_obj = article.get_article(i)
         if article_obj is None:
@@ -131,6 +133,10 @@ def handle_article_new(title, author, abstract, body, date, time_to_read, image,
 
 
 def handle_article_edit(article_id, title, author, abstract, body, date, time_to_read, image, tags):
+    article_obj = article.get_article(int(article_id))
+    if article_obj is None:
+        return JsonResponse({'success': 'false'})
+
     if date:
         format_date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
     else:
@@ -154,7 +160,7 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
     else:
         ttr = None
 
-    article = article_admin.edit_article(
+    a = article_admin.edit_article(
             int(article_id),
             title=title,
             author=author,
@@ -165,8 +171,8 @@ def handle_article_edit(article_id, title, author, abstract, body, date, time_to
             image=image_file
     )
 
-    if article:
-        article_admin.set_article_tags(article, [x.lower().strip() for x in tags])
+    if a:
+        article_admin.set_article_tags(a, [x.lower().strip() for x in tags])
         return JsonResponse({'success': 'true'})
 
     return JsonResponse({'success': 'false'})

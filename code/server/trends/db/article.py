@@ -36,11 +36,11 @@ def search_by_title(query, page, tags=None):
     if tags:
         results = None
         for tag in tags:
-            if results:
-                results.union(get_articles_by_tag(tag))
-            else:
+            if results is None:
                 results = get_articles_by_tag(tag)
-            print(get_articles_by_tag(tag))
+            else:
+                results = results | get_articles_by_tag(tag)
+
         results = results.filter(title__icontains=query).order_by('-date', '-id')
     else:
         results = Article.objects.filter(title__icontains=query).order_by('-date', '-id')
@@ -51,5 +51,5 @@ def search_by_title(query, page, tags=None):
 
 
 def get_tags():
-    results = Tag.objects.values("tag").annotate(num_tags=Count("id")).order_by("-num_tags").values_list("tag", flat=True)
+    results = Tag.objects.values("tag").annotate(num_tags=Count("id")).order_by("-num_tags", "tag").values_list("tag", flat=True)
     return list(results)

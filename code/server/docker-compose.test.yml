@@ -7,15 +7,15 @@ services:
       - '3306:3306'
     environment:
        MYSQL_DATABASE: 'trends_database'
-       MYSQL_USER: 'root'
-       MYSQL_PASSWORD: 'pass'
        MYSQL_ROOT_PASSWORD: 'pass'
 
 
   web:
     build: .
     command: >
-      sh -c "python manage.py test"
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py test"
     volumes:
       - .:/code
     ports:
