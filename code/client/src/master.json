@@ -19,5 +19,27 @@
       "text": "I’m a paragraph. Double click me or click Edit Text, it's easy.",
       "img": "person3.webp"
     }
+  ],
+  "events": [
+    {
+      "title": "Urban Life",
+      "text": "Your Text Here",
+      "image": "https://static.wixstatic.com/media/fd5752f4ee5b4580b359d3ea16c8b715.jpeg/v1/fill/w_125,h_120,al_c,q_80,usm_0.66_1.00_0.01/fd5752f4ee5b4580b359d3ea16c8b715.webp"
+    },
+    {
+      "title": "Gals & Pals",
+      "text": "Your Text Here",
+      "image": "https://static.wixstatic.com/media/fd5752f4ee5b4580b359d3ea16c8b715.jpeg/v1/fill/w_125,h_120,al_c,q_80,usm_0.66_1.00_0.01/fd5752f4ee5b4580b359d3ea16c8b715.webp"
+    },
+    {
+      "title": "Lost Soles",
+      "text": "Your Text Here",
+      "image": "https://static.wixstatic.com/media/fd5752f4ee5b4580b359d3ea16c8b715.jpeg/v1/fill/w_125,h_120,al_c,q_80,usm_0.66_1.00_0.01/fd5752f4ee5b4580b359d3ea16c8b715.webp"
+    },
+    {
+      "title": "Running Suits",
+      "text": "Your Text Here",
+      "image": "https://static.wixstatic.com/media/fd5752f4ee5b4580b359d3ea16c8b715.jpeg/v1/fill/w_125,h_120,al_c,q_80,usm_0.66_1.00_0.01/fd5752f4ee5b4580b359d3ea16c8b715.webp"
+    }
   ]
 }

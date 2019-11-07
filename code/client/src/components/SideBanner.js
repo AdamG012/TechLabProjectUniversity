@@ -4,25 +4,7 @@
  */
 import React from "react";
 import MiniArticle from "./MiniArticle";
-
-const events = [
-  {
-    title: "Urban Life",
-    text: "Your Text Here"
-  },
-  {
-    title: "Gals & Pals",
-    text: "Your Text Here"
-  },
-  {
-    title: "Lost Soles",
-    text: "Your Text Here"
-  },
-  {
-    title: "Running Suits",
-    text: "Your Text Here"
-  }
-];
+import { events } from "../master.json";
 
 const renderContent = data => {
   return data.map(element => {
@@ -31,12 +13,16 @@ const renderContent = data => {
         key={element.title}
         title={element.title}
         content={element.text}
+        image={element.image}
       />
     );
   });
 };
 
 const SideBanner = props => {
+  if (events.length === 0) {
+    return null;
+  }
   return (
     <div className="side-banner">
       <div className="side-banner__heading-container">
