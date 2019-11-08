@@ -63,7 +63,7 @@ def handle_search(tags, query, pagenumber):
         pagenumber = 1
     if tags:
         tags = [x.lower() for x in tags]
-    results = article.search_by_title(query, int(pagenumber), tags=tags)
+    results = article.search_article(query, int(pagenumber), tags=tags)
     return JsonResponse({'success': 'true', 'results': results}, safe=False)
 
 

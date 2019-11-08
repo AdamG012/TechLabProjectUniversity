@@ -26,7 +26,7 @@ def get_latest_page(page):
     return list(results[first_page:last_page])
 
 
-def search_by_title(query, page, tags=None):
+def search_article(query, page, tags=None):
     if page <= 0:
         return None
 
@@ -41,9 +41,9 @@ def search_by_title(query, page, tags=None):
             else:
                 results = results | get_articles_by_tag(tag)
 
-        results = results.filter(title__icontains=query).order_by('-date', '-id')
+        results = results.filter(title__icontains=query).order_by('-date', '-id') | results.filter(author__icontains=query).order_by('-date', '-id')
     else:
-        results = Article.objects.filter(title__icontains=query).order_by('-date', '-id')
+        results = Article.objects.filter(title__icontains=query).order_by('-date', '-id') | Article.objects.filter(author__icontains=query).order_by('-date', '-id')
 
     first_page = min((page - 1) * NUM_RESULTS, results.count())
     last_page = min(page * NUM_RESULTS, results.count())
