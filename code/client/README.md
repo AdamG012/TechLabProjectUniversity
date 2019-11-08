@@ -1,4 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Documentation For React Project:
+
+## React Code
+    • Located in /code /client
+    • In directory run “npm i” to install dependencies
+    • If making changes to the code run “npm run dev” - this will launch the app on a live server and will watch for all code changes then automatically reload
+    • npm run dev also compiles sass into css which is consumed by the application.
+    • All changes to css should be done in respective scss files located in /client /src /styling /sass
+    • The constant API_URL is defined in config.json and serves as the hostname for API calls. It is currently set to localhost:8000
+    • master.json stores static JSON data for pages such as About Us and the Events Data
+	
+## Node server:  
+    • A containerized server used to run the built react code
+    • To build react code go to /code /client and run “npm run build”, this will output the built React code to /code /client /build 
+    • Replace the existing build directory in the Node server root directory with the output from npm run build and the Node server will serve the react application when run
+    - To run the Node server use docker-compose up (served on port 3000)
+
+
+#Create React App Standard Documentation
 
 ## Available Scripts
 
