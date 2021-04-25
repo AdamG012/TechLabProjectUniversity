@@ -1,0 +1,21 @@
+.mini-article {
+  display: flex;
+  background-color: $sidebar-background;
+  color: white;
+  padding: 1.5rem;
+  align-items: center;
+  width: 100%;
+
+  &__image {
+    padding: 0.75rem;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  &__content {
+
+    
+  }
+}

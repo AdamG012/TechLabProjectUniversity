@@ -1,0 +1,13 @@
+/**
+* Animation to fade the screen while the page is scrolled to the contact form
+* Style is applied to a div covering the whole screen
+*/
+
+.overlay {
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.fade-out {
+  opacity: 0;
+}

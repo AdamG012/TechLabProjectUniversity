@@ -1,0 +1,47 @@
+.btn {
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0.5rem 2rem;
+  transition: background-color 0.5s, color 0.5s;
+
+  &__text {
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--white {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+
+    &:hover {
+      color: white;
+      background-color: black;
+      border: 1px solid white;
+
+    }
+  }
+
+  &--black {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+
+
+
+    &:hover {
+      color: black;
+      background-color: white;
+      border: 1px solid black;
+
+    }
+  }
+}

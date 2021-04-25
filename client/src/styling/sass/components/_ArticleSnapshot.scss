@@ -1,0 +1,59 @@
+/**
+* Article Snapshot Styles
+*/
+
+.article-snapshot {
+  border: 1px solid darkgray;
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  min-height: 20rem;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__img-container {
+    flex: 1 1 30%;
+    overflow: hidden;
+    background-size: cover;
+  }
+
+  &__img {
+    width: 150%;
+  }
+
+  &__content-container {
+    flex: 1 1 70%;
+  }
+
+  &__heading {
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    padding: 1rem;
+  }
+
+  &__text {
+    font-size: 1rem;
+    padding: 1rem;
+    line-height: 1.3;
+
+    &--small {
+      font-size: 0.65rem;
+      padding-left: 1rem;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
